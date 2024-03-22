@@ -6,7 +6,34 @@
     // Select a random operator
     const operatorToGuess = operators[Math.floor(Math.random() * operators.length)];
 
-    
+    // Create a container for the keys
+let keysContainer = document.createElement('div');
+keysContainer.className = 'classic-answers-container';
+
+// Create a row for the keys
+let keysRow = document.createElement('div');
+keysRow.className = 'answer-titles square-container animate__animated animate__fadeIn';
+
+// Create boxes for the keys
+let keys = ['name', 'gender', 'role', 'side', 'country', 'Org', 'Squad', 'release_year'];
+keys.forEach(key => {
+    let box = document.createElement('div');
+    box.className = 'square square-title';
+    box.style.flexBasis = 'calc(5% - 4px)';
+
+    let content = document.createElement('div');
+    content.className = 'square-content';
+    content.textContent = key.charAt(0).toUpperCase() + key.slice(1);
+
+    box.appendChild(content);
+    keysRow.appendChild(box);
+});
+
+// Append the keys row to the keys container
+keysContainer.appendChild(keysRow);
+
+// Append the keys container to the results container
+resultsContainer.appendChild(keysContainer);
 
     // The number of guesses
     let guesses = 0;
@@ -80,7 +107,31 @@
             }
             askForGuess();
         }
-    }
+
+        // Get the first object from the output
+        let result = operator;
+
+       // Create a new row
+    let row = document.createElement('div');
+    row.className = 'resultRow';
+
+    // Create boxes for the different keys
+    keys.forEach(key => {
+        let box = document.createElement('div');
+        box.className = 'resultBox';
+        box.textContent = result[key];
+        row.appendChild(box);
+    });
+
+    // Append the row to the results container
+    resultsContainer.appendChild(row);
+
+    // Clear the input field
+    inputField.value = '';
+};
+    
+        
+    
 
     var guessedOperators = []; // Array to store guessed operators
 
