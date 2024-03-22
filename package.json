@@ -1,0 +1,27 @@
+{
+    "name": "r6dle",
+    "version": "1.0.0",
+    "description": "Rainbow Six Siege Wordle for Operators",
+    "main": "index.html",
+    "scripts": {
+      "start": "npm run lite",
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "lite": "lite-server"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Bengeljo/r6dle.git"
+    },
+    "keywords": [
+      "Rainbow",
+      "Six",
+      "Siege",
+      "Wordle"
+    ],
+    "author": "Bengeljo",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/Bengeljo/r6dle/issues"
+    },
+    "homepage": "https://github.com/Bengeljo/r6dle#readme"
+}

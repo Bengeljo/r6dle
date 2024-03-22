@@ -1742,5 +1742,30 @@
     ],
     "release_year": [
         "2023"
+        ]},
+    {"name": [
+        "Deimos"
+        ],
+    "gender": [
+        "Male"
+        ],
+    "role": [
+        "Intel",
+        "Map Control"
+        ],
+    "side": [
+        "Attack"
+        ],
+    "country": [
+        "USA"
+        ],
+    "Org": [
+        "Keres Legion"
+    ],
+    "Squad": [
+        "Not in a Squad"
+    ],
+    "release_year": [
+        "2024"
         ]}
 ]

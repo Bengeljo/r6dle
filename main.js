@@ -1,30 +1,12 @@
-const fs = require('fs');
-const readline = require('readline');
-
-// Create readline interface
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-// Define operators outside of fs.readFile
-let operators;
-
-// Read the JSON file
-fs.readFile('operators.json', 'utf8', (err, data) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
-
     // Parse the JSON data
-    operators = JSON.parse(data);
-
+    //let operators = JSON.parse(operators);
+    
+    import operators from './operators.json' assert{type:'json'}
+//console.log(operators)
     // Select a random operator
     const operatorToGuess = operators[Math.floor(Math.random() * operators.length)];
 
-    // The array to track the guessed letters
-    let guessedOperator = Array(operatorToGuess.name.length).fill("_");
+    
 
     // The number of guesses
     let guesses = 0;
@@ -32,7 +14,7 @@ fs.readFile('operators.json', 'utf8', (err, data) => {
     // Function to handle a new guess
     function guess(operatorName) {
         guesses++;
-        guessedOperator.push(operatorName);
+        
     
        // Debugging output
         console.log("Operator name to find:", operatorToGuess);
@@ -48,12 +30,20 @@ fs.readFile('operators.json', 'utf8', (err, data) => {
             console.log("🔴 Operator not found");
             return askForGuess();
         }
-
+        
         // Compare the operator data with the selected operator
         const keys = ["gender", "role", "side", "country", "Org", "Squad", "release_year"];
         let sharedCriteria = false;
         keys.forEach(key => {
-            if (Array.isArray(operator[key]) && Array.isArray(operatorToGuess[key])) {
+            if (key === 'release_year') {
+                if (operator[key] < operatorToGuess[key]) {
+                    console.log(`⬆️ ${key}: ${operator[key]}`);
+                } else if (operator[key] > operatorToGuess[key]) {
+                    console.log(`⬇️ ${key}: ${operator[key]}`);
+                } else {
+                    console.log(`✅ ${key}: ${operator[key]}`);
+                }
+            } else if (Array.isArray(operator[key]) && Array.isArray(operatorToGuess[key])) {
                 // Check if the arrays are equal
                 if (JSON.stringify(operator[key]) === JSON.stringify(operatorToGuess[key])) {
                     console.log(`✅ ${key}: ${operator[key].join(", ")}`);
@@ -82,7 +72,6 @@ fs.readFile('operators.json', 'utf8', (err, data) => {
         // Check if the operator name is fully guessed
         if (operatorName.toLowerCase() === operatorToGuess.name[0].toLowerCase()) {
             console.log("You won! The operator was " + operatorToGuess.name[0] + ". It took you " + guesses + " guesses.");
-            rl.close();
         } else {
             if (sharedCriteria) {
                 console.log("🟠 The guessed operator shares some criteria with the operator to find."); 
@@ -93,14 +82,30 @@ fs.readFile('operators.json', 'utf8', (err, data) => {
         }
     }
 
-    // Function to ask for a new guess
+    var guessedOperators = []; // Array to store guessed operators
+
     function askForGuess() {
-        if (guessedOperator.length > 0){
-            console.log("Guessed operator so far: " + guessedOperator.join(" "));
-        }
-        rl.question('Guess the operator name: ', guess);
-    }
+        // Get the button element
+        var submitButton = document.getElementById('submitButton');
+
+        // Add a click event listener to the button
+        submitButton.addEventListener('click', function() {
+            // Get the input field value
+            var userInput = document.getElementById('inputField').value;
+
+            // Check if the operator has already been guessed
+            if (guessedOperators.includes(userInput)) {
+                console.log('This operator has already been guessed.');
+                return; // Exit the function early
+            }
+
+            // Add the operator to the array of guessed operators
+            guessedOperators.push(userInput);
+
+            // Now you can use the userInput value in your code
+            guess(userInput)
+    });
+}
 
     // Start the game
     askForGuess();
-});
