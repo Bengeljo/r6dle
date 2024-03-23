@@ -56,3 +56,19 @@ button {
     padding: 10px;
     margin: 0 5px;
 }
+
+.auto-box ul{
+    border-top: 1px solid #999;
+    padding: 15px 10px;
+}
+
+.auto-box ul li{
+    list-style: none;
+    border-radius: 3px;
+    padding: 15px 10px;
+    cursor: pointer;
+}
+
+.auto-box ul li:hover{
+    background: #383954;
+}

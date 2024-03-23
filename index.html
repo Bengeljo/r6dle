@@ -7,15 +7,21 @@
 </head>
 <body>
     <h1>R6dle</h1>
-    <input id="inputField" type="text" placeholder="Enter something...">
-    <button id="submitButton">Submit</button>
-    <br>
-    
-    
+    <div class="search-box">
+      <div class="row">
+      <input id="inputField" tabindex="0" autocomplete="off" type="text" placeholder="Type operator name...">
+      <button id="submitButton">Submit</button>
+      </div>
+      <div class="auto-box">
 
+      </div>
+      <br>
+    
+    
+  </div>
       <!-- Results container -->
       <div id="resultsContainer"></div>
     <p id="output"></p>
-    
+<script type= "module" src="autocomplete.js"></script>
 </body>
 </html>
