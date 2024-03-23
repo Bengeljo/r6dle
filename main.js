@@ -110,13 +110,19 @@ keysContainer.appendChild(keysRow);
             // Compare the operator data with the selected operator
             const keys = ["gender", "role", "side", "country", "Org", "Squad", "release_year"];
             let sharedCriteria = false;
-        
+            let answerclassic = document.createElement('div');
+            answerclassic.className = 'classic-answer'
+            const container = document.getElementById('answercon')
+            let squarecontainer = document.createElement('div');
+            squarecontainer.className = 'square-container'
+            container.style = "width: 60%; margin: 0px 0px 0px 20%;"
             keys.forEach(key => {
                 let square = document.createElement('div');
                 square.className = 'square';
         
                 let content = document.createElement('div');
                 content.className = 'square-content';
+
         
                 if (key === 'release_year') {
                     // ... rest of your comparison logic ...
@@ -159,11 +165,13 @@ keysContainer.appendChild(keysRow);
                 content.textContent = `🔴 ${key}: ${operator[key]}`;
             }
         
-                square.appendChild(content);
-                document.body.appendChild(square);
-        
+            square.appendChild(content);
+            squarecontainer.appendChild(square);
+            answerclassic.appendChild(squarecontainer)
+            container.appendChild(answerclassic)
+            
             });
-        
+            document.body.appendChild(container);
             return sharedCriteria;
         }
     

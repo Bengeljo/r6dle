@@ -78,6 +78,10 @@ input{
     color: #333;
 }
 
+.container{
+    display: flex;
+    flex-wrap: wrap;
+}
 
 
 #output {
@@ -118,6 +122,8 @@ input{
     border: 1px solid hsla(0, 0%, 100%, .59);
     box-sizing: border-box;
     transition: flex-basis .1s ease;
+    width: 75px;
+    height: 68px;
 }
 
 .square-good {
