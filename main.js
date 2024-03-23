@@ -33,7 +33,7 @@ keys.forEach(key => {
 keysContainer.appendChild(keysRow);
 
 // Append the keys container to the results container
-resultsContainer.appendChild(keysContainer);
+//resultsContainer.appendChild(keysContainer);
 
     // The number of guesses
     let guesses = 0;
@@ -44,12 +44,12 @@ resultsContainer.appendChild(keysContainer);
         
     
        // Debugging output
-        console.log("Operator name to find:", operatorToGuess);
+        //console.log("Operator name to find:"operatorToGuess[name]);
     
 
         // Find the operator in the list
-        const operator = operators.find(op => typeof op.name[0] === 'string' && op.name[0].toLowerCase() === operatorName.toLowerCase());
-
+        const operator = operators.find(op => typeof op.name === 'string' && op.name.toLowerCase() === operatorName.toLowerCase());
+        compareOperators(operator,operatorToGuess)
         // Debugging output
         console.log("Found operator:", operator);
         // If the operator is not found, it's a wrong guess
@@ -57,7 +57,7 @@ resultsContainer.appendChild(keysContainer);
             console.log("🔴 Operator not found");
             return askForGuess();
         }
-        
+
         // Compare the operator data with the selected operator
         const keys = ["gender", "role", "side", "country", "Org", "Squad", "release_year"];
         let sharedCriteria = false;
@@ -78,7 +78,7 @@ resultsContainer.appendChild(keysContainer);
                 } else {
                     // Find the matching roles
                     const matchingRoles = operator[key].filter(role => operatorToGuess[key].includes(role));
-        
+
                     if (matchingRoles.length > 0) {
                         console.log(`🟠 ${key}: ${operator[key].join(", ")}`);
                         sharedCriteria = true;
@@ -86,19 +86,17 @@ resultsContainer.appendChild(keysContainer);
                         console.log(`🔴 ${key}: ${operator[key].join(", ")}`);
                     }
                 }
-            } else if (typeof operator[key] === 'string' && operator[key].includes(operatorToGuess[key])) {
-                console.log(`🟠 ${key}: ${operator[key]}`);
+            } else if (typeof operator[key] === 'string' && operator[key] === operatorToGuess[key]) {
+                console.log(`✅ ${key}: ${operator[key]}`);
                 sharedCriteria = true;
             } else {
                 console.log(`🔴 ${key}: ${operator[key]}`);
             }
         });
-        
-        
 
         // Check if the operator name is fully guessed
-        if (operatorName.toLowerCase() === operatorToGuess.name[0].toLowerCase()) {
-            console.log("You won! The operator was " + operatorToGuess.name[0] + ". It took you " + guesses + " guesses.");
+        if (operatorName.toLowerCase() === operatorToGuess.name.toLowerCase()) {
+            console.log("You won! The operator was " + operatorToGuess.name + ". It took you " + guesses + " guesses.");
         } else {
             if (sharedCriteria) {
                 console.log("🟠 The guessed operator shares some criteria with the operator to find."); 
@@ -107,6 +105,68 @@ resultsContainer.appendChild(keysContainer);
             }
             askForGuess();
         }
+
+        function compareOperators(operator, operatorToGuess) {
+            // Compare the operator data with the selected operator
+            const keys = ["gender", "role", "side", "country", "Org", "Squad", "release_year"];
+            let sharedCriteria = false;
+        
+            keys.forEach(key => {
+                let square = document.createElement('div');
+                square.className = 'square';
+        
+                let content = document.createElement('div');
+                content.className = 'square-content';
+        
+                if (key === 'release_year') {
+                    // ... rest of your comparison logic ...
+                    if (operator[key] < operatorToGuess[key]) {
+                        square.classList.add('square-bad');
+                        content.textContent = `⬆️ ${key}: ${operator[key]}`;
+                    } else if (operator[key] > operatorToGuess[key]) {
+                        square.classList.add('square-bad');
+                        content.textContent = `⬇️ ${key}: ${operator[key]}`;
+                    } else {
+                        square.classList.add('square-good');
+                        content.textContent = `✅ ${key}: ${operator[key]}`;
+                        sharedCriteria = true;
+                    }
+                } else if (Array.isArray(operator[key]) && Array.isArray(operatorToGuess[key])) {
+                    // ... rest of your comparison logic ...
+                    if (JSON.stringify(operator[key]) === JSON.stringify(operatorToGuess[key])) {
+                        square.classList.add('square-good');
+                        content.textContent = `✅ ${key}: ${operator[key].join(", ")}`;
+                        sharedCriteria = true;
+                    } else {
+                        const matchingRoles = operator[key].filter(role => operatorToGuess[key].includes(role));
+        
+                        if (matchingRoles.length > 0) {
+                            square.classList.add('square-partial');
+                            content.textContent = `🟠 ${key}: ${operator[key].join(", ")}`;
+                            sharedCriteria = true;
+                        } else {
+                            square.classList.add('square-bad');
+                            content.textContent = `🔴 ${key}: ${operator[key].join(", ")}`;
+                        }
+                    }
+                } else if (typeof operator[key] === 'string' && operator[key].includes(operatorToGuess[key])) {
+                    square.classList.add('square-good');
+                    content.textContent = `✅ ${key}: ${operator[key]}`;
+                    
+                sharedCriteria = true;
+            } else {
+                square.classList.add('square-bad');
+                content.textContent = `🔴 ${key}: ${operator[key]}`;
+            }
+        
+                square.appendChild(content);
+                document.body.appendChild(square);
+        
+            });
+        
+            return sharedCriteria;
+        }
+    
 
         // Get the first object from the output
         let result = operator;
@@ -124,7 +184,7 @@ resultsContainer.appendChild(keysContainer);
     });
 
     // Append the row to the results container
-    resultsContainer.appendChild(row);
+    //resultsContainer.appendChild(row);
 
     // Clear the input field
     inputField.value = '';

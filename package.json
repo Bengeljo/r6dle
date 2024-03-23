@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/Bengeljo/r6dle/issues"
   },
-  "homepage": "https://github.com/Bengeljo/r6dle#readme"
+  "homepage": "https://github.com/Bengeljo/r6dle#readme",
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  }
 }
