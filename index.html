@@ -10,7 +10,11 @@
     <h1>R6dle</h1>
     <div class="container">
         <div class="header-container">
-            <div>R6dle</div>
+            <div class="current-streak animate__animated animate__fadeIn streak-clickable has-tooltip">
+                <div>R6dle</div>
+                <div class="streak-value streak-value-1" id="streakDisplay"></div>
+            </div>
+            
         </div>
         <div class="container top animate__animated animate__fadeIn">
             <div id="gameSubContainer" class="sub-container">
@@ -19,7 +23,7 @@
                         <input id="inputField" autocomplete="off" type="text" placeholder="Type operator name...">
                         <button id="submitButton"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
-                    <div class="auto-box">
+                    <div id="auto-boxField" class="auto-box">
                     </div>  
                     
                 </div>

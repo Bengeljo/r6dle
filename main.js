@@ -41,7 +41,8 @@ keysContainer.appendChild(keysRow);
     // Function to handle a new guess
     function guess(operatorName) {
         guesses++;
-        
+        let streak = localStorage.getItem('streak');
+        console.log('The current streak is' + streak)
         let img = document.createElement('img');
     
        // Debugging output
@@ -226,13 +227,13 @@ function displayWinningScreen() {
     let winningScreen = document.createElement('div');
     winningScreen.className = 'winning-screen';
     winningScreen.textContent = 'Congratulations! You guessed the right operator.';
-
+    problemSolved();
     // Disable the input
     let input = document.getElementById('inputField');
     input.disabled = true;
 
     // Get the body and append the winning screen
-    let body = document.getElementsByTagName('body')[1];
+    let body = document.getElementsByTagName('body')[0];
     body.appendChild(winningScreen);
 }
     
@@ -244,12 +245,17 @@ function displayWinningScreen() {
     function askForGuess() {
         // Get the button element
         var submitButton = document.getElementById('submitButton');
-
+        
         // Add a click event listener to the button
         submitButton.addEventListener('click', function() {
             // Get the input field value
             var userInput = document.getElementById('inputField').value;
-
+            var userInputTest =  document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('inputField').addEventListener('click', function() {
+                    this.select();
+                });
+            });
+            console.log(userInputTest)
             // Check if the operator has already been guessed
             if (guessedOperators.includes(userInput)) {
                 console.log('This operator has already been guessed.');
@@ -263,6 +269,40 @@ function displayWinningScreen() {
             guess(userInput)
     });
 }
+
+// When a user solves a problem
+function problemSolved() {
+    // Get the current streak from local storage
+    let currentStreak = localStorage.getItem('streak');
+
+    // If there's no current streak, this is the first problem the user has solved
+    if (!currentStreak) {
+        currentStreak = 0;
+    }
+
+    // Increment the streak
+    currentStreak++;
+
+    // Save the new streak to local storage
+    localStorage.setItem('streak', currentStreak);
+
+    // Display the new streak
+    document.getElementById('streakDisplay').textContent = `Your streak: ${currentStreak}`;
+}
+
+// When the page loads
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Get the current streak from local storage
+    let currentStreak = localStorage.getItem('streak');
+
+    // If there's no current streak, this is the user's first visit
+    if (!currentStreak) {
+        currentStreak = 0;
+    }
+
+    // Display the current streak
+    document.getElementById('streakDisplay').textContent = `You have solved it ${currentStreak} times already`;
+});
 
     // Start the game
     askForGuess();
