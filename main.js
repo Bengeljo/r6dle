@@ -42,6 +42,7 @@ keysContainer.appendChild(keysRow);
     function guess(operatorName) {
         guesses++;
         
+        let img = document.createElement('img');
     
        // Debugging output
         //console.log("Operator name to find:"operatorToGuess[name]);
@@ -59,7 +60,7 @@ keysContainer.appendChild(keysRow);
         }
 
         // Compare the operator data with the selected operator
-        const keys = ["gender", "role", "side", "country", "Org", "Squad", "release_year"];
+        const keys = ["name","gender", "role", "side", "country", "Org", "Squad", "release_year"];
         let sharedCriteria = false;
         keys.forEach(key => {
             if (key === 'release_year') {
@@ -108,14 +109,28 @@ keysContainer.appendChild(keysRow);
 
         function compareOperators(operator, operatorToGuess) {
             // Compare the operator data with the selected operator
-            const keys = ["gender", "role", "side", "country", "Org", "Squad", "release_year"];
+            const keys = ["name","gender", "role", "side", "country", "Org", "Squad", "release_year"];
             let sharedCriteria = false;
             let answerclassic = document.createElement('div');
             answerclassic.className = 'classic-answer'
             const container = document.getElementById('answercon')
             let squarecontainer = document.createElement('div');
             squarecontainer.className = 'square-container'
-            container.style = "width: 60%; margin: 0px 0px 0px 20%;"
+            container.style = "width: 180%; margin: 0px 0px 0px 35%;"
+        
+            // Create the image square first
+            let imgSquare = document.createElement('div');
+            imgSquare.className = 'square';
+        
+            let img = document.createElement('img');
+            img.src = `images/r6s-operators-badge-${operatorName.toLowerCase()}.png`;
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover';
+        
+            imgSquare.appendChild(img);
+            squarecontainer.appendChild(imgSquare);
+        
             keys.forEach(key => {
                 let square = document.createElement('div');
                 square.className = 'square';
@@ -128,50 +143,58 @@ keysContainer.appendChild(keysRow);
                     // ... rest of your comparison logic ...
                     if (operator[key] < operatorToGuess[key]) {
                         square.classList.add('square-bad');
-                        content.textContent = `⬆️ ${key}: ${operator[key]}`;
+                        content.textContent = `⬆️ ${operator[key]}`;
                     } else if (operator[key] > operatorToGuess[key]) {
                         square.classList.add('square-bad');
-                        content.textContent = `⬇️ ${key}: ${operator[key]}`;
+                        content.textContent = `⬇️ ${operator[key]}`;
                     } else {
                         square.classList.add('square-good');
-                        content.textContent = `✅ ${key}: ${operator[key]}`;
+                        content.textContent = `✅ ${operator[key]}`;
                         sharedCriteria = true;
                     }
                 } else if (Array.isArray(operator[key]) && Array.isArray(operatorToGuess[key])) {
                     // ... rest of your comparison logic ...
                     if (JSON.stringify(operator[key]) === JSON.stringify(operatorToGuess[key])) {
                         square.classList.add('square-good');
-                        content.textContent = `✅ ${key}: ${operator[key].join(", ")}`;
+                        content.textContent = `${operator[key].join(", ")}`;
                         sharedCriteria = true;
                     } else {
                         const matchingRoles = operator[key].filter(role => operatorToGuess[key].includes(role));
         
                         if (matchingRoles.length > 0) {
                             square.classList.add('square-partial');
-                            content.textContent = `🟠 ${key}: ${operator[key].join(", ")}`;
+                            content.textContent = `${operator[key].join(", ")}`;
                             sharedCriteria = true;
                         } else {
                             square.classList.add('square-bad');
-                            content.textContent = `🔴 ${key}: ${operator[key].join(", ")}`;
+                            content.textContent = `${operator[key].join(", ")}`;
                         }
                     }
                 } else if (typeof operator[key] === 'string' && operator[key].includes(operatorToGuess[key])) {
                     square.classList.add('square-good');
-                    content.textContent = `✅ ${key}: ${operator[key]}`;
+                    content.textContent = `${operator[key]}`;
                     
                 sharedCriteria = true;
             } else {
                 square.classList.add('square-bad');
-                content.textContent = `🔴 ${key}: ${operator[key]}`;
+                content.textContent = `${operator[key]}`;
             }
-        
+            
             square.appendChild(content);
             squarecontainer.appendChild(square);
-            answerclassic.appendChild(squarecontainer)
-            container.appendChild(answerclassic)
             
             });
-            document.body.appendChild(container);
+
+            
+            answerclassic.appendChild(squarecontainer)
+
+            // Insert the new result before the first child
+            let firstChild = container.firstChild;
+            container.insertBefore(answerclassic, firstChild);
+            if (operatorName.toLowerCase() === operatorToGuess.name.toLowerCase()) {
+                // If the guessed operator is the right one, display the winning screen
+                displayWinningScreen();
+            }
             return sharedCriteria;
         }
     
@@ -197,6 +220,21 @@ keysContainer.appendChild(keysRow);
     // Clear the input field
     inputField.value = '';
 };
+
+function displayWinningScreen() {
+    // Create the winning screen
+    let winningScreen = document.createElement('div');
+    winningScreen.className = 'winning-screen';
+    winningScreen.textContent = 'Congratulations! You guessed the right operator.';
+
+    // Disable the input
+    let input = document.getElementById('inputField');
+    input.disabled = true;
+
+    // Get the body and append the winning screen
+    let body = document.getElementsByTagName('body')[1];
+    body.appendChild(winningScreen);
+}
     
         
     

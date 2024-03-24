@@ -4,57 +4,68 @@
     <title>R6dle</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script type= "module" src="main.js"></script>
-    
+    <script src="https://kit.fontawesome.com/110f273880.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <h1>R6dle</h1>
-    <div class="search-box">
-      <div class="row">
-      <input id="inputField" autocomplete="off" type="text" placeholder="Type operator name...">
-      <button id="submitButton"><i class="fa-solid fa-magnifying-glass"></i></button>
-      </div>
-      <div class="auto-box">
-      </div>  
-    
-  </div>
-  <br>
- 
-  <div class="classic-answers-container" style="width: 60%; margin: 0px 0px 0px 20%;">
-    <div data-v-4cd5ba35 class="answer-titles square-container animate__animated animate__fadeIn" style>
-        <div data-v-4cd5ba35 class="square square-title" style="flex-basis: calc(11% - 4px);">
-        <div data-v-4cd5ba35 class="square-content"> Operator </div>
-            </div>
-        <div data-v-4cd5ba35 class="square square-title" style="flex-basis: calc(11% - 4px);">
-            
-        <div data-v-4cd5ba35 class="square-content"> Name </div>
-            </div>
-        <div data-v-4cd5ba35 class="square square-title" style="flex-basis: calc(11% - 4px);">
-        <div data-v-4cd5ba35 class="square-content"> Gender </div>
-            </div>
-        <div data-v-4cd5ba35 class="square square-title" style="flex-basis: calc(11% - 4px);">
-        <div data-v-4cd5ba35 class="square-content"> Role </div>
-            </div>
-        <div data-v-4cd5ba35 class="square square-title" style="flex-basis: calc(11% - 4px);">
-            <div data-v-4cd5ba35 class="square-content"> Side </div>
+    <div class="container">
+        <div class="header-container">
+            <div>R6dle</div>
         </div>
-        <div data-v-4cd5ba35 class="square square-title" style="flex-basis: calc(11% - 4px);">
-            <div data-v-4cd5ba35 class="square-content"> Country </div>
-        </div>
-        <div data-v-4cd5ba35 class="square square-title" style="flex-basis: calc(11% - 4px);">
-            <div data-v-4cd5ba35 class="square-content"> Org </div>
-        </div>
-        <div data-v-4cd5ba35 class="square square-title" style="flex-basis: calc(11% - 4px);">
-            <div data-v-4cd5ba35 class="square-content"> Squad </div>
-        </div>
-        <div data-v-4cd5ba35 class="square square-title" style="flex-basis: calc(11% - 4px);">
-            <div data-v-4cd5ba35 class="square-content"> Release Year </div>
-        </div>
-    </div>
+        <div class="container top animate__animated animate__fadeIn">
+            <div id="gameSubContainer" class="sub-container">
+                <div class="search-box">
+                    <div class="row">
+                        <input id="inputField" autocomplete="off" type="text" placeholder="Type operator name...">
+                        <button id="submitButton"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                    <div class="auto-box">
+                    </div>  
+                    
+                </div>
+                <br>
+                
+                <div class="classic-answers-container" style="width: 180%; margin: 0px 0px 0px 35%;">
+                    <div data-v-4cd5ba35 class="answer-titles square-container animate__animated animate__fadeIn" style>
+                        <div  class="square square-title">
+                        <div  class="square-content"> Operator </div>
+                            </div>
+                        <div  class="square square-title">
+                        <div  class="square-content"> Name </div>
+                            </div>
+                        <div  class="square square-title">
+                        <div  class="square-content"> Gender </div>
+                            </div>
+                        <div  class="square square-title" >
+                        <div  class="square-content"> Role </div>
+                            </div>
+                        <div  class="square square-title" >
+                            <div  class="square-content"> Side </div>
+                        </div>
+                        <div  class="square square-title" >
+                            <div  class="square-content"> Country </div>
+                        </div>
+                        <div  class="square square-title" >
+                            <div  class="square-content"> Org </div>
+                        </div>
+                        <div  class="square square-title" >
+                            <div  class="square-content"> Squad </div>
+                        </div>
+                        <div  class="square square-title" >
+                            <div  class="square-content"> Release Year </div>
+                        </div>
+                    </div>
 </div>
-<div id="answercon" class="answer-container classic-answers-container" style="width: 60%; margin: 0px 0px 50px 20%;">
+<div id="answercon" class="answer-container classic-answers-container" style="width: 60%; margin: 0px 0px 0px 30%;">
 </div>
-      
+</div>
+</div>
+</div>
     <p id="output"></p>
 <script type= "module" src="autocomplete.js"></script>
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
 </body>
 </html>
