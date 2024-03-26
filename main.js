@@ -3,7 +3,7 @@
 //console.log(operators)
     // Select a random operator
     const operatorToGuess = operators[Math.floor(Math.random() * operators.length)];
-
+    
     // Create a container for the keys
 let keysContainer = document.createElement('div');
 keysContainer.className = 'classic-answers-container';
