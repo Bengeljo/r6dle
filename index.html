@@ -22,7 +22,13 @@
         <div class="header-container">
             <div class="current-streak animate__animated animate__fadeIn streak-clickable has-tooltip">
                 <div>R6dle</div>
+                <div id="mode-indicator">
+                    <button id="dailyModeButton" class="de_button" onclick="dailyMode()">Daily Mode</button>
+                    <button id="endlessModeButton" class="de_button" onclick="endlessMode()">Endless Mode  </button>
+                </div>
+                <br>
                 <div class="streak-value streak-value-1" id="streakDisplay"></div>
+                <div class="streak-value streak-value-1" id="dailyStreakDisplay"></div>
             </div>
             
         </div>
@@ -76,7 +82,7 @@
 </div>
 </div>
     <p id="output"></p>
-<div class="copywrite">R6dle is a project created with <i class="fa-solid fa-heart" aria-hidden="true"> by fans and is not affiliated with Ubisoft. Tom Clancys, Rainbow Six, The Soldier Icon, Ubisoft and the Ubisoft logo are trademarks of Ubisoft Entertainment. </div>
+<div class="copywrite">R6dle is a project created with <i class="fa-solid fa-heart" aria-hidden="true"></i> by fans and is not affiliated with Ubisoft. Tom Clancys, Rainbow Six, The Soldier Icon, Ubisoft and the Ubisoft logo are trademarks of Ubisoft Entertainment. </div>
 <script type= "module" src="autocomplete.js"></script>
 <link
 rel="stylesheet"

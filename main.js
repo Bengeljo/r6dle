@@ -1,10 +1,37 @@
 // Parse the JSON data
-    import operators from './operators.json' assert{type:'json'}
-//console.log(operators)
-    // Select a random operator
-    const operatorToGuess = operators[Math.floor(Math.random() * operators.length)];
+import operators from './operators.json' assert{type:'json'}
+
+window.onload = function() {
+    loadTriedOperators()
+
+    // Get the saved mode from localStorage
+    let savedMode = localStorage.getItem('mode');
+
+    // Get the last visit timestamp and streak count from localStorage
+    let lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
+    let dailyStreakCount = parseInt(localStorage.getItem('dailyStreakCount')) || 0;
+       
+    // If the last visit was within the last 24 hours, increment the streak count
+    if (lastVisitTimestamp && Date.now() - parseInt(dailyStreakCount) >= 24 * 60 * 60 * 1000) {
+        dailyStreakCount = 0;
+    }
+  
+    // If a mode was saved, open that mode
+    if (savedMode === 'daily') {
+      dailyMode();
+      
+    } else if (savedMode === 'endless') {
+      endlessMode();
+    }
+    console.log(localStorage.getItem('dailyWon'))
     
-    // Create a container for the keys
+    // Start the game
+    askForGuess();
+  }
+// Select a random operator
+const operatorToGuess = operators[Math.floor(Math.random() * operators.length)];
+    
+// Create a container for the keys
 let keysContainer = document.createElement('div');
 keysContainer.className = 'classic-answers-container';
 
@@ -30,21 +57,69 @@ keys.forEach(key => {
 // Append the keys row to the keys container
 keysContainer.appendChild(keysRow);
 
-// Append the keys container to the results container
-//resultsContainer.appendChild(keysContainer);
-
-    // The number of guesses
+function updateModeIndicator(mode) {
+    const modeIndicator = document.getElementById('mode-indicator');
+    modeIndicator.textContent = `Current mode: ${mode}`;
+    if (mode == 'Daily'){
+        let button = document.createElement('button')
+        button.className = 'de_button'
+        button.innerHTML = 'Endless Mode'
+        button.onclick = function() {
+            endlessMode()
+        }
+        modeIndicator.appendChild(button)
+        
+    }else if( mode == 'Endless'){
+        let button = document.createElement('button')
+        button.className = 'de_button'
+        button.innerHTML = 'Daily Mode'
+        button.onclick = function() {
+            dailyMode()
+        }
+        modeIndicator.appendChild(button)
+    }
+  }
+    window.endlessMode = function() {
+    // Logic for endless mode
+    updateModeIndicator('Endless');
+    console.log("Now endless mode")
+    localStorage.setItem('mode', 'endless');
+    displayStreak(); 
+     // Find the winning screen and remove it if it exists
+    let winningScreen = document.querySelector('.winning-screen');
+    if (winningScreen) {
+        winningScreen.remove();
+    }
+    // Enable the input
+    let input = document.getElementById('inputField');
+    if (input) {
+        input.disabled = false;
+    }
+}
+    window.dailyMode = function() {
+    // Logic for daily mode
+    updateModeIndicator('Daily');
+    console.log("Now daily mode")
+    localStorage.setItem('mode', 'daily');
+    displayDailyStreak();
+    if(localStorage.getItem('dailyWon') === 'true'){
+        displayWinningScreen()
+    }
+   
+    //Use guess and askForGuess as needed
+}
+    // numbers
     let guesses = 0;
+    let dailyStreakCount = localStorage.getItem('dailyStreakCount') || 0;
 
     // Function to handle a new guess
     function guess(operatorName) {
         guesses++;
         let streak = localStorage.getItem('streak');
-        console.log('The current streak is' + streak)
+        //console.log('The current streak is' + streak)
         let img = document.createElement('img');
     
-       // Debugging output
-        //console.log("Operator name to find:"operatorToGuess[name]);
+        
     
 
         // Find the operator in the list
@@ -97,12 +172,18 @@ keysContainer.appendChild(keysRow);
         // Check if the operator name is fully guessed
         if (operatorName.toLowerCase() === operatorToGuess.name.toLowerCase()) {
             console.log("You won! The operator was " + operatorToGuess.name + ". It took you " + guesses + " guesses.");
+            if(localStorage.getItem('mode') === 'daily'){
+                localStorage.setItem('dailyWon', 'true')
+            }
+            problemSolved();
+            
         } else {
             if (sharedCriteria) {
                 console.log("🟠 The guessed operator shares some criteria with the operator to find."); 
             } else {
                 console.log("🔴 The guessed operator does not share any criteria with the operator to find.");
             }
+            saveTriedOperators();
             askForGuess();
         }
 
@@ -139,7 +220,6 @@ keysContainer.appendChild(keysRow);
 
         
                 if (key === 'release_year') {
-                    // ... rest of your comparison logic ...
                     if (operator[key] < operatorToGuess[key]) {
                         square.classList.add('square-bad');
                         content.textContent = `⬆️ ${operator[key]}`;
@@ -152,7 +232,6 @@ keysContainer.appendChild(keysRow);
                         sharedCriteria = true;
                     }
                 } else if (Array.isArray(operator[key]) && Array.isArray(operatorToGuess[key])) {
-                    // ... rest of your comparison logic ...
                     if (JSON.stringify(operator[key]) === JSON.stringify(operatorToGuess[key])) {
                         square.classList.add('square-good');
                         content.textContent = `${operator[key].join(", ")}`;
@@ -225,82 +304,191 @@ function displayWinningScreen() {
     let winningScreen = document.createElement('div');
     winningScreen.className = 'winning-screen';
     winningScreen.textContent = 'Congratulations! You guessed the right operator.';
-    problemSolved();
     // Disable the input
     let input = document.getElementById('inputField');
     input.disabled = true;
-
-    // Get the body and append the winning screen
-    let body = document.getElementsByTagName('body')[0];
-    body.appendChild(winningScreen);
+    // Find the marked div
+    let markedDiv = document.querySelector('.copywrite');
+    // Insert the winning screen before the marked div
+    markedDiv.parentNode.insertBefore(winningScreen, markedDiv);
 }
+     
     
-        
+
     
 
-    var guessedOperators = []; // Array to store guessed operators
+function askForGuess() {
+    // Get the button element
+    var submitButton = document.getElementById('submitButton');
+    
+    // Get the input field element
+    var autobox = document.querySelector(".auto-box");
 
-    function askForGuess() {
-        // Get the button element
-        var submitButton = document.getElementById('submitButton');
-        
-        // Add a click event listener to the button
-        submitButton.addEventListener('click', function() {
-            // Get the input field value
-            var userInput = document.getElementById('inputField').value;
-            var userInputTest =  document.addEventListener('DOMContentLoaded', function() {
-                document.getElementById('inputField').addEventListener('click', function() {
-                    this.select();
-                });
-            });
-            console.log(userInputTest)
-            // Check if the operator has already been guessed
-            if (guessedOperators.includes(userInput)) {
-                console.log('This operator has already been guessed.');
-                return; // Exit the function early
-            }
+    // Add a click event listener to the input field
+    autobox.addEventListener('click', function() {
+            // Get the input field element
+            var inputField = document.getElementById('inputField');
+             // Select the input field content
+             inputField.select();
+ 
+             // Get the input field value
+             var userInput = inputField.value;
+ 
+             // Check if the operator has already been guessed
+             if (guessedOperators.includes(userInput)) {
+                 console.log('This operator has already been guessed.');
+                 return; // Exit the function early
+             }
+ 
+             // Add the operator to the array of guessed operators
+             guessedOperators.push(userInput);
+ 
+             // Now you can use the userInput value in your code
+             guess(userInput);
+    });
 
-            // Add the operator to the array of guessed operators
-            guessedOperators.push(userInput);
+    // Add a click event listener to the button
+    submitButton.addEventListener('click', function() {
+        // Get the input field value
+        var userInput = inputField.value;
 
-            // Now you can use the userInput value in your code
-            guess(userInput)
+        // Check if the operator has already been guessed
+        if (guessedOperators.includes(userInput)) {
+            console.log('This operator has already been guessed.');
+            return; // Exit the function early
+        }
+
+        // Add the operator to the array of guessed operators
+        guessedOperators.push(userInput);
+
+        // Now you can use the userInput value in your code
+        guess(userInput);
     });
 }
 
 // When a user solves a problem
 function problemSolved() {
-    // Get the current streak from local storage
-    let currentStreak = localStorage.getItem('streak');
+    if(localStorage.getItem('mode') === 'endless'){
+        // Get the current streak from local storage
+        let currentStreak = localStorage.getItem('streak');
 
-    // If there's no current streak, this is the first problem the user has solved
-    if (!currentStreak) {
-        currentStreak = 0;
+        // If there's no current streak, this is the first problem the user has solved
+        if (!currentStreak) {
+            currentStreak = 0;
+        }
+
+        // Increment the streak
+        currentStreak++;
+
+        // Save the new streak to local storage
+        localStorage.setItem('streak', currentStreak);
+
+        // Display the new streak
+        document.getElementById('streakDisplay').textContent = `Your streak: ${currentStreak}`;
+    } else if (localStorage.getItem('mode') === 'daily'){
+
+        // Increment the daily streak
+        dailyStreakCount + 1;
+        // Save the new daily streak to local storage
+        localStorage.setItem('dailyStreakCount', dailyStreakCount.toString())
+        // Display the new streak
+        document.getElementById('dailyStreakDisplay').textContent = dailyStreakCount;
+
+
     }
-
-    // Increment the streak
-    currentStreak++;
-
-    // Save the new streak to local storage
-    localStorage.setItem('streak', currentStreak);
-
-    // Display the new streak
-    document.getElementById('streakDisplay').textContent = `Your streak: ${currentStreak}`;
 }
 
-// When the page loads
-document.addEventListener('DOMContentLoaded', (event) => {
+function displayStreak() {
     // Get the current streak from local storage
     let currentStreak = localStorage.getItem('streak');
+    // Get the 'streakDisplay' element
+    var streakDisplay = document.getElementById('streakDisplay');
 
+    // Show the 'streakDisplay' element
+    streakDisplay.style.display = '';
     // If there's no current streak, this is the user's first visit
     if (!currentStreak) {
         currentStreak = 0;
     }
-
     // Display the current streak
-    document.getElementById('streakDisplay').textContent = `You have solved it ${currentStreak} times already`;
-});
+    if (currentStreak == 0){
+        document.getElementById('streakDisplay').textContent = 'You have never solved R6dle';
+    } else if (currentStreak == 1){
+        document.getElementById('streakDisplay').textContent = 'You have solved this r6dle 1 time already';
+    } else if (currentStreak > 1){
+        document.getElementById('streakDisplay').textContent = `You have solved it ${currentStreak} times already`;
+    }
+    var dailyStreakDisplay = document.getElementById('dailyStreakDisplay');
+    dailyStreakDisplay.style.display = 'none'
+}
 
-    // Start the game
-    askForGuess();
+function displayDailyStreak() {
+    // Get the daily streak from local storage
+    let dailyStreak = localStorage.getItem('dailyStreakCounter');
+    var dailyStreakDisplay = document.getElementById('dailyStreakDisplay');
+    dailyStreakDisplay.style.display = '';
+    // If there's no daily streak, this is the user's first visit
+    if (!dailyStreak) {
+        dailyStreak = 0;
+    }
+    // Display the daily streak
+    if (dailyStreak == 0){
+        document.getElementById('dailyStreakDisplay').textContent = 'You have no daily streak';
+    } else if (dailyStreak == 1){
+        document.getElementById('dailyStreakDisplay').textContent = 'Your daily streak is: 1';
+    } else if (dailyStreak > 1){
+        document.getElementById('dailyStreakDisplay').textContent = `Your daily streak is: ${dailyStreak}`;
+    }
+    // Get the 'streakDisplay' element
+    var streakDisplay = document.getElementById('streakDisplay');
+
+    // Hide the 'streakDisplay' element
+    streakDisplay.style.display = 'none';
+}
+
+// Define guessedOperators in the global scope
+let guessedOperators = [];
+
+// Save the tried operators
+function saveTriedOperators() {
+  if (localStorage.getItem('mode') === 'daily') {
+    localStorage.setItem('guessedOperators', JSON.stringify(guessedOperators));
+  }
+}
+
+// Load the tried operators
+function loadTriedOperators() {
+  if (localStorage.getItem('mode') === 'daily') {
+    const savedTriedOperators = localStorage.getItem('guessedOperators');
+
+    if (savedTriedOperators) {
+      guessedOperators = JSON.parse(savedTriedOperators);
+    } else {
+      guessedOperators = [];
+    }
+    // Dispatch a custom event when guessedOperators is loaded
+    window.dispatchEvent(new Event('guessedOperatorsLoaded'));
+  }else{
+    guessedOperators = [];
+    window.dispatchEvent(new Event('guessedOperatorsLoaded'));
+  }
+}
+function clearGuessedOperators() {
+    if (localStorage.getItem('mode') === 'daily') {
+      localStorage.removeItem('guessedOperators');
+    }
+  }
+function checkWin() {
+    var userHasWon = localStorage.getItem('dailyWon') === 'true'
+    var dailyStreakCount = localStorage.getItem('dailyStreakCount')
+    if (userHasWon) {
+     clearGuessedOperators();
+     localStorage.setItem('dailyWon', 'false')
+     localStorage.setItem('dailyStreakCount', dailyStreakCount + 1)
+    }
+}
+
+export function getGuessedOperators() {
+    return guessedOperators;
+  }
+    

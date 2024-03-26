@@ -272,3 +272,19 @@ input{
 .copywrite{
     margin-top: auto;
 }
+.de_button{
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.de_button:hover{
+    background-color: #0056b3;
+}
