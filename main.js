@@ -1,6 +1,6 @@
 // Parse the JSON data
 import operators from './operators.json' assert{type:'json'}
-
+//changes for a test
 window.onload = function() {
     loadTriedOperators()
 
