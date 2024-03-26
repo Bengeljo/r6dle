@@ -168,17 +168,17 @@ input{
 }
 
 .square-good {
-    background: rgb(72, 255, 26);
+    background: rgb(57, 202, 20);
     background-size: cover;
     transition: background-color .3s ease;
 }
 .square-partial {
-    background: orange;
+    background: rgba(255, 166, 0 );
     background-size: cover;
     transition: background-color .3s ease;
 }
 .square-bad {
-    background: red;
+    background: rgba(255, 0, 0);
     background-size: cover;
     transition: background-color .3s ease;
 }
@@ -268,4 +268,7 @@ input{
     width: 50px;
     height: 50px;
     margin-right: 10px;
+}
+.copywrite{
+    margin-top: auto;
 }

@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/Bengeljo/r6dle#readme",
   "dependencies": {
+    "animate.css": "^4.1.1",
     "lite-server": "^2.6.1"
   }
 }

@@ -1,6 +1,4 @@
-    // Parse the JSON data
-    //let operators = JSON.parse(operators);
-    
+// Parse the JSON data
     import operators from './operators.json' assert{type:'json'}
 //console.log(operators)
     // Select a random operator
@@ -121,7 +119,7 @@ keysContainer.appendChild(keysRow);
         
             // Create the image square first
             let imgSquare = document.createElement('div');
-            imgSquare.className = 'square';
+            imgSquare.className = 'square animate__animated animate__flipInY';
         
             let img = document.createElement('img');
             img.src = `images/r6s-operators-badge-${operatorName.toLowerCase()}.png`;
@@ -134,7 +132,7 @@ keysContainer.appendChild(keysRow);
         
             keys.forEach(key => {
                 let square = document.createElement('div');
-                square.className = 'square';
+                square.className = 'square animate__animated animate__flipInY';
         
                 let content = document.createElement('div');
                 content.className = 'square-content';
