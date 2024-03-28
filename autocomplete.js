@@ -1,12 +1,18 @@
 import operators from './operators.json' assert{type:'json'}
 import { getGuessedOperators } from './main.js';
+let lowerCaseGuessedOperators
+let matchingNames
 window.addEventListener('guessedOperatorsLoaded', function() {
     // Now you can access the loaded guessedOperators
-    console.log('In the autocomplete is ready');
+    console.log('autocomplete is ready');
 
 // Get a list of operator names
 let availableNames = operators.map(operator => operator.name);
 let usedNames = []; // List of used names
+window.addEventListener('clearUsedNames', function() {
+  usedNames = [];
+  return usedNames
+}); 
 const autoBox = document.querySelector(".auto-box");
 const inputBox = document.getElementById("inputField");
 
@@ -19,6 +25,9 @@ var nameMapping = {
 // Get the input field and results container
 let inputField = document.getElementById('inputField');
 let resultsContainer = document.getElementById('output');
+
+
+    
 if(inputField !== ''){
     // Add an input event listener to the input field
 inputField.addEventListener('input', () => {
@@ -31,8 +40,9 @@ inputField.addEventListener('input', () => {
     // Only display the matching operators if the input field is not empty
     if (inputValue !== '') {
       // Filter the names based on the input value and exclude used names
-      let lowerCaseGuessedOperators = getGuessedOperators().map(operator => operator.toLowerCase());
-      let matchingNames = availableNames.filter(name => {
+      
+      lowerCaseGuessedOperators = getGuessedOperators().map(operator => operator.toLowerCase());
+      matchingNames = availableNames.filter(name => {
         // Get the name without special characters
         var nameWithoutSpecialCharacters = nameMapping[name] || name;
   

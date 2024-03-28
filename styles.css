@@ -65,10 +65,13 @@ button .fa-solid{
 .inputField{
     margin:0px 0px 0px 0%  ;
 }
+.searchbar{
+    height: 30px;
+}
 
 .search-box{
     position: relative;
-    width: 500px;
+    width: 300px;
     background: #ffffff;
     margin: 20px auto 0;
     border-radius: 5px;
@@ -284,7 +287,65 @@ input{
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin: 0px 0px 0px 5%;
 }
 .de_button:hover{
     background-color: #0056b3;
+}
+.end {
+    font-size: 1.5rem;
+    width: 100%;
+}
+.answers {
+    width: 80%;
+}
+.finished {
+    margin-top: 3rem;
+    width: 100%;
+}
+.background-end {
+    border-radius: 8px;
+    box-shadow: 0 3px 8pxrgba(0, 0, 0, .24);
+    padding: 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    vertical-align: center;
+    align-content: center;
+    justify-self: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    background: linear-gradient(#0d4d27, #1e2328);
+    border: 2px solid #69ffa5;
+    row-gap: .5rem;
+}
+.gg {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+.gg-answer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    -moz-column-gap: .8rem;
+    column-gap: .8rem;
+}
+.gg-you {
+    font-size: .9rem;
+}
+.gg-name {
+    font-weight: 1000;
+}
+.nb-tries {
+    font-size: .9rem;
+    width: 80%;
+}
+.nb-tries .nth {
+    color: #09cae6;
+    font-size: 1rem;
+}
+.gg-icon {
+    border-radius: 5px;
+    border: .13rem solid #fff;
 }
