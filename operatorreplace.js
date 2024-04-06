@@ -1,45 +1,75 @@
-
 export function scheduleOperatorReplacement() {
-    // Get the current date and time
-    var now = new Date();
+    fetch('serverTime.php')
+        .then(response => response.text())
+        .then(serverTime => {
+            var now = new Date(serverTime);
 
-    // Create a new date object for 23:08 today
-    var targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 11, 0);
+            fetch('operator.json')
+                .then(response => response.json())
+                .then(operators => {
+                    var operator = operators[0]; // Assuming the operator is the first item in the array
 
-    // If it's already past 23:08, schedule for 23:08 tomorrow
-    if (now > targetTime) {
-        targetTime.setDate(targetTime.getDate() + 1);
-    }
+                    if (operator.nextChange) {
+                        var nextChange = new Date(operator.nextChange);
 
-    // Calculate the delay until 23:08 in milliseconds
-    var delay = targetTime - now;
-    console.log('Delay until 23:09:', delay); // Add this line
+                        if (now > nextChange) {
+                            // The operator needs to be changed, call replaceOperator
+                            replaceOperator();
+                        } else {
+                            // The operator is still valid, use it
+                            //console.log('Operator:', operator);
 
-    // Schedule the operator replacement
-    setTimeout(replaceOperator, delay);
+                            // Calculate the delay until the nextChange time in milliseconds
+                            var delay = nextChange - now;
+                            //console.log('Delay until next change:', delay);
+
+                            // Schedule the operator replacement
+                            setTimeout(replaceOperator, delay);
+                        }
+                    } else {
+                        // nextChange property doesn't exist, call replaceOperator
+                        replaceOperator();
+                    }
+                });
+        });
 }
 function replaceOperator() {
-    // Load the operators from the JSON file
-    fetch('operators.json')
-        .then(response => response.json())
-        .then(operators => {
-            // Get a random operator
-            var newOperator = operators[Math.floor(Math.random() * operators.length)];
-            console.log('New operator:', newOperator); // Add this line
+    // Get the server time
+    fetch('serverTime.php')
+        .then(response => response.text())
+        .then(serverTime => {
+            var now = new Date(serverTime);
 
-            // Wrap the new operator in an array
-            var newOperatorArray = [newOperator];
+            // Load the operators from the JSON file
+            fetch('operators.json')
+                .then(response => response.json())
+                .then(operators => {
+                    // Get a random operator
+                    var newOperator = operators[Math.floor(Math.random() * operators.length)];
 
-            // Convert the new operator array to a JSON string
-            var jsonString = JSON.stringify(newOperatorArray);
+                    // Add a timestamp for the next change
+                    var nextChange = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0, 0);
+                    if (now > nextChange) {
+                        nextChange.setDate(nextChange.getDate() + 1);
+                    }
+                    newOperator.nextChange = nextChange;
 
-            // Send the JSON string to a server-side script to save it back to the JSON file
-            fetch('saveOperators.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: jsonString,
-            });
+                    console.log('New operator:', newOperator); // Add this line
+
+                    // Wrap the new operator in an array
+                    var newOperatorArray = [newOperator];
+
+                    // Convert the new operator array to a JSON string
+                    var jsonString = JSON.stringify(newOperatorArray);
+
+                    // Send the JSON string to a server-side script to save it back to the JSON file
+                    fetch('saveOperators.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: jsonString,
+                    });
+                });
         });
 }
