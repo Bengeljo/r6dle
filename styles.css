@@ -305,7 +305,7 @@ input{
 }
 .background-end {
     border-radius: 8px;
-    box-shadow: 0 3px 8pxrgba(0, 0, 0, .24);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .24);
     padding: 3rem 3rem;
     display: flex;
     flex-direction: column;
@@ -348,4 +348,17 @@ input{
 .gg-icon {
     border-radius: 5px;
     border: .13rem solid #fff;
+}
+.next-operator {
+    margin-top: 1rem;
+}
+.next-title {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1rem;
+}
+.modal-time {
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: center;
 }

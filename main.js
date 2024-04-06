@@ -3,14 +3,36 @@ import operators from './operators.json' assert{type:'json'}
 import operator from './operator.json' assert{type:'json'}
 import { scheduleOperatorReplacement } from './operatorreplace.js';
 
+let nextTime
+fetch('operator.json')
+    .then(response => response.json())
+    .then(operators => {
+        var operator = operators[0];
+        nextTime = new Date(operator.nextChange);
+    });
+    let countryToContinent = {};
+
+    fetch('continents.json')
+        .then(response => response.json())
+        .then(continents => {
+            // Create a country to continent mapping
+            for (let continent in continents) {
+                continents[continent].forEach(country => {
+                    countryToContinent[country] = continent;
+                });
+            }
+        });
 // Call the function when the page loads
 scheduleOperatorReplacement();
 //changes for a test
+let guessedOperators = []
 window.onload = function() {
     loadTriedOperators()
 
     // Get the saved mode from localStorage
     let savedMode = localStorage.getItem('mode');
+    let lastGuessedOp = localStorage.getItem('lastGuessedOp')
+    
 
     // Get the last visit timestamp and streak count from localStorage
     let lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
@@ -20,15 +42,30 @@ window.onload = function() {
     if (lastVisitTimestamp && Date.now() - parseInt(dailyStreakCount) >= 24 * 60 * 60 * 1000) {
         dailyStreakCount = 0;
     }
-  
+    
+    // Check if the last guessed Operator is equal to the current operator and if that is not true set dailyWon to false
+    if (lastGuessedOp != operator[0].name || lastGuessedOp === null) {
+        localStorage.setItem('dailyWon', 'false')
+        
+        if (guessedOperators.length > 0) {
+            localStorage.setItem('guessedOperators', [])
+            guessedOperators = localStorage.getItem('guessedOperators')
+        }
+    }
+    
     // If a mode was saved, open that mode
     if (savedMode === 'daily') {
-      dailyMode();
-      
+        dailyMode();      
     } else if (savedMode === 'endless') {
       endlessMode();
+    } else {
+        // Disable the input
+        let input = document.getElementById('inputField');
+        if (input) {
+            input.disabled = true;
+        }
     }
-    console.log(localStorage.getItem('dailyWon'))
+    //console.log(localStorage.getItem('dailyWon'))
     
     // Start the game
     askForGuess();
@@ -91,30 +128,37 @@ function updateModeIndicator(mode) {
     window.endlessMode = function() {
     // Logic for endless mode
     updateModeIndicator('Endless');
-    console.log("Now endless mode")
+    //console.log("Now endless mode")
     localStorage.setItem('mode', 'endless');
     displayStreak();
     endlessGuesses = setEndlessGuesses();
     operatorToGuess = setOperatorToGuess();
+    if (guessedOperators.length > 0) {
+        localStorage.setItem('guessedOperators', [])
+        guessedOperators = localStorage.getItem('guessedOperators')
+    }
      // Find the winning screen and remove it if it exists
-     let endId = document.getElementById('endId');
-    endId.innerHTML = '';
+    clear();
     // Enable the input
     let input = document.getElementById('inputField');
     if (input) {
         input.disabled = false;
     }
 }
-    window.dailyMode = function() {
+window.dailyMode = function () {
+    // Enable the input
+    let input = document.getElementById('inputField');
+    if (input) {
+        input.disabled = false;
+    }
     // Logic for daily mode
     updateModeIndicator('Daily');
-    console.log("Now daily mode")
+    //console.log("Now daily mode")
     localStorage.setItem('mode', 'daily');
     displayDailyStreak();
     dailyGuesses = setDailyGuesses();
     operatorToGuess = setOperatorToGuess();
-    let endId = document.getElementById('endId');
-    endId.innerHTML = '';
+    clear();
     if(localStorage.getItem('dailyWon') === 'true'){
         displayWinningScreen()
     }
@@ -129,8 +173,10 @@ function updateModeIndicator(mode) {
 
         if (localStorage.getItem('mode') === 'daily'){
             dailyGuesses++
+            localStorage.setItem('dailyGuesses', dailyGuesses)
         } else if(localStorage.getItem('mode') === 'endless'){
             endlessGuesses++
+            localStorage.setItem('endlessGuesses', endlessGuesses)
         }    
         console.log('daily: ' + dailyGuesses + '  endless: ' + endlessGuesses)
         // Find the operator in the list
@@ -172,7 +218,11 @@ function updateModeIndicator(mode) {
                         console.log(`🔴 ${key}: ${operator[key].join(", ")}`);
                     }
                 }
-            } else if (typeof operator[key] === 'string' && operator[key] === operatorToGuess[key]) {
+            } else if (key === 'country' && operator[key] !== operatorToGuess[key] && countryToContinent[operator[key]] === countryToContinent[operatorToGuess[key]]) {
+                console.log(`🟠 ${key}: ${operator[key]}`);
+                sharedCriteria = true;
+            }
+             else if (typeof operator[key] === 'string' && operator[key] === operatorToGuess[key]) {
                 console.log(`✅ ${key}: ${operator[key]}`);
                 sharedCriteria = true;
             } else {
@@ -185,6 +235,7 @@ function updateModeIndicator(mode) {
             console.log("You won! The operator was " + operatorToGuess.name );
             if(localStorage.getItem('mode') === 'daily'){
                 localStorage.setItem('dailyWon', 'true')
+                localStorage.setItem('lastGuessedOp', operatorName)
             }
             problemSolved();
 
@@ -262,6 +313,19 @@ function updateModeIndicator(mode) {
                             square.classList.add('square-bad');
                             content.textContent = `${operator[key].join(", ")}`;
                         }
+                    }
+                } else if (key === 'country') {
+                    if (operator[key] === operatorToGuess[key]) {
+                        square.classList.add('square-good');
+                        content.textContent = `${operator[key]}`;
+                        sharedCriteria = true;
+                    } else if (operator[key] !== operatorToGuess[key] && countryToContinent[operator[key]] === countryToContinent[operatorToGuess[key]]) {
+                        square.classList.add('square-partial');
+                        content.textContent = `${operator[key]}`;
+                        sharedCriteria = true;
+                    } else {
+                        square.classList.add('square-bad');
+                        content.textContent = `${operator[key]}`;
                     }
                 } else if (typeof operator[key] === 'string' && operator[key].includes(operatorToGuess[key])) {
                     square.classList.add('square-good');
@@ -403,7 +467,45 @@ function displayWinningScreen() {
     button.className = 'de_button'
     button.innerHTML = 'Restart'
     button.id = 'restartButton'
+
+    // Create the countdown and append it to the DOM
+    let countdown = document.createElement('div');
+    countdown.className = 'next-operator next-operator';
+
+    let nextTitle = document.createElement('div');
+    nextTitle.className = 'next-title';
+    countdown.appendChild(nextTitle);
+    nextTitle.innerHTML = 'Next operator in:'
+
+    let countdownTime = document.createElement('div');
+    countdownTime.className = 'modal-time';
+    countdownTime.id = 'countdown';
+    countdown.appendChild(countdownTime);
+
     
+
+    // Update the countdown every 1 second
+    let countdownInterval = setInterval(function() {
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = nextTime - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Update the countdownTime innerHTML
+        countdownTime.innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+
+        // If the count down is finished, write some text 
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            countdownTime.innerHTML = "Refresh the site to get the new operator";
+        }
+    }, 1000);
 
     // Append the elements to their parents
     ggAnswerDiv.appendChild(firstInnerDiv);
@@ -413,6 +515,9 @@ function displayWinningScreen() {
     backgroundEndDiv.appendChild(nthTriesDiv);
     if (localStorage.getItem('mode') === 'endless'){
         backgroundEndDiv.appendChild(button)
+    }
+    if(localStorage.getItem('mode') === 'daily'){
+        backgroundEndDiv.appendChild(countdown)
     }
     nthTriesDiv.appendChild(nthSpan);
     emptyDiv.appendChild(backgroundEndDiv);
@@ -511,11 +616,11 @@ function problemSolved() {
     } else if (localStorage.getItem('mode') === 'daily'){
 
         // Increment the daily streak
-        dailyStreakCount + 1;
+        dailyStreakCount++;
         // Save the new daily streak to local storage
         localStorage.setItem('dailyStreakCount', dailyStreakCount.toString())
         // Display the new streak
-        document.getElementById('dailyStreakDisplay').textContent = dailyStreakCount;
+        document.getElementById('dailyStreakDisplay').textContent = `Your daily streak increased and is now at ${dailyStreakCount}`;
 
 
     }
@@ -547,11 +652,11 @@ function displayStreak() {
 
 function displayDailyStreak() {
     // Get the daily streak from local storage
-    let dailyStreak = localStorage.getItem('dailyStreakCounter');
+    let dailyStreak = localStorage.getItem('dailyStreakCount');
     var dailyStreakDisplay = document.getElementById('dailyStreakDisplay');
     dailyStreakDisplay.style.display = '';
     // If there's no daily streak, this is the user's first visit
-    if (!dailyStreak) {
+    if (dailyStreak === null) {
         dailyStreak = 0;
     }
     // Display the daily streak
@@ -569,8 +674,8 @@ function displayDailyStreak() {
     streakDisplay.style.display = 'none';
 }
 
-// Define guessedOperators in the global scope
-let guessedOperators = [];
+
+
 
 // Save the tried operators
 function saveTriedOperators() {
@@ -651,10 +756,11 @@ function setDailyGuesses() {
     let storedDailyGuesses = localStorage.getItem('dailyGuesses');
     if(!storedDailyGuesses || isNaN(storedDailyGuesses)){
         localStorage.setItem('dailyGuesses', dailyGuesses);
+        dailyGuesses = localStorage.getItem('dailyGuesses')
     } else {
         dailyGuesses = parseInt(storedDailyGuesses);
     }
-    return storedDailyGuesses
+    return dailyGuesses
 }
 
 // Set initial guess count for endless mode
@@ -662,10 +768,11 @@ function setEndlessGuesses() {
     let storedEndlessGuesses = localStorage.getItem('endlessGuesses');
     if(!storedEndlessGuesses || isNaN(storedEndlessGuesses)){
         localStorage.setItem('endlessGuesses', endlessGuesses);
+        endlessGuesses = localStorage.getItem('endlessGuesses')
     } else {
         endlessGuesses = parseInt(storedEndlessGuesses);
     }
-    return storedEndlessGuesses
+    return endlessGuesses
 }
 
 function restartButton() {
@@ -676,19 +783,28 @@ function restartButton() {
     if (restartButton) {
         // Add a click event listener to the button
         restartButton.addEventListener('click', function() {
-            guessedOperators =[]
-            let answercon = document.getElementById('answercon')
-            answercon.innerHTML = ''
+            guessedOperators = []
+            operatorToGuess = setOperatorToGuess()
             endlessGuesses = 0
-            let endId = document.getElementById('endId')
-            endId.innerHTML = ''
+            clear()
             var event = new CustomEvent('clearUsedNames');
             window.dispatchEvent(event);
         });
     }
 }
 
-export function getGuessedOperators() {  
+function clear() {
+    let answercon = document.getElementById('answercon')
+    answercon.innerHTML = ''
+    let endId = document.getElementById('endId')
+    endId.innerHTML = ''
+}
+
+export function getGuessedOperators() {
+    //ensure that the guessedOperators array is an array
+      if (guessedOperators === null) {
+        guessedOperators = [];
+    }
     return guessedOperators;
   }
     
