@@ -1,6 +1,6 @@
 // Parse the JSON data
-import operators from './operators.json' assert{type:'json'}
-import operator from './operator.json' assert{type:'json'}
+import operators from './operators.json' with {type:'json'}
+import operator from './operator.json' with {type:'json'}
 import { scheduleOperatorReplacement } from './operatorreplace.js';
 
 let nextTime

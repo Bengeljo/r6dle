@@ -1,4 +1,4 @@
-import operators from './operators.json' assert{type:'json'}
+import operators from './operators.json' with {type:'json'}
 import { getGuessedOperators } from './main.js';
 let lowerCaseGuessedOperators
 let matchingNames
