@@ -362,3 +362,58 @@ input{
     font-weight: 800;
     text-align: center;
 }
+.tuto-colors {
+    width: 110%;
+    margin: 1rem -5%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #0068ab;
+    border-radius: 8px;
+    background: #181c20;
+    font-size: 1rem;
+    padding: .8rem .2rem;
+    vertical-align: center;
+    align-content: center;
+    justify-self: center;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    position: relative;
+}
+.close {
+    position: absolute;
+    background: #ad1d1d;
+    border: 2px solid #19374a;
+    color: #fff;
+    top: -15px;
+    right: -12px;
+    padding: .3rem;
+    border-radius: 2px;
+    cursor: pointer
+}
+.title {
+    font-size: 1.1rem;
+}
+.tuto-colors-container {
+    display: flex;
+    vertical-align: center;
+    align-content: center;
+    justify-self: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    flex-direction: row;
+    row-gap: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    padding: .8rem .2rem;
+    justify-content: space-evenly;
+    position: relative;
+}
+.tuto-row-container {
+    flex-direction: column;
+    justify-content: center;
+}
+#tuto{
+    display: none;
+}

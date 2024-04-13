@@ -133,10 +133,9 @@ function updateModeIndicator(mode) {
     displayStreak();
     endlessGuesses = setEndlessGuesses();
     operatorToGuess = setOperatorToGuess();
-    if (guessedOperators.length > 0) {
-        localStorage.setItem('guessedOperators', [])
-        guessedOperators = localStorage.getItem('guessedOperators')
-    }
+    loadTriedOperators()
+    var event = new CustomEvent('clearUsedNames');
+            window.dispatchEvent(event);
      // Find the winning screen and remove it if it exists
     clear();
     // Enable the input
@@ -158,6 +157,8 @@ window.dailyMode = function () {
     displayDailyStreak();
     dailyGuesses = setDailyGuesses();
     operatorToGuess = setOperatorToGuess();
+    var event = new CustomEvent('clearUsedNames');
+            window.dispatchEvent(event);
     clear();
     if(localStorage.getItem('dailyWon') === 'true'){
         displayWinningScreen()
@@ -172,9 +173,15 @@ window.dailyMode = function () {
     function guess(operatorName) {
 
         if (localStorage.getItem('mode') === 'daily'){
+            if (dailyGuesses == 0){
+                tutoButton()
+            }
             dailyGuesses++
             localStorage.setItem('dailyGuesses', dailyGuesses)
         } else if(localStorage.getItem('mode') === 'endless'){
+            if(endlessGuesses == 0){
+                tutoButton()
+            }
             endlessGuesses++
             localStorage.setItem('endlessGuesses', endlessGuesses)
         }    
@@ -790,6 +797,19 @@ function restartButton() {
             var event = new CustomEvent('clearUsedNames');
             window.dispatchEvent(event);
         });
+    }
+}
+
+function tutoButton(){
+    //Get the tuto element
+    var tutoElement = document.getElementById('tuto')
+    tutoElement.style.display = 'contents'
+
+    var tutoButton = document.getElementById('close')
+    if (tutoButton){
+        tutoButton.addEventListener('click', function(){
+            tutoElement.style.display = 'none'
+        })
     }
 }
 
