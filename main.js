@@ -1,32 +1,33 @@
 // Parse the JSON data
-import operators from './operators.json' with {type:'json'}
-import operator from './operator.json' with {type:'json'}
+
 import { scheduleOperatorReplacement } from './operatorreplace.js';
 
 let nextTime
-fetch('operator.json')
-    .then(response => response.json())
-    .then(operators => {
-        var operator = operators[0];
-        nextTime = new Date(operator.nextChange);
-    });
-    let countryToContinent = {};
-
-    fetch('continents.json')
-        .then(response => response.json())
-        .then(continents => {
-            // Create a country to continent mapping
-            for (let continent in continents) {
-                continents[continent].forEach(country => {
-                    countryToContinent[country] = continent;
-                });
-            }
-        });
+let operator
+let operators
+let countryToContinent = {};
 // Call the function when the page loads
 scheduleOperatorReplacement();
 //changes for a test
 let guessedOperators = []
-window.onload = function() {
+window.onload = async function() {
+    const operatorResponse = await fetch('./operator.json');
+    const operatorData = await operatorResponse.json();
+    operator = operatorData;
+    nextTime = new Date(operator[0].nextChange);
+    const operatorsResponse = await fetch('./operators.json')
+    const operatorsData = await operatorsResponse.json();
+    const continentsResponse = await fetch('./continents.json');
+    const continentsData = await continentsResponse.json();
+    operators = operatorsData
+    // Create a country to continent mapping
+    for (let continent in continentsData) {
+        continentsData[continent].forEach(country => {
+            countryToContinent[country] = continent;
+        });
+    }
+    console.log(operator)
+    console.log(operators)
     loadTriedOperators()
 
     // Get the saved mode from localStorage
@@ -149,6 +150,9 @@ window.dailyMode = function () {
     let input = document.getElementById('inputField');
     if (input) {
         input.disabled = false;
+        if (localStorage.getItem('dailyWon') === 'true') {
+            input.disabled = true
+        }
     }
     // Logic for daily mode
     updateModeIndicator('Daily');
@@ -162,6 +166,7 @@ window.dailyMode = function () {
     clear();
     if(localStorage.getItem('dailyWon') === 'true'){
         displayWinningScreen()
+        
     }
    
     //Use guess and askForGuess as needed
@@ -172,13 +177,13 @@ window.dailyMode = function () {
     // Function to handle a new guess
     function guess(operatorName) {
 
-        if (localStorage.getItem('mode') === 'daily'){
+        if (localStorage.getItem('mode') === 'daily') {
             if (dailyGuesses == 0){
                 tutoButton()
             }
             dailyGuesses++
             localStorage.setItem('dailyGuesses', dailyGuesses)
-        } else if(localStorage.getItem('mode') === 'endless'){
+        } else if (localStorage.getItem('mode') === 'endless') {
             if(endlessGuesses == 0){
                 tutoButton()
             }
@@ -366,6 +371,7 @@ window.dailyMode = function () {
                     localStorage.setItem('endlessGuesses', 0)
                 }
                 displayWinningScreen();
+                
             }
             return sharedCriteria;
         }
@@ -821,10 +827,9 @@ function clear() {
 }
 
 export function getGuessedOperators() {
-    //ensure that the guessedOperators array is an array
-      if (guessedOperators === null) {
+    if (guessedOperators === null) {
         guessedOperators = [];
     }
     return guessedOperators;
-  }
+}
     
