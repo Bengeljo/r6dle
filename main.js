@@ -4,7 +4,7 @@ import { scheduleOperatorReplacement } from './operatorreplace.js';
 
 let nextTime
 let operator
-let operators
+export let operators
 let countryToContinent = {};
 // Call the function when the page loads
 scheduleOperatorReplacement();
@@ -831,5 +831,4 @@ export function getGuessedOperators() {
         guessedOperators = [];
     }
     return guessedOperators;
-}
-    
+}    

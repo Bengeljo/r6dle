@@ -1,4 +1,5 @@
-import operators from './operators.json' with {type:'json'}
+//import operators from './operators.json' with {type:'json'}
+import {operators} from './main.js';
 import { getGuessedOperators } from './main.js';
 let lowerCaseGuessedOperators
 let matchingNames
