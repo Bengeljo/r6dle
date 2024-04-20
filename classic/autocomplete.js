@@ -64,7 +64,7 @@ inputField.addEventListener('input', () => {
 }
 
 function display(result){
-    const content = result.map(name => `<li class="operator-suggestion" onclick="selectInput(this)"><img src="images/r6s-operators-badge-${name.toLowerCase()}.png" class="operator-image">${name}</li>`).join('');
+    const content = result.map(name => `<li class="operator-suggestion" onclick="selectInput(this)"><img src="../images/r6s-operators-badge-${name.toLowerCase()}.png" class="operator-image">${name}</li>`).join('');
     autoBox.innerHTML = `<ul>${content}</ul>`;
 }
 

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <noscript>
+        Your browser does not support JavaScript or it is disabled! Please enable JavaScript for this website to function properly.
+      </noscript>
+<head>
+    <title>R6dle</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/110f273880.js" crossorigin="anonymous"></script>
+</head>
+   <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y47B5Y33FT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y47B5Y33FT');
+</script>
+<body>
+    <h1>R6dle Test Lab</h1>
+    <div class= "main"> 
+        <div class = "game">
+            <div class = "game-container">
+                <div class = "gameSubContainer">
+                    <div class="answers">
+                        <div class="search-box">
+                            <div class="row">
+                                <input id="inputField" autocomplete="off" type="text" placeholder="Type any weapon..." class="searchbar">
+                                <button id="submitButton"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
+                            <div id="auto-boxField" class="auto-box">
+                            </div>  
+                            
+                        </div>
+                    </div>
+                    <div id="stats_bar">
+                </div>
+                <div id="guessed_weapons"></div>
+                <div id="hints"></div>
+                <div id="wrong_weapons"></div>
+                <div id="endId"></div>
+                </div>
+            </div>
+        </div>
+    <p id="output"></p>
+</div>
+    </div>
+    <script type= "module" src="guessWeapon.js"></script>
+    <script type= "module" src="autocomplete.js"></script>
+</body>

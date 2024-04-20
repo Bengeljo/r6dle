@@ -1,0 +1,983 @@
+[
+    {
+        "name": "L85A2",
+        "damage": 47,
+        "fireRate": 670,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Sledge", "Thatcher"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "AR33",
+        "damage": 41,
+        "fireRate": 749,
+        "mobility": 50,
+        "magsize": 25,
+        "available_on": ["Thatcher", "Flores"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "G36C",
+        "damage": 38,
+        "fireRate": 780,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Ash", "Iana"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "R4-C",
+        "damage": 38,
+        "fireRate": 860,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Ash", "Ram"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "556XI",
+        "damage": 47,
+        "fireRate": 690,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Thermite", "Osa"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "F2",
+        "damage": 37,
+        "fireRate": 980,
+        "mobility": 50,
+        "magsize": 25,
+        "available_on": ["Twitch"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "AK-12",
+        "damage": 40,
+        "fireRate": 850,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Fuze","Ace"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "552 COMMANDO",
+        "damage": 43,
+        "fireRate": 690,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["IQ", "Grim"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "AUG A2",
+        "damage": 42,
+        "fireRate": 720,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["IQ", "Wamai"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "C8-SFW",
+        "damage": 44,
+        "fireRate": 837,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Buck"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "MK17 CQB",
+        "damage": 40,
+        "fireRate": 585,
+        "mobility": 50,
+        "magsize": 20,
+        "available_on": ["Blackbeard"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "PARA-308",
+        "damage": 47,
+        "fireRate": 650,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Capitão", "Brava"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "TYPE-89",
+        "damage": 40,
+        "fireRate": 850,
+        "mobility": 50,
+        "magsize": 20,
+        "available_on": ["Hibana"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "C7E",
+        "damage": 42,
+        "fireRate": 800,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Jackal"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "M762",
+        "damage": 45,
+        "fireRate": 730,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Zofia"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "V308",
+        "damage": 44,
+        "fireRate": 700,
+        "mobility": 50,
+        "magsize": 50,
+        "available_on": ["Lion"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "SPEAR.308",
+        "damage": 42,
+        "fireRate": 700,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Finka", "Thunderbird"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "M4",
+        "damage": 44,
+        "fireRate": 750,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Maverick"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "ARX200",
+        "damage": 47,
+        "fireRate": 700,
+        "mobility": 50,
+        "magsize": 20,
+        "available_on": ["Nomad", "Iana"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "AK-74M",
+        "damage": 44,
+        "fireRate": 650,
+        "mobility": 50,
+        "magsize": 40,
+        "available_on": ["Nomad", "Deimos"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "F90",
+        "damage": 38,
+        "fireRate": 780,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Gridlock"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "SC3000K",
+        "damage": 45,
+        "fireRate": 800,
+        "mobility": 50,
+        "magsize": 25,
+        "available_on": ["Zero"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "POF-9",
+        "damage": 35,
+        "fireRate": 740,
+        "mobility": 50,
+        "magsize": 50,
+        "available_on": ["Sens"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "416-C CARBINE",
+        "damage": 38,
+        "fireRate": 740,
+        "mobility": 50,
+        "magsize": 25,
+        "available_on": ["Jäger"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "AUG A3",
+        "damage": 40,
+        "fireRate": 700,
+        "mobility": 50,
+        "magsize": 31,
+        "available_on": ["Kaid"],
+        "type": "Assault Rifle"
+    },
+    {
+        "name": "6P41",
+        "damage": 46,
+        "fireRate": 680,
+        "mobility": 35,
+        "magsize": 100,
+        "available_on": ["Fuze", "Finka"],
+        "type": "LMG"
+    },
+    {
+        "name": "G8A1",
+        "damage": 37,
+        "fireRate": 850,
+        "mobility": 35,
+        "magsize": 50,
+        "available_on": ["IQ", "Amaru"],
+        "type": "LMG"
+    },
+    {
+        "name": "M249",
+        "damage": 48,
+        "fireRate": 650,
+        "mobility": 35,
+        "magsize": 100,
+        "available_on": ["Capitão"],
+        "type": "LMG"
+    },
+    {
+        "name": "M249 SAW",
+        "damage": 48,
+        "fireRate": 650,
+        "mobility": 35,
+        "magsize": 100,
+        "available_on": ["Capitão"],
+        "type": "LMG"
+    },
+    {
+        "name": "T-95 LSW",
+        "damage": 46,
+        "fireRate": 650,
+        "mobility": 35,
+        "magsize": 80,
+        "available_on": ["Ying"],
+        "type": "LMG"
+    },
+    {
+        "name": "LMG-E",
+        "damage": 41,
+        "fireRate": 720,
+        "mobility": 35,
+        "magsize": 150, 
+        "available_on": ["Zofia", "Ram"],
+        "type": "LMG"
+    },
+    {
+        "name": "DP27",
+        "damage": 60,
+        "fireRate": 550,
+        "mobility": 35,
+        "magsize": 70, 
+        "available_on": ["Tachanka"],
+        "type": "LMG"
+    },
+    {
+        "name": "417",
+        "damage": 69,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 20,
+        "available_on": ["Twitch", "Lion", "Sens"],
+        "type": "DMR"
+    },
+    {
+        "name": "CAMRS",
+        "damage": 69,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 20,
+        "available_on": ["Buck","Brava"],
+        "type": "DMR"
+    },
+    {
+        "name": "SR-25",
+        "damage": 61,
+        "fireRate": 1,
+        "mobility": 38,
+        "magsize": 20,
+        "available_on": ["Blackbeard", "Flores"],
+        "type": "DMR"
+    },
+    {
+        "name": "Mk 14 EBR",
+        "damage": 60,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 20,
+        "available_on": ["Dokkaebi", "Aruni"],
+        "type": "DMR"
+    },
+    {
+        "name": "AR-15.50",
+        "damage": 67,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 10,
+        "available_on": ["Maverick","Tubarão"],
+        "type": "DMR"
+    },
+    {
+        "name": "OTs-03",
+        "damage": 71,
+        "fireRate": 1,
+        "mobility": 36,
+        "magsize": 15,
+        "available_on": ["Glaz"],
+        "type": "Sniper Rifle"
+    },
+    {
+        "name": "CSRX 300",
+        "damage": 135,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 5,
+        "available_on": ["Kali"],
+        "type": "Sniper Rifle"
+    },
+    {
+        "name": "M590A1",
+        "damage": 48,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 7,
+        "available_on": ["Sledge", "Thatcher", "Smoke", "Mute", "Deimos","Warden"],
+        "type": "Shotgun"
+    },
+    {
+        "name": "M1014",
+        "damage": 28,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 8,
+        "available_on": ["Thermite", "Pulse", "Castle", "Ace"],
+        "type": "Shotgun"
+    },
+    {
+        "name": "SG-CQB",
+        "damage": 44,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 7,
+        "available_on": ["Twitch", "Lion", "Doc", "Rook", "Grim"],
+        "type": "Shotgun"
+    },
+    {
+        "name": "SUPERNOVA",
+        "damage": 48,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 7,
+        "available_on": ["Hibana", "Echo", "Amaru"],
+        "type": "Shotgun"
+    },
+    {
+        "name": "ITA12L",
+        "damage": 41,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 8,
+        "available_on": ["Jackal", "Mira", "Azami"],
+        "type": "Shotgun"
+    },
+    {
+        "name": "ITA12S",
+        "damage": 29,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 5,
+        "available_on": ["Jackal", "Mira", "Frost", "Ram", "Amaru"],
+        "type": "Shotgun"
+    },
+    {
+        "name": "SIX12",
+        "damage": 46,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 6,
+        "available_on": ["Ying", "Lesion", "Nøkk"],
+        "type": "Shotgun"
+    },
+    {
+        "name": "SASG-12",
+        "damage": 26,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 10,
+        "available_on": ["Finka", "Kapkan", "Tachanka","Fenrir"],
+        "type": "Shotgun"
+    },
+    {
+        "name": "SUPER SHORTY",
+        "damage": 35,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 3,
+        "available_on": ["Gridlock", "Castle", "Brava", "Clash"],
+        "type": "Shotgun"
+    },
+    {
+        "name": "M870",
+        "damage": 42,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 7,
+        "available_on": ["Thorn", "Jäger", "Bandit"],
+        "type": "Shotgun"
+    },
+    {
+        "name": "Super 90",
+        "damage": 27,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 8,
+        "available_on": ["Frost", "Melusi"],
+        "type": "Shotgun"
+    },
+    {
+        "name": "SPAS-12",
+        "damage": 31,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 7,
+        "available_on": ["Frost", "Oryx"],
+        "type": "Shotgun"
+    },
+    {
+        "name": "SPAS-15",
+        "damage": 24,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 6,
+        "available_on": ["Caveira", "Thunderbird"],
+        "type": "Shotgun"
+    },
+    {
+        "name": "F0-12",
+        "damage": 24,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 10,
+        "available_on": ["Ela"],
+        "type": "Shotgun"
+    },
+    {
+        "name": "ACS12",
+        "damage": 69,
+        "fireRate": 300,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Azami", "Alibi", "Maestro"],
+        "type": "Slug Shotgun"
+    },
+    {
+        "name": "BOSG.12.2",
+        "damage": 125,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 2,
+        "available_on": ["Dokkaebi", "Vigil"],
+        "type": "Slug Shotgun"
+    },
+    {
+        "name": "TCSG12",
+        "damage": 63,
+        "fireRate": 1,
+        "mobility": 50,
+        "magsize": 10,
+        "available_on": ["Kaid", "Goyo"],
+        "type": "Slug Shotgun"
+    },
+    {
+        "name": "PDW9",
+        "damage": 34,
+        "fireRate": 800,
+        "mobility": 50,
+        "magsize": 50,
+        "available_on": ["Jackal", "Osa"],
+        "type": "SMG"
+    },
+    {
+        "name": "FMG-9",
+        "damage": 34,
+        "fireRate": 800,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Smoke", "Nøkk"],
+        "type": "SMG"
+    },
+    {
+        "name": "SMG-11",
+        "damage": 32,
+        "fireRate": 1270,
+        "mobility": 50,
+        "magsize": 16,
+        "available_on": ["Smoke", "Mute", "Amaru", "Solis"],
+        "type": "SMG"
+    },
+    {
+        "name": "MP7",
+        "damage": 32,
+        "fireRate": 900,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Bandit", "Zero", "Fenrir"],
+        "type": "SMG"
+    },
+    {
+        "name": "MP5K",
+        "damage": 30,
+        "fireRate": 800,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Mute", "Wamai"],
+        "type": "SMG"
+    },
+    {
+        "name": "UMP45",
+        "damage": 42,
+        "fireRate": 600,
+        "mobility": 50,
+        "magsize": 20,
+        "available_on": ["Castle", "Pulse"],
+        "type": "SMG"
+    },
+    {
+        "name": "MP5",
+        "damage": 27,
+        "fireRate": 800,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Rook", "Doc", "Melusi"],
+        "type": "SMG"
+    },
+    {
+        "name": "P90",
+        "damage": 22,
+        "fireRate": 970,
+        "mobility": 50,
+        "magsize": 50,
+        "available_on": ["Rook", "Doc", "Solis"],
+        "type": "SMG"
+    },
+    {
+        "name": "9x19VSN",
+        "damage": 38,
+        "fireRate": 750,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Kapkan", "Azami"],
+        "type": "SMG"
+    },
+    {
+        "name": "9mm C1",
+        "damage": 40,
+        "fireRate": 575,
+        "mobility": 50,
+        "magsize": 34,
+        "available_on": ["Frost"],
+        "type": "SMG"
+    },
+    {
+        "name": "MPX",
+        "damage": 26,
+        "fireRate": 830,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Valkarie", "Warden", "Tubarão"],
+        "type": "SMG"
+    },
+    {
+        "name": "M12",
+        "damage": 40,
+        "fireRate": 550,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Caveira"],
+        "type": "SMG"
+    },
+    {
+        "name": "MP5SD",
+        "damage": 30,
+        "fireRate": 800,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Echo"],
+        "type": "SMG"
+    },
+    {
+        "name": "VECTOR.45 ACP",
+        "damage": 23,
+        "fireRate": 1200,
+        "mobility": 50,
+        "magsize": 25,
+        "available_on": ["Mira", "Goyo"],
+        "type": "SMG"
+    },
+    {
+        "name": "T-5 SMG",
+        "damage": 28,
+        "fireRate": 900,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Lesion", "Oryx"],
+        "type": "SMG"
+    },
+    {
+        "name": "K1A",
+        "damage": 40,
+        "fireRate": 720,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Lesion"],
+        "type": "SMG"
+    },
+    {
+        "name": "SCORPION EVO 3 A1",
+        "damage": 23,
+        "fireRate": 1080,
+        "mobility": 50,
+        "magsize": 40,
+        "available_on": ["Ela"],
+        "type": "SMG"
+    },
+    {
+        "name": "Mx4 Storm",
+        "damage": 26,
+        "fireRate": 950,
+        "mobility": 50,
+        "magsize": 30,
+        "available_on": ["Alibi"],
+        "type": "SMG"
+    },
+    {
+        "name": "Commando 9",
+        "damage": 36,
+        "fireRate": 780,
+        "mobility": 50,
+        "magsize": 25,
+        "available_on": ["Mozzie"],
+        "type": "SMG"
+    },
+    {
+        "name": "P10 Roni",
+        "damage": 26,
+        "fireRate": 980,
+        "mobility": 50,
+        "magsize": 15,
+        "available_on": ["Mozzie", "Aruni"],
+        "type": "SMG"
+    },
+    {
+        "name": "UZK50GI",
+        "damage": 36,
+        "fireRate": 700,
+        "mobility": 50,
+        "magsize": 22,
+        "available_on": ["Thorn"],
+        "type": "SMG"
+    },
+    {
+        "name": "BEARING 9",
+        "damage": 33,
+        "fireRate": 1100,
+        "mobility": 50,
+        "magsize": 25,
+        "available_on": ["Glaz", "Hibana", "Echo", "Tachanka", "Thunderbird"],
+        "type": "Machine Pistol"
+    },
+    {
+        "name": "SMG-12",
+        "damage": 28,
+        "fireRate": 1270,
+        "mobility": 50,
+        "magsize": 32,
+        "available_on": ["Dokkaebi", "Vigil", "Warden"],
+        "type": "Machine Pistol"
+    },
+    {
+        "name": "C75 Auto",
+        "damage": 35,
+        "fireRate": 1000,
+        "mobility": 50,
+        "magsize": 26,
+        "available_on": ["Thorn", "Vigil", "Kali", "Dokkaebi"],
+        "type": "Machine Pistol"
+    },
+    {
+        "name": "SPSMG9",
+        "damage": 33,
+        "fireRate": 980,
+        "mobility": 50,
+        "magsize": 20,
+        "available_on": ["Kali", "Clash"],
+        "type": "Machine Pistol"
+    },
+    {
+        "name": "P226 MK 25",
+        "damage": 50,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 15,
+        "available_on": ["Sledge", "Thatcher", "Smoke", "Mute", "Tubarão","Kali"],
+        "type": "Handgun"
+    },
+    {
+        "name": "M45 MEUSOC",
+        "damage": 58,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 7,
+        "available_on": ["Ash", "Thermite", "Pulse", "Castle"],
+        "type": "Handgun"
+    },
+    {
+        "name": "5.7 USG",
+        "damage": 42,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 20,
+        "available_on": ["Ash", "Thermite", "Pulse", "Castle", "Zero", "Nøkk", "Fenrir"],
+        "type": "Handgun"
+    },
+    {
+        "name": "P9",
+        "damage": 45,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 16,
+        "available_on": ["Twitch", "Rook", "Doc", "Montagne", "Ace", "Lion"],
+        "type": "Handgun"
+    },
+    {
+        "name": "PMM",
+        "damage": 61,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 8,
+        "available_on": ["Glaz", "Fuze", "Kapkan", "Tachanka", "Finka", "Osa"],
+        "type": "Handgun"
+    },
+    {
+        "name": "GSH-18",
+        "damage": 44,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 18,
+        "available_on": ["Fuze", "Kapkan", "Tachanka", "Finka", "Flores"],
+        "type": "Handgun"
+    },
+    {
+        "name": "P12",
+        "damage": 44,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 15,
+        "available_on": ["Blitz", "IQ", "Bandit", "Jäger", "Wamai"],
+        "type": "Handgun"
+    },
+    {
+        "name": "MK1 9mm",
+        "damage": 48,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 13,
+        "available_on": ["Buck","Frost","Ram", "Iana"],
+        "type": "Handgun"
+    },
+    {
+        "name": "D-50",
+        "damage": 71,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 7,
+        "available_on": ["Blackbeard","Valkarie","Nøkk", "Azami"],
+        "type": "Handgun"
+    },
+    {
+        "name": "PRB92",
+        "damage": 42,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 15,
+        "available_on": ["Capitão", "Aruni", "Nomad"],
+        "type": "Handgun"
+    },
+    {
+        "name": "P229",
+        "damage": 51,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 12,
+        "available_on": ["Hibana", "Echo", "Grim", "Goyo"],
+        "type": "Handgun"
+    },
+    {
+        "name": "USP40",
+        "damage": 48,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 12,
+        "available_on": ["Jackal", "Mira", "Brava", "Oryx"],
+        "type": "Handgun"
+    },
+    {
+        "name": "Q-929",
+        "damage": 60,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 10,
+        "available_on": ["Ying", "Lesion","Thunderbird"],
+        "type": "Handgun"
+    },
+    {
+        "name": "RG15",
+        "damage": 38,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 15,
+        "available_on": ["Zofia", "Ela", "Melusi"],
+        "type": "Handgun"
+    },
+    {
+        "name": "1911 TACOPS",
+        "damage": 55,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 8,
+        "available_on": ["Maverick","Thorn"],
+        "type": "Handgun"
+    },
+    {
+        "name": ".44 Mag Semi-Auto",
+        "damage": 54,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 7,
+        "available_on": ["Nomad", "Kaid"],
+        "type": "Handgun"
+    },
+    {
+        "name": "SDP 9mm",
+        "damage": 47,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 16,
+        "available_on": ["Nomad", "Kaid", "Sens", "Mozzie"],
+        "type": "Handgun"
+    },
+    {
+        "name": "LUISON",
+        "damage": 65,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 12,
+        "available_on": ["Caveira"],
+        "type": "Handgun"
+    },
+    {
+        "name": "P-10C",
+        "damage": 40,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 15,
+        "available_on": ["Clash", "Warden"],
+        "type": "Handgun"
+    },
+    {
+        "name": "LFP586",
+        "damage": 78,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 6,
+        "available_on": ["Twitch", "Rook", "Doc", "Montagne","Kaid"],
+        "type": "Revolver"
+    },
+    {
+        "name": "Bailiff 410",
+        "damage": 30,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 5,
+        "available_on": ["Oryx", "Alibi", "Grim","Fenrir"],
+        "type": "Revolver"
+    },
+    {
+        "name": "KERATOS.357",
+        "damage": 78,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 6,
+        "available_on": ["Maestro", "Alibi","Wamai"],
+        "type": "Revolver"
+    },
+    {
+        "name": ".44 Vendetta",
+        "damage": 78,
+        "fireRate": 1,
+        "mobility": 45,
+        "magsize": 6,
+        "available_on": ["Maestro", "Alibi","Wamai"],
+        "type": "Revolver"
+    },
+    {
+        "name": "LE ROC SHIELD",
+        "damage": 65,
+        "fireRate": null,
+        "mobility": 28,
+        "magsize": null,
+        "available_on": ["Montagne"],
+        "type": "Shield"
+    },
+    {
+        "name": "BALLISTIC SHIELD",
+        "damage": 65,
+        "fireRate": null,
+        "mobility": 30,
+        "magsize": null,
+        "available_on": ["Fuze"],
+        "type": "Shield"
+    },
+    {
+        "name": "G52-TACTICAL SHIELD",
+        "damage": 65,
+        "fireRate": null,
+        "mobility": 30,
+        "magsize": null,
+        "available_on": ["Blitz"],
+        "type": "Shield"
+    },
+    {
+        "name": "CCE SHIELD",
+        "damage": 5,
+        "fireRate": 20,
+        "mobility": 28,
+        "magsize": null,
+        "available_on": ["Clash"],
+        "type": "Shield"
+    },
+    {
+        "name": "GONNE-6",
+        "damage": 10,
+        "fireRate": null,
+        "mobility": 50,
+        "magsize": 1,
+        "available_on": ["Glaz", "Buck", "Iana", "Zero", "Dokkaebi", "Amaru", "Sens", "Lion", "Capitão"],
+        "type": "Hand Cannon"
+    }
+]

@@ -1,13 +1,8 @@
 // Parse the JSON data
-
-import { scheduleOperatorReplacement } from './operatorreplace.js';
-
 let nextTime
 let operator
 export let operators
 let countryToContinent = {};
-// Call the function when the page loads
-scheduleOperatorReplacement();
 //changes for a test
 let guessedOperators = []
 window.onload = async function() {
@@ -205,6 +200,9 @@ window.dailyMode = function () {
         // Compare the operator data with the selected operator
         const keys = ["name","gender", "role", "side", "country", "Org", "Squad", "release_year"];
         let sharedCriteria = false;
+
+        const normalizeRoles = roles => roles.split(',').map(role => role.trim()).sort().join(', ');
+
         keys.forEach(key => {
             if (key === 'release_year') {
                 if (operator[key] < operatorToGuess[key]) {
@@ -215,13 +213,14 @@ window.dailyMode = function () {
                     console.log(`✅ ${key}: ${operator[key]}`);
                 }
             } else if (Array.isArray(operator[key]) && Array.isArray(operatorToGuess[key])) {
-                // Check if the arrays are equal
-                if (JSON.stringify(operator[key]) === JSON.stringify(operatorToGuess[key])) {
+                const normalizedOperatorRole = normalizeRoles(operator[key].join(','));
+                const normalizedOperatorToGuessRole = normalizeRoles(operatorToGuess[key].join(','));
+
+                if (normalizedOperatorRole === normalizedOperatorToGuessRole) {
                     console.log(`✅ ${key}: ${operator[key].join(", ")}`);
                     sharedCriteria = true;
                 } else {
-                    // Find the matching roles
-                    const matchingRoles = operator[key].filter(role => operatorToGuess[key].includes(role));
+                    const matchingRoles = operator[key].filter(role => normalizedOperatorToGuessRole.includes(role));
 
                     if (matchingRoles.length > 0) {
                         console.log(`🟠 ${key}: ${operator[key].join(", ")}`);
@@ -233,8 +232,7 @@ window.dailyMode = function () {
             } else if (key === 'country' && operator[key] !== operatorToGuess[key] && countryToContinent[operator[key]] === countryToContinent[operatorToGuess[key]]) {
                 console.log(`🟠 ${key}: ${operator[key]}`);
                 sharedCriteria = true;
-            }
-             else if (typeof operator[key] === 'string' && operator[key] === operatorToGuess[key]) {
+            } else if (typeof operator[key] === 'string' && operator[key] === operatorToGuess[key]) {
                 console.log(`✅ ${key}: ${operator[key]}`);
                 sharedCriteria = true;
             } else {
@@ -277,7 +275,7 @@ window.dailyMode = function () {
             imgSquare.className = 'square animate__animated animate__flipInY';
         
             let img = document.createElement('img');
-            img.src = `images/r6s-operators-badge-${operatorName.toLowerCase()}.png`;
+            img.src = `../images/r6s-operators-badge-${operatorName.toLowerCase()}.png`;
             img.style.width = '100%';
             img.style.height = '100%';
             img.style.objectFit = 'cover';
@@ -310,13 +308,20 @@ window.dailyMode = function () {
                     square.classList.add('square-title');
                     content.textContent = `${operator[key]}`;
                 } else if (Array.isArray(operator[key]) && Array.isArray(operatorToGuess[key])) {
-                    if (JSON.stringify(operator[key]) === JSON.stringify(operatorToGuess[key])) {
+                    const normalizedOperatorRole = operator[key].join(',').split(',').map(role => role.trim()).sort().join(', ');
+                    const normalizedOperatorToGuessRole = operatorToGuess[key].join(',').split(',').map(role => role.trim()).sort().join(', ');
+                
+                    const normalizedOperatorRoleArray = normalizedOperatorRole.split(', ');
+                    const normalizedOperatorToGuessRoleArray = normalizedOperatorToGuessRole.split(', ');
+                
+                    if (normalizedOperatorRoleArray.every(role => normalizedOperatorToGuessRoleArray.includes(role)) &&
+                        normalizedOperatorToGuessRoleArray.every(role => normalizedOperatorRoleArray.includes(role))) {
                         square.classList.add('square-good');
                         content.textContent = `${operator[key].join(", ")}`;
                         sharedCriteria = true;
                     } else {
-                        const matchingRoles = operator[key].filter(role => operatorToGuess[key].includes(role));
-        
+                        const matchingRoles = operator[key].filter(role => normalizedOperatorToGuessRole.includes(role));
+                
                         if (matchingRoles.length > 0) {
                             square.classList.add('square-partial');
                             content.textContent = `${operator[key].join(", ")}`;
@@ -437,7 +442,7 @@ function displayWinningScreen() {
     img.className = "gg-icon";
     img.className = "gg-icon";
     var operatorName = operatorToGuess.name;
-    img.src = `images/r6s-operators-badge-${operatorName.toLowerCase()}.png`;
+    img.src = `../images/r6s-operators-badge-${operatorName.toLowerCase()}.png`;
     firstInnerDiv.appendChild(img);
 
     
