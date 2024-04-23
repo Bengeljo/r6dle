@@ -5,6 +5,7 @@ export let operators
 let countryToContinent = {};
 //changes for a test
 let guessedOperators = []
+let lastSolvedTimestamp 
 window.onload = async function() {
     const operatorResponse = await fetch('./operator.json');
     const operatorData = await operatorResponse.json();
@@ -15,6 +16,7 @@ window.onload = async function() {
     const continentsResponse = await fetch('./continents.json');
     const continentsData = await continentsResponse.json();
     operators = operatorsData
+    lastSolvedTimestamp = localStorage.getItem('lastSolvedTimestamp')
     // Create a country to continent mapping
     for (let continent in continentsData) {
         continentsData[continent].forEach(country => {
@@ -33,10 +35,12 @@ window.onload = async function() {
     // Get the last visit timestamp and streak count from localStorage
     let lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
     let dailyStreakCount = parseInt(localStorage.getItem('dailyStreakCount')) || 0;
-       
+    var dateNow = new Date().getTime();
     // If the last visit was within the last 24 hours, increment the streak count
-    if (lastVisitTimestamp && Date.now() - parseInt(dailyStreakCount) >= 24 * 60 * 60 * 1000) {
-        dailyStreakCount = 0;
+    console.log(dateNow >= lastSolvedTimestamp + 24 * 60 * 60 * 1000)
+    if (dateNow <= lastSolvedTimestamp + 24 * 60 * 60 * 1000) {
+        console.log('Daily streak reset');
+        localStorage.setItem('dailyStreakCount', 0);
     }
     
     // Check if the last guessed Operator is equal to the current operator and if that is not true set dailyWon to false
@@ -369,11 +373,15 @@ window.dailyMode = function () {
                 // If the guessed operator is the right one, display the winning screen
                 if (localStorage.getItem('mode') === 'daily'){
                     dailyResult = dailyGuesses
+                    var date = new Date().getTime();
+                    localStorage.setItem('lastSolvedTimestamp', date);
                     localStorage.setItem('dailyResult', dailyResult)
                     localStorage.setItem('dailyGuesses', 0)
                 } else if(localStorage.getItem('mode') === 'endless'){
                     endlessResult = endlessGuesses
                     localStorage.setItem('endlessGuesses', 0)
+                    let input  = document.getElementById('inputField')
+                    input.disabled = true   
                 }
                 displayWinningScreen();
                 
@@ -630,7 +638,7 @@ function problemSolved() {
         localStorage.setItem('streak', currentStreak);
 
         // Display the new streak
-        document.getElementById('streakDisplay').textContent = `Your streak: ${currentStreak}`;
+        document.getElementById('streakDisplay').textContent = `You solved R6dle already ${currentStreak} times`;
     } else if (localStorage.getItem('mode') === 'daily'){
 
         // Increment the daily streak
@@ -649,7 +657,9 @@ function displayStreak() {
     let currentStreak = localStorage.getItem('streak');
     // Get the 'streakDisplay' element
     var streakDisplay = document.getElementById('streakDisplay');
-
+    var dataDailyStreak = document.getElementById('alreadyDailySolved');
+    var dataGlobalSolvedEndless = document.getElementById('globalSolvedEndless');
+    
     // Show the 'streakDisplay' element
     streakDisplay.style.display = '';
     // If there's no current streak, this is the user's first visit
@@ -666,12 +676,20 @@ function displayStreak() {
     }
     var dailyStreakDisplay = document.getElementById('dailyStreakDisplay');
     dailyStreakDisplay.style.display = 'none'
+    dataDailyStreak.style.display = 'none'
+
+    dataGlobalSolvedEndless.style.display = ''
+    dataGlobalSolvedEndless.innerHTML = 'The endless mode was already solved times'
+    
+    
 }
 
 function displayDailyStreak() {
     // Get the daily streak from local storage
     let dailyStreak = localStorage.getItem('dailyStreakCount');
     var dailyStreakDisplay = document.getElementById('dailyStreakDisplay');
+    var dataGlobalSolvedEndless = document.getElementById('globalSolvedEndless');
+    var dataDailyStreak = document.getElementById('alreadyDailySolved');
     dailyStreakDisplay.style.display = '';
     // If there's no daily streak, this is the user's first visit
     if (dailyStreak === null) {
@@ -690,6 +708,7 @@ function displayDailyStreak() {
 
     // Hide the 'streakDisplay' element
     streakDisplay.style.display = 'none';
+    dataGlobalSolvedEndless.style.display = 'none'
 }
 
 
@@ -804,6 +823,8 @@ function restartButton() {
             guessedOperators = []
             operatorToGuess = setOperatorToGuess()
             endlessGuesses = 0
+            let input  = document.getElementById('inputField')
+                    input.disabled = false 
             clear()
             var event = new CustomEvent('clearUsedNames');
             window.dispatchEvent(event);

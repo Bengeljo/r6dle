@@ -6,7 +6,6 @@
 <head>
     <title>R6dle</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script type= "module" src="main.js"></script>
     <script src="https://kit.fontawesome.com/110f273880.js" crossorigin="anonymous"></script>
 </head>
    <!-- Google tag (gtag.js) -->
@@ -23,17 +22,22 @@
     <div class="mainContainer">
         <div class="container">
             <div class ="top">
-                <div class="buttons-container">
-                    <div id="gameModes">
-                        <a href="https://glorious-palm-tree-xqr4v5v6prxfv5gr-3000.app.github.dev/classic/index.html" class="button">Classic</a>
-                        <a href="weapons.html" class="button">Weapons</a>
-                        <!-- HTML !-->
-                        <button class="button-62" role="button">Button 62</button>
-                        <!-- Add more buttons as needed -->
-                    </div>
-                </div>
+                <div class="top_text">Pick a gamemode</div>
+                        <div class="buttons-container">
+                                <div id="gameModes">
+                                    <a href="/classic/index.html" class="button"><div class='topButtonText'>Classic</div> <div class='lowButtonText'>Guess the operator</div></a>
+                                    <div>Upcoming gamemode: </div>
+                                    <a href="/weapons/index.html" class="button"><div class='topButtonText'>Weapons</div> <div class='lowButtonText'>Guess the weapon based on stats</div></a>
+                                    <a href="https://discord.gg/W7yWvGeY8g" class="buttonDiscord"><img class="discordImg" src="../images/webicons/discord-mark-white.png"> Join the discord to get access or to give feedback<div class='lowButtonText'></div></a>
+                                </div>
+                            </div>
+                
             </div>
         </div>
     </div>
-    <div class="copywrite">R6dle is a project created with <i class="fa-solid fa-heart" aria-hidden="true"></i> by fans and is not affiliated with Ubisoft. Tom Clancys, Rainbow Six, The Soldier Icon, Ubisoft and the Ubisoft logo are trademarks of Ubisoft Entertainment. version 1.6 </div>
+    <p id="output"></p>
+    <div class="bottom-text">
+        <div class="version">Version 1.61</div>
+        <div class="copywrite">R6dle is a project created with <i class="fa-solid fa-heart" aria-hidden="true"></i> by fans and is not affiliated with Ubisoft. Tom Clancys, Rainbow Six, The Soldier Icon, Ubisoft and the Ubisoft logo are trademarks of Ubisoft Entertainment. </div>
+    </div>
 </body>

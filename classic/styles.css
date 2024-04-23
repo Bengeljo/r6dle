@@ -4,6 +4,7 @@
     font-family:Arial, Helvetica, sans-serif;
     box-sizing: border-box;
 }
+@import url('../fonts/fontstyle.cssx');
 
 body{
     background-image: url('../images/background.jpg');
@@ -419,4 +420,29 @@ input{
 }
 #tuto{
     display: none;
+}
+.background-start {
+    border-radius: 8px;
+    box-shadow: 4px 11px 8px rgba(0, 0, 0, .24);
+    padding: 1rem 1rem;
+    display: flex;
+    vertical-align: center;
+    justify-self: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(#313131, #2a2a2a);
+    border: 2px solid #69d1ff;
+    row-gap: .5rem;
+    flex-direction: column;
+}
+.alreadySolved{
+    display: flex;
+    margin-top: 10px;
+    color: #ffffff;
+    margin-left: -34px;
+    text-shadow: 0 0 3px #000000;
+    box-shadow: inset 0 0 50px #000;
+    width: 120%;
+    justify-content: center;
+
 }

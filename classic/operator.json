@@ -1,16 +1,16 @@
 [
   {
-      "name": "Mute",
-      "gender": "Male",
-      "role": [
-          "Anti-Gadget",
-          "Crowd Control"
-      ],
-      "side": "Defence",
-      "country": "England",
-      "Org": "SAS",
-      "Squad": "Viperstrike",
-      "release_year": "2015",
+    "name": "Alibi",
+    "gender": "Female",
+    "role": [
+      "Trapper",
+      "Intel"
+    ],
+    "side": "Defence",
+    "country": "Libya",
+    "Org": "GIS",
+    "Squad": "Viperstrike",
+    "release_year": "2018",
       "nextChange": "2024-04-06T16:00:00.000Z"
   }
 ]

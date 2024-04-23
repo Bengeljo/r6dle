@@ -21,9 +21,8 @@
 <body style="display: flex; flex-direction: column; min-height: 100vh;">
     <h1>R6dle</h1>
     <div class="container">
-        <div class="header-container">
+        <div class="background-start header-container">
             <div class="current-streak animate__animated animate__fadeIn streak-clickable has-tooltip">
-                <div>R6dle</div>
                 <div id="mode-indicator">
                     <button id="dailyModeButton" class="de_button" onclick="dailyMode()">Daily Mode</button>
                     <button id="endlessModeButton" class="de_button" onclick="endlessMode()">Endless Mode  </button>
@@ -46,9 +45,10 @@
                     </div>  
                     
                 </div>
-                <br>
+                <div class="alreadySolved" id="alreadyDailySolved"></div>
+                <div class="alreadySolved" id="globalSolvedEndless"></div>
                 
-                <div class="classic-answers-container" style="width: 200%; margin: 0px 0px 0px -50%;">
+                <div class="classic-answers-container" style="width: 200%; margin: 10px 0px 0px -50%;">
                     <div data-v-4cd5ba35 class="answer-titles square-container animate__animated animate__fadeIn" style>
                         <div  class="square square-title">
                         <div  class="square-content"> Operator </div>
@@ -116,8 +116,8 @@
 </div>
     <p id="output"></p>
 <div class="bottom-text">
-    <div class="copywrite">R6dle is a project created with <i class="fa-solid fa-heart" aria-hidden="true"></i> by fans and is not affiliated with Ubisoft. Tom Clancys, Rainbow Six, The Soldier Icon, Ubisoft and the Ubisoft logo are trademarks of Ubisoft Entertainment. </div>
     <div class="version">Version 1.61</div>
+    <div class="copywrite">R6dle is a project created with <i class="fa-solid fa-heart" aria-hidden="true"></i> by fans and is not affiliated with Ubisoft. Tom Clancys, Rainbow Six, The Soldier Icon, Ubisoft and the Ubisoft logo are trademarks of Ubisoft Entertainment. </div>
 </div>
 <script type= "module" src="autocomplete.js"></script>
 <link
