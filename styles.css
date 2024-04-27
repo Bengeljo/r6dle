@@ -32,6 +32,20 @@
   align-items: center;
   box-shadow: 0 0 .15rem 1px #00eeff, -.125rem -.125rem .2rem rgba(71, 233, 239, 0.5), .125rem .125rem .2rem rgba(90, 244, 255, 0.5);
 }
+.logo{
+  height:120px;
+  width: fit-content;
+  display: flex;
+}
+.logo-container{
+  width: 28%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: xxx-large;
+  color: black;
+  text-shadow: .8px 0.8px 0 #ffffff, -.5px .5px 0 #ffffff, -.5px -.5px 0 #ffffff, .5px -.5px 0 #ffffff;
+}
 body{
   background-image: url('../images/weapons/background/r6s_squads_bkg_wolfguard.png');
   background-attachment: fixed;
