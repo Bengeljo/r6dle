@@ -358,3 +358,39 @@ text-align: center;
 width: 100%;
 height: 100%;
 }
+
+.progress-layer-bottom {
+  box-shadow: 0 10px 40px -10px #fff;
+  border-radius: 100px;
+  position: absolute;
+  text-align: right;
+  color: black;
+  height: 30px;
+  line-height: 30px;
+  padding-right: 10px;
+  z-index: -1;
+}
+
+.progress-layer-top {
+  box-shadow: 0 10px 40px -10px #fff;
+  border-radius: 100px;
+  position: absolute;
+  text-align: right;
+  color: black;
+  height: 30px;
+  line-height: 30px;
+  padding-right: 10px;
+  z-index: +1;
+}
+
+.background-red{
+  background: red;
+}
+
+.background-yellow{
+  background: #e6cc00;
+}
+
+.background-green{
+  background: greenyellow;
+}
