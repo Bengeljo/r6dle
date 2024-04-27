@@ -7,7 +7,7 @@ let maxMagSize = 150;
 let maxFireRate = 1270;
 let guesses = 0;
 let selectedWeapon
-
+let hint = 1;
 
 window.onload = async function () {
     const weaponsResponse = await fetch('./weapons.json')
@@ -34,6 +34,7 @@ async function guessWeapon(weapon) {
     console.log(weapon === selectedWeapon.name)
     if (guesses == 3) {
         showHint1();
+        hint++;
     } else if (guesses == 6) {
         showHint2();
     }
@@ -62,10 +63,13 @@ async function guessWeapon(weapon) {
 
         // Get the element where you want to display the guessed weapons
         let guessedWeaponsElement = document.getElementById('guessed_weapons');
+        let nextHintElement = document.getElementById('nextHint')
         let weaponsName = document.createElement('div');
         guessedWeaponsElement.className = 'hints-colors'
         guessedWeaponsElement.innerHTML = 'Guessed Weapons: '
         guessedWeaponsElement.appendChild(weaponsName);
+        nextHintElement.className = 'hints-colors';
+        nextHintElement.innerHTML = `Wrong guesses until next hint: ${3 * hint - guesses}`
         // Update the innerHTML of the guessed weapons element with the guessed weapons
         weaponsName.innerHTML = guessedWeaponsHmtl.join(', ');
         guessedWeaponsElement.style.display = 'block'
