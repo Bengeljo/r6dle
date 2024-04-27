@@ -434,7 +434,7 @@ function setHintMagSize(guessedWeapon) {
 
     // Create the fire rate bar
     progressValue.id = "magSizeHint";
-    let magSizeValue = (guessedWeapon.magsize / maxMagSize * 100)*.962;
+    let magSizeValue = (guessedWeapon.magsize / maxMagSize * 100);
     if(magSizeValue > 95){
         magSizeValue *= .962
     }
