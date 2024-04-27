@@ -1,3 +1,4 @@
+
 //import operators from './operators.json' with {type:'json'}
 import {weapons} from './guessWeapon.js';
 import { getGuessedWeapons } from './guessWeapon.js';
@@ -57,7 +58,7 @@ inputField.addEventListener('input', () => {
 }
 
 function display(result){
-    const content = result.map(weapon => `<li class="operator-suggestion" onclick="selectInput(this)">${weapon}</li>`).join('');
+  const content = result.map(weapon => `<li class="operator-suggestion" onclick="selectInput(this)"><img src="../images/weapons/${weapon.toLowerCase()}.avif" class="weapon-image">${weapon}</li>`).join('');
     autoBox.innerHTML = `<ul>${content}</ul>`;
 }
 

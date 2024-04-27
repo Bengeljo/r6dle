@@ -8,6 +8,7 @@ let maxFireRate = 1270;
 let guesses = 0;
 let selectedWeapon
 let hint = 1;
+let checkbox
 
 window.onload = async function () {
     const weaponsResponse = await fetch('./weapons.json')
@@ -20,6 +21,7 @@ window.onload = async function () {
     setMagSize(selectedWeapon)
     askForGuess();
     window.dispatchEvent(new Event('guessedWeaponsLoaded'));
+    
 }
 
 
@@ -29,6 +31,7 @@ function randomWeapon() {
 }
 
 async function guessWeapon(weapon) {
+    checkbox.checked = false;
     guesses++
     console.log(guesses)
     console.log(weapon === selectedWeapon.name)
@@ -132,16 +135,18 @@ function askForGuess() {
 
         // Get the input field value
         var userInput = inputField.value;
-
+        inputField.value = '';
         // Check if the operator has already been guessed or empty or does not exist
         if (guessedWeapons.includes(userInput) || userInput === "") {
             console.log('This weapon has already been guessed.');
+            inputField.value = '';
             return; // Exit the function early
         } else if (userInput === "") {
             console.log('InputField was empty.');
             return;
         } else if (!weaponNames.includes(userInput)) {
             console.log('This weapon does not exist.');
+            inputField.value = '';
             return;
         }
 
@@ -156,6 +161,7 @@ function askForGuess() {
     submitButton.addEventListener('click', function () {
         // Get the input field value
         var userInput = inputField.value;
+        inputField.value = '';
 
         // Check if the operator has already been guessed or empty or does not exist
         if (guessedWeapons.includes(userInput) || userInput === "") {
@@ -229,7 +235,10 @@ function setHintDmgBar(guessedWeapon) {
         progressValue.className = 'progress-layer-top background-green';
     }
     
-    let weaponValue = guessedWeapon.damage / maxDamage * 100;
+    let weaponValue = (guessedWeapon.damage / maxDamage * 100);
+    if (weaponValue > 95){
+        weaponValue *= .962
+    }
 
     progressValue.innerHTML = guessedWeapon.damage
     progressValue.id = 'dmgHint'
@@ -293,7 +302,10 @@ function setHintMobBar(guessedWeapon) {
 
     // Create the mobility bar
     progressValue.id = 'mobHint';
-    let mobilityValue = guessedWeapon.mobility / maxMobility * 100;
+    let mobilityValue = (guessedWeapon.mobility / maxMobility * 100);
+    if (mobilityValue > 95){
+        mobilityValue *= .962
+    }
     progressValue.innerHTML = guessedWeapon.mobility
     progressStyle.innerHTML = '@keyframes mobLoadHint {0% {width: 0;} 100% {width: ' + mobilityValue + '%;}}';
     document.head.appendChild(progressStyle);
@@ -356,7 +368,10 @@ function setHintFireRateBar(guessedWeapon) {
 
     // Create the fire rate bar
     progressValue.id = "fireRateHint";
-    let fireRateValue = guessedWeapon.fireRate / maxFireRate * 100;
+    let fireRateValue = (guessedWeapon.fireRate / maxFireRate * 100);
+    if(fireRateValue > 95){
+        fireRateValue *= .962;
+    }
     progressValue.innerHTML = guessedWeapon.fireRate
     progressStyle.innerHTML = '@keyframes fireRateLoadHint {0% {width: 0;} 100% {width: ' + fireRateValue + '%;}}';
     document.head.appendChild(progressStyle);
@@ -419,7 +434,10 @@ function setHintMagSize(guessedWeapon) {
 
     // Create the fire rate bar
     progressValue.id = "magSizeHint";
-    let magSizeValue = guessedWeapon.magsize / maxMagSize * 100;
+    let magSizeValue = (guessedWeapon.magsize / maxMagSize * 100)*.962;
+    if(magSizeValue > 95){
+        magSizeValue *= .962
+    }
     progressValue.innerHTML = guessedWeapon.magsize
     progressStyle.innerHTML = '@keyframes magSizeLoadHint {0% {width: 0;} 100% {width: ' + magSizeValue + '%;}}';
     document.head.appendChild(progressStyle);
@@ -553,6 +571,29 @@ function clear() {
     guessedWeaponsElement.style.display = 'contents'
 
 }
+document.addEventListener('DOMContentLoaded', function() {
+    checkbox = document.querySelector('input[type="checkbox"]');
+
+    checkbox.addEventListener('change', function() {
+        var magSizeHint = document.getElementById('magSizeHint');
+        var fireRateHint = document.getElementById('fireRateHint');
+        var dmgHint = document.getElementById('dmgHint');
+        var mobHint = document.getElementById('mobHint');
+
+        if (this.checked) {
+            magSizeHint.style.display = 'none';
+            fireRateHint.style.display = 'none';
+            dmgHint.style.display = 'none';
+            mobHint.style.display = 'none';
+        } else {
+            magSizeHint.style.display = 'block';
+            fireRateHint.style.display = 'block';
+            dmgHint.style.display = 'block';
+            mobHint.style.display = 'block';
+        }
+    });
+});
+
 export function getGuessedWeapons() {
     if (guessedWeapons === null) {
         guessedWeapons = [];
