@@ -72,7 +72,7 @@ async function guessWeapon(weapon) {
         guessedWeaponsElement.innerHTML = 'Guessed Weapons: '
         guessedWeaponsElement.appendChild(weaponsName);
         nextHintElement.className = 'hints-colors';
-        nextHintElement.innerHTML = `Wrong guesses until next hint: ${3 * hint - guesses}`
+        nextHintElement.innerHTML = `${3 * hint - guesses} more guesses until next hint`
         // Update the innerHTML of the guessed weapons element with the guessed weapons
         weaponsName.innerHTML = guessedWeaponsHmtl.join(', ');
         guessedWeaponsElement.style.display = 'block'
