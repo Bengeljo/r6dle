@@ -66,7 +66,7 @@ body{
 
 .search-box{
     position: relative;
-    width: 300px;
+    width: 350px;
     background: #ffffff;
     margin: 20px auto 0;
     border-radius: 5px;
@@ -467,7 +467,7 @@ input:checked + .slider:before {
 .switch-text {
   position: absolute;
   top: -9%;
-  left: -303%;
+  left: -290%;
   color: white;
   font-size: 15px;
 }

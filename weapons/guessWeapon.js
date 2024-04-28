@@ -595,7 +595,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 export function getGuessedWeapons() {
-    if (guessedWeapons === null) {
+    if (!guessedWeapons) {
         guessedWeapons = [];
     }
     return guessedWeapons;
