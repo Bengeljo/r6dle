@@ -152,7 +152,6 @@ button .fa-solid{
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin: 0px 0px 0px 5%;
 }
 .de_button:hover{
     background-color: #0056b3;
@@ -164,7 +163,7 @@ button .fa-solid{
 }
 .gg-answer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   -moz-column-gap: .8rem;
   column-gap: .8rem;

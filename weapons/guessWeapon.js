@@ -67,14 +67,54 @@ async function guessWeapon(weapon) {
         // Get the element where you want to display the guessed weapons
         let guessedWeaponsElement = document.getElementById('guessed_weapons');
         let nextHintElement = document.getElementById('nextHint')
-        let weaponsName = document.createElement('div');
+
         guessedWeaponsElement.className = 'hints-colors'
-        guessedWeaponsElement.innerHTML = 'Guessed Weapons: '
-        guessedWeaponsElement.appendChild(weaponsName);
+        guessedWeaponsElement.innerHTML = 'Guessed Weapons:'
+        
+
         nextHintElement.className = 'hints-colors';
         nextHintElement.innerHTML = `${3 * hint - guesses} more guesses until next hint`
-        // Update the innerHTML of the guessed weapons element with the guessed weapons
-        weaponsName.innerHTML = guessedWeaponsHmtl.join(', ');
+
+        // Create a new div for the weapon boxes
+        let weaponBoxes = document.createElement('div');
+
+        // Set the display of weaponBoxes to grid
+        weaponBoxes.style.display = 'grid';
+        weaponBoxes.style.gridTemplateColumns = 'repeat(auto-fill, minmax(200px, 1fr))';
+        weaponBoxes.style.gap = '30px';
+        weaponBoxes.style.justifyItems = 'center';
+        // Iterate over each guessed weapon
+        for(let i = 0; i < guessedWeaponsHmtl.length; i++) {
+            let weaponDiv = document.createElement('div');
+            let weaponName = document.createElement('div');
+            let weaponImage = document.createElement('img');
+
+            // Set the innerHTML of the weaponName to the guessed weapon's name
+            weaponName.innerHTML = guessedWeaponsHmtl[i].replace('.', '_');
+
+            // Set the src of the weaponImage to the guessed weapon's image
+            // Replace 'path_to_images' with the actual path to your images
+            weaponImage.src = `../images/weapons/${guessedWeaponsHmtl[i].toLowerCase().replace('.', '_')}.avif`;
+
+            // Add CSS styles to weaponDiv, weaponName, and weaponImage
+            weaponDiv.style.display = 'flex';
+            weaponDiv.style.flexDirection = 'column';
+            weaponDiv.style.alignItems = 'center';
+            weaponDiv.style.justifyContent = 'center';
+            weaponDiv.style.margin = '10px';
+            weaponDiv.style.width = '220px'
+
+            weaponImage.style.width = '220px';
+
+            // Append the weaponName and weaponImage to the weaponDiv
+            weaponDiv.appendChild(weaponName);
+            weaponDiv.appendChild(weaponImage);
+
+            // Append the weaponDiv to the guessedWeaponsElement
+            weaponBoxes.appendChild(weaponDiv);
+        }
+        guessedWeaponsElement.appendChild(weaponBoxes);
+
         guessedWeaponsElement.style.display = 'block'
 
         return false
@@ -473,12 +513,11 @@ function displayWinningScreen() {
     let firstInnerDiv = document.createElement('div');
     // Create the img
     let img = document.createElement('img');
-    img.width = 60;
-    img.height = 60;
+    img.width = 200;
     img.className = "gg-icon";
     img.className = "gg-icon";
     var operatorName = selectedWeapon.name;
-    img.src = `https://cdn.7tv.app/emote/661ad39445829b469d8d2975/4x.webp`;
+    img.src = `../images/weapons/${selectedWeapon.name.toLowerCase().replace('.', '_')}.avif`;
     firstInnerDiv.appendChild(img);
 
 
