@@ -21,7 +21,7 @@ body{
     position: absolute;
     z-index: 1000;
     width: 100%;
-    max-height: 215px; /* Adjust as needed */
+    max-height: 350px; /* Adjust as needed */
     overflow-y: auto; /* Add a scrollbar if the results exceed the max height */
     background: white; /* Adjust as needed */
     

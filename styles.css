@@ -1,6 +1,5 @@
 .button {
     display: flex;
-    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     background-color: #24262a;
@@ -17,7 +16,6 @@
 }
 .buttonDiscord{
   display: flex;
-  padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   background-color: #24262a;
@@ -27,7 +25,7 @@
   transition: background-color 0.3s ease;
   background: #24262a;
   width: 300px;
-  height: 45px;
+  height: 48px;
   flex-direction: row;
   align-items: center;
   box-shadow: 0 0 .15rem 1px #00eeff, -.125rem -.125rem .2rem rgba(71, 233, 239, 0.5), .125rem .125rem .2rem rgba(90, 244, 255, 0.5);
@@ -55,8 +53,8 @@ body{
   font-family: 'Roboto', sans-serif;
   color : white
 }
+
 .top_text{
-  
   font-size: 2rem;
 }
 

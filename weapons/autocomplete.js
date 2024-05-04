@@ -38,17 +38,18 @@ inputField.addEventListener('input', () => {
       // Filter the weapons based on the input value and exclude used weapons
       lowerCaseGuessedWeapons = getGuessedWeapons().map(weapon => weapon.toLowerCase());
 
+      
       // Filter the weapons based on the input value and exclude used weapons
-      matchingWeapons = availableWeapons.filter(weapon => {
-          // Check if the operator has access to the weapon
-          let operatorHasAccess = weapon.available_on.map(operator => operator.toLowerCase()).includes(inputValue.toLowerCase());
+        matchingWeapons = availableWeapons.filter(weapon => {
+            // Check if the operator has access to the weapon
+            let operatorHasAccess = weapon.available_on.map(operator => operator.toLowerCase()).includes(inputValue.toLowerCase());
 
-          return (
-              (weapon.name.toLowerCase().startsWith(inputValue.toLowerCase()) || operatorHasAccess) &&
-              !usedWeapons.includes(weapon.name.toLowerCase()) &&
-              !lowerCaseGuessedWeapons.includes(weapon.name.toLowerCase())
-          );
-      });
+            return (
+                (weapon.name.toLowerCase().includes(inputValue.toLowerCase()) || operatorHasAccess) &&
+                !usedWeapons.includes(weapon.name.toLowerCase()) &&
+                !lowerCaseGuessedWeapons.includes(weapon.name.toLowerCase())
+            );
+        });
 
       // Dynamically generate HTML elements for the matching weapons
       matchingWeapons.forEach(weapon => {
