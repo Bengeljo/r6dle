@@ -9,21 +9,220 @@ let guesses = 0;
 let selectedWeapon
 let hint = 1;
 let checkbox
+let dailyGuesses = 0;
+let weaponToGuess;
+let endlessGuesses = 0;
+let dailyWeaponToGuess = null;
 
 window.onload = async function () {
     const weaponsResponse = await fetch('./weapons.json')
     const weaponsData = await weaponsResponse.json()
     weapons = weaponsData
-    selectedWeapon = await randomWeapon()
-    setDmgBar(selectedWeapon);
-    setMobBar(selectedWeapon);
-    setFireRateBar(selectedWeapon);
-    setMagSize(selectedWeapon)
     askForGuess();
     window.dispatchEvent(new Event('guessedWeaponsLoaded'));
-    
+
+    let savedMode = localStorage.getItem('mode');
+
+    // If a mode was saved, open that mode
+    if (savedMode === 'daily') {
+        dailyMode();
+    } else if (savedMode === 'endless') {
+        endlessMode();
+    } else {
+        // Disable the input
+        let input = document.getElementById('inputField');
+        if (input) {
+            input.disabled = true;
+        }
+    }
 }
 
+window.dailyMode = function () {
+    // Enable the input
+    let input = document.getElementById('inputField');
+    if (input) {
+        input.disabled = false;
+        if (localStorage.getItem('dailyWeaponWon') === 'true') {
+            input.disabled = true
+        }
+    }
+
+    // Logic for daily mode
+    updateModeIndicator('Daily');
+    localStorage.setItem('mode', 'daily');
+    displayDailyStreak();
+    dailyGuesses = setDailyGuesses();
+
+    if (dailyWeaponToGuess == null) {
+        dailyWeaponToGuess = randomWeapon();
+    }
+
+    selectedWeapon = dailyWeaponToGuess;
+
+    setDmgBar(dailyWeaponToGuess);
+    setMobBar(dailyWeaponToGuess);
+    setFireRateBar(dailyWeaponToGuess);
+    setMagSize(dailyWeaponToGuess)
+
+    var event = new CustomEvent('clearUsedNames');
+    window.dispatchEvent(event);
+    
+    if (localStorage.getItem('dailyWeaponWon') === 'true') {
+        displayWinningScreen()
+    }
+}
+
+window.endlessMode = function () {
+    // Logic for endless mode
+    updateModeIndicator('Endless');
+    localStorage.setItem('mode', 'endless');
+    displayStreak();
+    endlessGuesses = setEndlessGuesses();
+    weaponToGuess = randomWeapon();
+
+    selectedWeapon = weaponToGuess;
+
+    setDmgBar(weaponToGuess);
+    setMobBar(weaponToGuess);
+    setFireRateBar(weaponToGuess);
+    setMagSize(weaponToGuess)
+
+    loadTriedWeapons()
+    var event = new CustomEvent('clearUsedNames');
+    window.dispatchEvent(event);
+    
+    // Enable the input
+    let input = document.getElementById('inputField');
+    if (input) {
+        input.disabled = false;
+    }
+}
+
+// Load the tried operators
+function loadTriedWeapons() {
+    if (localStorage.getItem('mode') === 'daily') {
+        const savedTriedWeapons = localStorage.getItem('guessedWeapons');
+
+        if (savedTriedWeapons) {
+            guessedWeapons = JSON.parse(savedTriedWeapons);
+        } else {
+            guessedWeapons = [];
+        }
+        // Dispatch a custom event when guessedOperators is loaded
+        window.dispatchEvent(new Event('guessedOperatorsLoaded'));
+    } else {
+        guessedWeapons = [];
+        window.dispatchEvent(new Event('guessedOperatorsLoaded'));
+    }
+}
+
+function updateModeIndicator(mode) {
+    const modeIndicator = document.getElementById('mode-indicator');
+    modeIndicator.textContent = `Current mode: ${mode}`;
+    if (mode == 'Daily') {
+        let button = document.createElement('button')
+        button.className = 'de_button'
+        button.innerHTML = 'Endless Mode'
+        button.onclick = function () {
+            endlessMode()
+        }
+        modeIndicator.appendChild(button)
+
+    } else if (mode == 'Endless') {
+        let button = document.createElement('button')
+        button.className = 'de_button'
+        button.innerHTML = 'Daily Mode'
+        button.onclick = function () {
+            dailyMode()
+        }
+        modeIndicator.appendChild(button)
+    }
+
+    clear()
+}
+
+function displayDailyStreak() {
+    // Get the daily streak from local storage
+    let dailyStreak = localStorage.getItem('dailyStreakCount');
+    var dailyStreakDisplay = document.getElementById('dailyStreakDisplay');
+    var dataGlobalSolvedEndless = document.getElementById('globalSolvedEndless');
+    var dataDailyStreak = document.getElementById('alreadyDailySolved');
+    dailyStreakDisplay.style.display = '';
+
+    // If there's no daily streak, this is the user's first visit
+    if (dailyStreak === null) {
+        dailyStreak = 0;
+    }
+
+    // Display the daily streak
+    if (dailyStreak == 0) {
+        document.getElementById('dailyStreakDisplay').textContent = 'You have no daily streak';
+    } else if (dailyStreak >= 1) {
+        document.getElementById('dailyStreakDisplay').textContent = `Your daily streak is: ${dailyStreak}`;
+    }
+
+    // Get the 'streakDisplay' element
+    var streakDisplay = document.getElementById('streakDisplay');
+
+    // Hide the 'streakDisplay' element
+    streakDisplay.style.display = 'none';
+    dataGlobalSolvedEndless.style.display = 'none'
+}
+
+function displayStreak() {
+    // Get the current streak from local storage
+    let currentStreak = localStorage.getItem('streak');
+    // Get the 'streakDisplay' element
+    var streakDisplay = document.getElementById('streakDisplay');
+    var dataDailyStreak = document.getElementById('alreadyDailySolved');
+    var dataGlobalSolvedEndless = document.getElementById('globalSolvedEndless');
+
+    // Show the 'streakDisplay' element
+    streakDisplay.style.display = '';
+
+    // If there's no current streak, this is the user's first visit
+    if (!currentStreak) {
+        currentStreak = 0;
+    }
+
+    // Display the current streak
+    if (currentStreak == 0) {
+        document.getElementById('streakDisplay').textContent = 'You have never solved R6dle';
+    } else if (currentStreak > 1) {
+        document.getElementById('streakDisplay').textContent = `You have solved it ${currentStreak} times already`;
+    }
+
+    var dailyStreakDisplay = document.getElementById('dailyStreakDisplay');
+    dailyStreakDisplay.style.display = 'none'
+    dataDailyStreak.style.display = 'none'
+
+    dataGlobalSolvedEndless.style.display = ''
+    dataGlobalSolvedEndless.innerHTML = 'The endless mode was already solved times'
+}
+
+// Set initial guess count for daily mode
+function setDailyGuesses() {
+    let storedDailyGuesses = localStorage.getItem('dailyWeaponGuesses');
+    if (!storedDailyGuesses || isNaN(storedDailyGuesses)) {
+        localStorage.setItem('dailyWeaponGuesses', dailyGuesses);
+        dailyGuesses = localStorage.getItem('dailyWeaponGuesses')
+    } else {
+        dailyGuesses = parseInt(storedDailyGuesses);
+    }
+    return dailyGuesses
+}
+
+// Set initial guess count for endless mode
+function setEndlessGuesses() {
+    let storedEndlessGuesses = localStorage.getItem('endlessWeaponGuesses');
+    if (!storedEndlessGuesses || isNaN(storedEndlessGuesses)) {
+        localStorage.setItem('endlessWeaponGuesses', endlessGuesses);
+        endlessGuesses = localStorage.getItem('endlessWeaponGuesses')
+    } else {
+        endlessGuesses = parseInt(storedEndlessGuesses);
+    }
+    return endlessGuesses
+}
 
 function randomWeapon() {
     const randomWeapon = weapons[Math.floor(Math.random() * weapons.length)]
@@ -33,8 +232,7 @@ function randomWeapon() {
 async function guessWeapon(weapon) {
     checkbox.checked = false;
     guesses++
-    console.log(guesses)
-    console.log(weapon === selectedWeapon.name)
+
     if (guesses == 3) {
         showHint1();
         hint++;
@@ -70,7 +268,7 @@ async function guessWeapon(weapon) {
 
         guessedWeaponsElement.className = 'hints-colors'
         guessedWeaponsElement.innerHTML = 'Guessed Weapons:'
-        
+
 
         nextHintElement.className = 'hints-colors';
         nextHintElement.innerHTML = `${3 * hint - guesses} more guesses until next hint`
@@ -84,7 +282,7 @@ async function guessWeapon(weapon) {
         weaponBoxes.style.gap = '30px';
         weaponBoxes.style.justifyItems = 'center';
         // Iterate over each guessed weapon
-        for(let i = 0; i < guessedWeaponsHmtl.length; i++) {
+        for (let i = 0; i < guessedWeaponsHmtl.length; i++) {
             let weaponDiv = document.createElement('div');
             let weaponName = document.createElement('div');
             let weaponImage = document.createElement('img');
@@ -253,7 +451,7 @@ function setDmgBar(selectedWeapon) {
 function setHintDmgBar(guessedWeapon) {
     //check if there is an hint bar
     let exist = document.getElementById('dmgHint')
-    if(exist){
+    if (exist) {
         exist.remove();
     }
 
@@ -263,20 +461,20 @@ function setHintDmgBar(guessedWeapon) {
     let progressValue = document.createElement('div');
 
     // Create style for the damage bar
-    if(guessedWeapon.damage > selectedWeapon.damage + 5){
+    if (guessedWeapon.damage > selectedWeapon.damage + 5) {
         progressValue.className = 'progress-layer-bottom background-red';
-    } else if(guessedWeapon.damage < selectedWeapon.damage - 5){
+    } else if (guessedWeapon.damage < selectedWeapon.damage - 5) {
         progressValue.className = 'progress-layer-top background-red';
-    } else if(guessedWeapon.damage > selectedWeapon.damage){
+    } else if (guessedWeapon.damage > selectedWeapon.damage) {
         progressValue.className = 'progress-layer-bottom background-yellow';
-    } else if(guessedWeapon.damage < selectedWeapon.damage){
+    } else if (guessedWeapon.damage < selectedWeapon.damage) {
         progressValue.className = 'progress-layer-top background-yellow';
     } else {
         progressValue.className = 'progress-layer-top background-green';
     }
-    
+
     let weaponValue = (guessedWeapon.damage / maxDamage * 100);
-    if (weaponValue > 95){
+    if (weaponValue > 95) {
         weaponValue *= .962
     }
 
@@ -318,7 +516,7 @@ function setMobBar(selectedWeapon) {
 function setHintMobBar(guessedWeapon) {
     //check if there is an hint bar
     let exist = document.getElementById('mobHint')
-    if(exist){
+    if (exist) {
         exist.remove();
     }
 
@@ -328,13 +526,13 @@ function setHintMobBar(guessedWeapon) {
     let progressValue = document.createElement('div');
 
     // Create style for the mobility bar
-    if(guessedWeapon.mobility > selectedWeapon.mobility + 5){
+    if (guessedWeapon.mobility > selectedWeapon.mobility + 5) {
         progressValue.className = 'progress-layer-bottom background-red';
-    } else if(guessedWeapon.mobility < selectedWeapon.mobility - 5){
+    } else if (guessedWeapon.mobility < selectedWeapon.mobility - 5) {
         progressValue.className = 'progress-layer-top background-red';
-    } else if(guessedWeapon.mobility > selectedWeapon.mobility){
+    } else if (guessedWeapon.mobility > selectedWeapon.mobility) {
         progressValue.className = 'progress-layer-bottom background-yellow';
-    } else if(guessedWeapon.mobility < selectedWeapon.mobility){
+    } else if (guessedWeapon.mobility < selectedWeapon.mobility) {
         progressValue.className = 'progress-layer-top background-yellow';
     } else {
         progressValue.className = 'progress-layer-top background-green';
@@ -343,7 +541,7 @@ function setHintMobBar(guessedWeapon) {
     // Create the mobility bar
     progressValue.id = 'mobHint';
     let mobilityValue = (guessedWeapon.mobility / maxMobility * 100);
-    if (mobilityValue > 95){
+    if (mobilityValue > 95) {
         mobilityValue *= .962
     }
     progressValue.innerHTML = guessedWeapon.mobility
@@ -383,7 +581,7 @@ function setFireRateBar(selectedWeapon) {
 function setHintFireRateBar(guessedWeapon) {
     //check if there is an hint bar
     let exist = document.getElementById('fireRateHint')
-    if(exist){
+    if (exist) {
         exist.remove();
     }
 
@@ -393,13 +591,13 @@ function setHintFireRateBar(guessedWeapon) {
     let progressValue = document.createElement('div');
 
     // Create style for the fire rate bar
-    if(guessedWeapon.fireRate > selectedWeapon.fireRate + 50){
+    if (guessedWeapon.fireRate > selectedWeapon.fireRate + 50) {
         progressValue.className = 'progress-layer-bottom background-red';
-    } else if(guessedWeapon.fireRate < selectedWeapon.fireRate - 50){
+    } else if (guessedWeapon.fireRate < selectedWeapon.fireRate - 50) {
         progressValue.className = 'progress-layer-top background-red';
-    } else if(guessedWeapon.fireRate > selectedWeapon.fireRate){
+    } else if (guessedWeapon.fireRate > selectedWeapon.fireRate) {
         progressValue.className = 'progress-layer-bottom background-yellow';
-    } else if(guessedWeapon.fireRate < selectedWeapon.fireRate){
+    } else if (guessedWeapon.fireRate < selectedWeapon.fireRate) {
         progressValue.className = 'progress-layer-top background-yellow';
     } else {
         progressValue.className = 'progress-layer-top background-green';
@@ -409,7 +607,7 @@ function setHintFireRateBar(guessedWeapon) {
     // Create the fire rate bar
     progressValue.id = "fireRateHint";
     let fireRateValue = (guessedWeapon.fireRate / maxFireRate * 100);
-    if(fireRateValue > 95){
+    if (fireRateValue > 95) {
         fireRateValue *= .962;
     }
     progressValue.innerHTML = guessedWeapon.fireRate
@@ -450,7 +648,7 @@ function setMagSize(selectedWeapon) {
 function setHintMagSize(guessedWeapon) {
     //check if there is an hint bar
     let exist = document.getElementById('magSizeHint')
-    if(exist){
+    if (exist) {
         exist.remove();
     }
 
@@ -460,13 +658,13 @@ function setHintMagSize(guessedWeapon) {
     let progressValue = document.createElement('div');
 
     // Create style for the fire rate bar
-    if(guessedWeapon.magsize > selectedWeapon.magsize + 5){
+    if (guessedWeapon.magsize > selectedWeapon.magsize + 5) {
         progressValue.className = 'progress-layer-bottom background-red';
-    } else if(guessedWeapon.magsize < selectedWeapon.magsize - 5){
+    } else if (guessedWeapon.magsize < selectedWeapon.magsize - 5) {
         progressValue.className = 'progress-layer-top background-red';
-    } else if(guessedWeapon.magsize > selectedWeapon.magsize){
+    } else if (guessedWeapon.magsize > selectedWeapon.magsize) {
         progressValue.className = 'progress-layer-bottom background-yellow';
-    } else if(guessedWeapon.magsize < selectedWeapon.magsize){
+    } else if (guessedWeapon.magsize < selectedWeapon.magsize) {
         progressValue.className = 'progress-layer-top background-yellow';
     } else {
         progressValue.className = 'progress-layer-top background-green';
@@ -475,7 +673,7 @@ function setHintMagSize(guessedWeapon) {
     // Create the fire rate bar
     progressValue.id = "magSizeHint";
     let magSizeValue = (guessedWeapon.magsize / maxMagSize * 100);
-    if(magSizeValue > 95){
+    if (magSizeValue > 95) {
         magSizeValue *= .962
     }
     progressValue.innerHTML = guessedWeapon.magsize
@@ -542,7 +740,7 @@ function displayWinningScreen() {
     secondInnerDiv.appendChild(ggNameDiv); // Append the gg-name div to the second inner div
 
 
-    // Create the nthtries div
+    // Create the nth-tries div
     let nthTriesDiv = document.createElement('div');
     nthTriesDiv.className = 'nthtries';
     nthTriesDiv.innerHTML = 'Number of tries: ';
@@ -583,7 +781,6 @@ function restartButton() {
             selectedWeapon = randomWeapon()
             guesses = 0
             clear()
-            console.log(selectedWeapon);
             setDmgBar(selectedWeapon);
             setMobBar(selectedWeapon);
             setFireRateBar(selectedWeapon);
@@ -610,10 +807,10 @@ function clear() {
     guessedWeaponsElement.style.display = 'contents'
 
 }
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     checkbox = document.querySelector('input[type="checkbox"]');
 
-    checkbox.addEventListener('change', function() {
+    checkbox.addEventListener('change', function () {
         var magSizeHint = document.getElementById('magSizeHint');
         var fireRateHint = document.getElementById('fireRateHint');
         var dmgHint = document.getElementById('dmgHint');

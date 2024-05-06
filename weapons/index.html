@@ -1,65 +1,74 @@
 <!DOCTYPE html>
 <html>
-    <noscript>
-        Your browser does not support JavaScript or it is disabled! Please enable JavaScript for this website to function properly.
-    </noscript>
-    <head>
-        <title>R6dle</title>
-        <link rel="stylesheet" type="text/css" href="styles.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/110f273880.js" crossorigin="anonymous"></script>
-    </head>
-   
-    <body style="display: flex; flex-direction: column; min-height: 98vh;">
-        <div class="logo-container">
-            <a href="../" ><img class="logo" src="/images/webicons/r6dle-logo-v10a.png"> </a> Test Lab</div>
-        <div class= "main"> 
-            <div class = "game">
-                <div class = "game-container">
-                    <div class="current-streak animate__animated animate__fadeIn streak-clickable has-tooltip">
-                        <div id="mode-indicator">
-                            <button id="dailyModeButton" class="de_button" onclick="dailyMode()">Daily Mode</button>
-                            <button id="endlessModeButton" class="de_button" onclick="endlessMode()">Endless Mode  </button>
-                        </div>
-                        <br>
-                        <div class="streak-value streak-value-1" id="streakDisplay"></div>
-                        <div class="streak-value streak-value-1" id="dailyStreakDisplay"></div>
+<noscript>
+    Your browser does not support JavaScript or it is disabled! Please enable JavaScript for this website to function
+    properly.
+</noscript>
+
+<head>
+    <title>R6dle</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/110f273880.js" crossorigin="anonymous"></script>
+</head>
+
+<body style="display: flex; flex-direction: column; min-height: 98vh;">
+    <div class="logo-container">
+        <a href="../"><img class="logo" src="/images/webicons/r6dle-logo-v10a.png"> </a> Test Lab
+    </div>
+    <div class="main">
+        <div class="game">
+            <div class="game-container">
+                <div class="current-streak animate__animated animate__fadeIn streak-clickable has-tooltip">
+                    <div id="mode-indicator">
+                        <button id="dailyModeButton" class="de_button" onclick="dailyMode()">Daily Mode</button>
+                        <button id="endlessModeButton" class="de_button" onclick="endlessMode()">Endless Mode </button>
                     </div>
-                    <div class = "gameSubContainer">
-                        <div class="answers">
-                            <div class="search-box">
-                                <div class="row">
-                                    <input id="inputField" autocomplete="off" type="text" placeholder="Type any weapon..." class="searchbar">
-                                    <button id="submitButton"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                </div>
-                                <div id="auto-boxField" class="auto-box">
-                                </div>  
+                    <br>
+                    <div class="streak-value streak-value-1" id="streakDisplay"></div>
+                    <div class="streak-value streak-value-1" id="dailyStreakDisplay"></div>
+                </div>
+                <div class="alreadySolved" id="alreadyDailySolved"></div>
+                <div class="alreadySolved" id="globalSolvedEndless"></div>
+                <div class="gameSubContainer">
+                    <div class="answers">
+                        <div class="search-box">
+                            <div class="row">
+                                <input id="inputField" autocomplete="off" type="text" placeholder="Type any weapon..."
+                                    class="searchbar">
+                                <button id="submitButton"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
-                            <label class="switch">
-                                <input type="checkbox">
-                                <span class="slider round"></span>
-                                <span class="switch-text">Toggle stat hints</span>
-                              </label>
+                            <div id="auto-boxField" class="auto-box">
+                            </div>
                         </div>
-                        <div id="stats_bar">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                            <span class="switch-text">Toggle stat hints</span>
+                        </label>
                     </div>
+                    <div id="stats_bar"></div>
                     <div id="guessed_weapons"></div>
                     <div id="nextHint"></div>
                     <div id="hints"></div>
                     <div id="wrong_weapons"></div>
                     <div id="endId"></div>
-                    </div>
                 </div>
             </div>
+        </div>
         <p id="output"></p>
     </div>
     <div class="bottom-text">
         <div class="version">Version 1.61</div>
-        <div class="copywrite">R6dle is a project created with <i class="fa-solid fa-heart" aria-hidden="true"></i> by fans and is not affiliated with Ubisoft. Tom Clancys, Rainbow Six, The Soldier Icon, Ubisoft and the Ubisoft logo are trademarks of Ubisoft Entertainment. </div>
-        </div>
-        <script type= "module" src="guessWeapon.js"></script>
-        <script type= "module" src="autocomplete.js"></script>
-    </body>
+        <div class="copywrite">R6dle is a project created with <i class="fa-solid fa-heart" aria-hidden="true"></i> by
+            fans and is not affiliated with Ubisoft. Tom Clancys, Rainbow Six, The Soldier Icon, Ubisoft and the Ubisoft
+            logo are trademarks of Ubisoft Entertainment. </div>
+    </div>
+    <script type="module" src="guessWeapon.js"></script>
+    <script type="module" src="autocomplete.js"></script>
+</body>
+
 </html>
