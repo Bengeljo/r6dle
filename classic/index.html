@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 <html>
-    <noscript>
-        Your browser does not support JavaScript or it is disabled! Please enable JavaScript for this website to function properly.
-      </noscript>
+<noscript>
+    Your browser does not support JavaScript or it is disabled! Please enable JavaScript for this website to function
+    properly.
+</noscript>
+
 <head>
     <title>R6dle</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script type= "module" src="main.js"></script>
+    <script type="module" src="main.js"></script>
     <script src="https://kit.fontawesome.com/110f273880.js" crossorigin="anonymous"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/webicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/webicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/webicons/favicon-16x16.png">
+    <link rel="manifest" href="../images/webicons/site.webmanifest">
+    <link rel="shortcut icon" href="../images/webicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="../images/webicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/110f273880.js" crossorigin="anonymous"></script>
 </head>
-<body  class="text-white"  style="display: flex; flex-direction: column; min-height: 100vh;">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y47B5Y33FT"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y47B5Y33FT');
+</script>
+
+<body class="text-white" style="display: flex; flex-direction: column; min-height: 100vh;">
     <div class="logo-container">
-        <a href="../" ><img class="logo" src="/images/webicons/r6dle-logo-v10a.png"> </a></div>
-    <div class="container">
+        <a href="../"><img class="logo" src="/images/webicons/r6dle-logo-v10a.png"> </a>
+    </div>
+    <div class="myContainer">
         <div class="background-start header-container">
             <div class="current-streak animate__animated animate__fadeIn streak-clickable has-tooltip">
                 <div id="mode-indicator">
@@ -24,99 +47,103 @@
                 <div class="streak-value streak-value-1" id="streakDisplay"></div>
                 <div class="streak-value streak-value-1" id="dailyStreakDisplay"></div>
             </div>
-            
+
         </div>
-        <div class="container top animate__animated animate__fadeIn">
+        <div class="myContainer top animate__animated animate__fadeIn">
             <div id="gameSubContainer" class="sub-container">
                 <div class="answers">
-                <div class="search-box">
-                    <div class="row">
-                        <input id="inputField" autocomplete="off" type="text" placeholder="Type operator name..." class="searchbar">
-                        <button id="submitButton"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <div class="search-box">
+                        <div class="searchBar">
+                            <input id="inputField" autocomplete="off" type="text" placeholder="Type operator name..." class="searchbar">
+                            <button id="submitButton"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                        <div id="auto-boxField" class="auto-box">
+                        </div>
+
                     </div>
-                    <div id="auto-boxField" class="auto-box">
-                    </div>  
-                    
+                    <div class="alreadySolved" id="alreadyDailySolved"></div>
+                    <div class="alreadySolved" id="globalSolvedEndless"></div>
+
+                    <div class="classic-answers-container">
+                        <div data-v-4cd5ba35 class="answer-titles square-container animate__animated animate__fadeIn"
+                            style>
+                            <div class="square square-title">
+                                <div class="square-content"> Operator </div>
+                            </div>
+                            <div class="square square-title">
+                                <div class="square-content"> Name </div>
+                            </div>
+                            <div class="square square-title">
+                                <div class="square-content"> Gender </div>
+                            </div>
+                            <div class="square square-title">
+                                <div class="square-content"> Role </div>
+                            </div>
+                            <div class="square square-title">
+                                <div class="square-content"> Side </div>
+                            </div>
+                            <div class="square square-title">
+                                <div class="square-content"> Country </div>
+                            </div>
+                            <div class="square square-title">
+                                <div class="square-content"> Org </div>
+                            </div>
+                            <div class="square square-title">
+                                <div class="square-content"> Squad </div>
+                            </div>
+                            <div class="square square-title">
+                                <div class="square-content"> Release Year </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="answercon" class="answer-con classic-answers-container"></div>
                 </div>
-                <div class="alreadySolved" id="alreadyDailySolved"></div>
-                <div class="alreadySolved" id="globalSolvedEndless"></div>
-                
-                <div class="classic-answers-container" style="width: 200%; margin: 10px 0px 0px -50%;">
-                    <div data-v-4cd5ba35 class="answer-titles square-container animate__animated animate__fadeIn" style>
-                        <div  class="square square-title">
-                        <div  class="square-content"> Operator </div>
+                <div class="end answers" id="endId">
+                    <!---->
+                </div>
+                <div id="tuto">
+                    <div class="tuto-colors">
+                        <div class="close" id="close">X</div>
+                        <div class="title"> Color indicators </div>
+                        <div class="tuto-colors-container">
+
+                            <div class="tuto-row-container">
+                                <div>
+                                    <img src="https://gclabels.net/image/cache/data/new/inv/new/Blank-Fluorescent-Green-Square-Labels-s1g-600x600.png" width="30px">
+                                </div>
+                                <div>Correct</div>
                             </div>
-                        <div  class="square square-title">
-                        <div  class="square-content"> Name </div>
+                            <div class="tuto-row-container">
+                                <div>
+                                    <img src="https://pitshanger-ltd.co.uk/images/colours/508-TL_Orange.jpg" width="30px">
+                                </div>
+                                <div>Partially</div>
+                                <div>country means </div>
+                                <div>the continent </div>
+                                <div>is right</div>
                             </div>
-                        <div  class="square square-title">
-                        <div  class="square-content"> Gender </div>
+                            <div class="tuto-row-container">
+                                <div>
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Redsquare.png" width="30px">
+                                </div>
+                                <div>Incorrect</div>
                             </div>
-                        <div  class="square square-title" >
-                        <div  class="square-content"> Role </div>
-                            </div>
-                        <div  class="square square-title" >
-                            <div  class="square-content"> Side </div>
-                        </div>
-                        <div  class="square square-title" >
-                            <div  class="square-content"> Country </div>
-                        </div>
-                        <div  class="square square-title" >
-                            <div  class="square-content"> Org </div>
-                        </div>
-                        <div  class="square square-title" >
-                            <div  class="square-content"> Squad </div>
-                        </div>
-                        <div  class="square square-title" >
-                            <div  class="square-content"> Release Year </div>
                         </div>
                     </div>
-</div>
-<div id="answercon" class="answer-container classic-answers-container" style="width: 60%; margin: 0px 0px 0px 30%;"></div>
-</div>
-<div class="end answers" id="endId"><!----></div>
-<div  id="tuto">
-    <div class="tuto-colors">
-        <div class="close" id="close">X</div>
-        <div class="title"> Color indicators </div>
-        <div class="tuto-colors-container">
-            
-<div class="tuto-row-container">
-<div>
-    <img src="https://gclabels.net/image/cache/data/new/inv/new/Blank-Fluorescent-Green-Square-Labels-s1g-600x600.png" width="30px">
-</div>
-<div>Correct</div></div>
-<div class="tuto-row-container">
-<div>
-    <img src="https://gclabels.net/image/cache/data/new/inv/new/Blank-Fluorescent-Green-Square-Labels-s1g-600x600.png" width="30px"> 
-</div>
-<div>Partially</div>
-<div>country means </div>
-<div>the continent </div>
-<div>is right</div>
-</div>
-<div class="tuto-row-container">
-<div>
-    <img src="https://gclabels.net/image/cache/data/new/inv/new/Blank-Fluorescent-Green-Square-Labels-s1g-600x600.png" width="30px"> 
-</div>
-<div>Incorrect</div>
-</div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
-</div>
-</div>
     <p id="output"></p>
-<div class="bottom-text">
-    <div class="version">Version 1.61</div>
-    <div class="copywrite">R6dle is a project created with <i class="fa-solid fa-heart" aria-hidden="true"></i> by fans and is not affiliated with Ubisoft. Tom Clancys, Rainbow Six, The Soldier Icon, Ubisoft and the Ubisoft logo are trademarks of Ubisoft Entertainment. </div>
-</div>
-<script type= "module" src="autocomplete.js"></script>
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-/>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <div class="bottom-text">
+        <div class="version">Version 1.7</div>
+        <div class="copywrite">R6dle is a project created with <i class="fa-solid fa-heart" aria-hidden="true"></i> by
+            fans and is not affiliated with Ubisoft. Tom Clancys, Rainbow Six, The Soldier Icon, Ubisoft and the Ubisoft
+            logo are trademarks of Ubisoft Entertainment. </div>
+    </div>
+    <script type="module" src="autocomplete.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -17,7 +17,269 @@
     font-weight: 600;
 }
   }
-.background{
+  @media only screen and (min-width: 320px) {
+    body {
+      background-image: url('../images/weapons/background/redhammer.png');
+      color: #ffffff;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Roboto Condensed;
+      font-weight: 600;
+      width:auto;
+  }
+  .mapImages{
+    width:230px;
+    height:230px;
+  }
+    .background{
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 2rem;
+      border-radius: 1rem;
+      margin-top: 2rem;
+      width: 300px;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .imageBox{
+    width: 230px;
+    height: 230px;
+    display: flex;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.logo{
+  height:50px;
+  width: fit-content;
+  display: flex;
+}
+.logo-container{
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: large;
+  color: rgb(255, 255, 255);
+  text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+}
+  }
+  @media only screen and (min-width: 375px) {
+    body {
+      background-image: url('../images/weapons/background/redhammer.png');
+      color: #ffffff;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Roboto Condensed;
+      font-weight: 600;
+      width:auto;
+  }
+    .background{
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 2rem;
+      border-radius: 1rem;
+      margin-top: 2rem;
+      width: 350px;
+      height: 350px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .mapImages{
+    width:280px;
+    height:280px;
+  }
+  .imageBox{
+    width: 280px;
+    height: 280px;
+    display: flex;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.logo{
+  height:55px;
+  width: fit-content;
+  display: flex;
+}
+.logo-container{
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: x-large;
+  color: rgb(255, 255, 255);
+  text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+}
+  }
+  @media only screen and (min-width: 425px) {
+    body {
+      background-image: url('../images/weapons/background/redhammer.png');
+      color: #ffffff;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Roboto Condensed;
+      font-weight: 600;
+      width:auto;
+  }
+    .background{
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 2rem;
+      border-radius: 1rem;
+      margin-top: 2rem;
+      width: 400px;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .mapImages{
+    width:330px;
+    height:330px;
+  }
+  .imageBox{
+    width: 330px;
+    height: 330px;
+    display: flex;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.logo{
+  height:60px;
+  width: fit-content;
+  display: flex;
+}
+.logo-container{
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: x-large;
+  color: rgb(255, 255, 255);
+  text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+}
+  }
+  @media only screen and (min-width: 576px) {
+    body {
+      background-image: url('../images/weapons/background/redhammer.png');
+      color: #ffffff;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Roboto Condensed;
+      font-weight: 600;
+      width: auto;
+  }
+    .background{
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 2rem;
+      border-radius: 1rem;
+      margin-top: 2rem;
+      width: 500px;
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .mapImages{
+    width:430px;
+    height:430px;
+  }
+  .imageBox{
+    width: 430px;
+    height: 430px;
+    display: flex;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.logo{
+  height:70px;
+  width: fit-content;
+  display: flex;
+}
+.logo-container{
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: x-large;
+  color: rgb(255, 255, 255);
+  text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+}
+}
+@media only screen and (min-width: 768px) {
+  body {
+    background-image: url('../images/weapons/background/redhammer.png');
+    color: #ffffff;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Roboto Condensed;
+    font-weight: 600;
+    width:auto;
+}
+  .background{
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    width: 600px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mapImages{
+  width:530px;
+  height:530px;
+}
+.imageBox{
+  width: 530px;
+  height: 530px;
+  display: flex;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.logo{
+  height:80px;
+  width: fit-content;
+  display: flex;
+}
+.logo-container{
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: xx-large;
+  color: rgb(255, 255, 255);
+  text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+}
+}
+@media only screen and (min-width: 992px) {
+  body {
+    background-image: url('../images/weapons/background/redhammer.png');
+    color: #ffffff;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Roboto Condensed;
+    font-weight: 600;
+    width:auto;
+}
+  .background{
     background-color: rgba(0, 0, 0, 0.7);
     padding: 2rem;
     border-radius: 1rem;
@@ -28,13 +290,93 @@
     justify-content: center;
     align-items: center;
 }
+.mapImages{
+  width:630px;
+  height:630px;
+}
+.imageBox{
+  width: 630px;
+  height: 630px;
+  display: flex;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.logo{
+  height:90px;
+  width: fit-content;
+  display: flex;
+}
+.logo-container{
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: xx-large;
+  color: rgb(255, 255, 255);
+  text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+}
+}
+@media only screen and (min-width: 1200px) {
+  body {
+    background-image: url('../images/weapons/background/redhammer.png');
+    color: #ffffff;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Roboto Condensed;
+    font-weight: 600;
+    width:auto
+}
+  .background{
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    width: 700px;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mapImages{
+  width:630px;
+  height:630px;
+}
+.imageBox{
+  width: 630px;
+  height: 630px;
+  display: flex;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.logo{
+  height:120px;
+  width: fit-content;
+  display: flex;
+}
+.logo-container{
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: xxx-large;
+  color: rgb(255, 255, 255);
+  text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+}
+}
+
+
+
 .mainContainer {
     margin-bottom: 7rem;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
-.logo{
+/*.logo{
     height:120px;
     width: fit-content;
     display: flex;
@@ -47,15 +389,8 @@
     font-size: xxx-large;
     color: rgb(255, 255, 255);
     text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
-  }
-.imageBox{
-    width: 630px;
-    height: 630px;
-    display: flex;
-    position: relative;
-    top: 0;
-    left: 0;
-}
+  }*/
+
 .selectBar{
     margin: 10px;
     /* Reset */
@@ -67,7 +402,7 @@
     width: 20rem;
     padding: 1rem 4rem 1rem 1rem;
     background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
-      linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
+    linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
     color: rgb(255, 255, 255);
     border-radius: 0.25em;
     box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
@@ -83,7 +418,37 @@
     /* <option> colors */
     
 }
+.selectBar:disabled{
+  margin: 10px;
+  /* Reset */
+  appearance: none;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  /* Personalize */
+  width: 20rem;
+  padding: 1rem 4rem 1rem 1rem;
+  background: rgba(60, 255, 0, 0.473);
+  color: rgb(255, 255, 255);
+  border-radius: 0.25em;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  /* Remove IE arrow */
+  &::-ms-expand {
+    display: none;
+  }
+  /* Remove focus outline */
+  &:focus {
+    outline: none;
+  }
+  /* <option> colors */
+  
+}
 option {
     color: black;
     background-color: rgba(255, 255, 255, 0.7);
+  }
+.bottom-text {
+    margin-top: auto;
+    position: absolute;
   }

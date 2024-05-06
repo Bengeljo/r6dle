@@ -272,7 +272,6 @@ window.dailyMode = function () {
             const container = document.getElementById('answercon')
             let squarecontainer = document.createElement('div');
             squarecontainer.className = 'square-container'
-            container.style = "width: 200%; margin: 0px 0px 0px -50%"
         
             // Create the image square first
             let imgSquare = document.createElement('div');

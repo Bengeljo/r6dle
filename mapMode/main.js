@@ -33,6 +33,7 @@ async function selectRandomImage() {
     img.style.filter = 'sepia(100%) saturate(600%) hue-rotate(107deg)';
     img.style.position = 'relative';
     img.style.zIndex = 100;
+    img.className = 'mapImages'
     box.appendChild(img);
 }   
 async function fillDropdowns() {
@@ -97,6 +98,13 @@ function checkSelections() {
     const mapSelect = document.getElementById('mapSelect');
     const floorSelect = document.getElementById('floorSelect');
     const roomSelect = document.getElementById('roomSelect');
+    let box = document.getElementById('mapImageBox');
+    let img = document.createElement('img');
+    img.src = `https://organic-dollop-pq76pjpvg99f4p5-3000.app.github.dev/images/maps/${randomMap.name.toLowerCase()}/${randomFloor.toLowerCase().replace(' ','')}.background.png`;
+    img.className = 'mapImages'
+    img.style.zIndex = zIndex;
+    img.style.position = 'absolute';
+    let button = document.getElementById('checkButton');
 
     // Check if the selected map matches the random map
     if (mapSelect.value === randomMap.name) {
@@ -109,6 +117,10 @@ function checkSelections() {
                 console.log("The selected room matches the random room!");
                 roomSelect.disabled = true; // Lock the room select
                 console.log('Congratulations! You have won!')
+                button.disabled = true;
+                button.className = "btn btn-success"
+                button.innerHTML = "You won!"
+                box.appendChild(img);
                 let background = document.getElementById('backgroundImg')
                 background.style.backgroundColor = 'rgb(0 152 0 / 70%)'
             } else {
@@ -160,6 +172,7 @@ async function selectRandomHint(){
     let box = document.getElementById('mapImageBox');
     let img = document.createElement('img');
     img.src = `https://organic-dollop-pq76pjpvg99f4p5-3000.app.github.dev/images/maps/${randomMap.name.toLowerCase()}/${image}`;
+    img.className = 'mapImages'
     img.style.zIndex = zIndex;
     img.style.position = 'absolute';
     zIndex++;

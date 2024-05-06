@@ -109,3 +109,116 @@ body{
   width: 60px;
   height: 45px;
 }
+
+@media only screen and (min-width: 320px) {
+.logo{
+height:50px;
+width: fit-content;
+display: flex;
+}
+.logo-container{
+width: 48%;
+display: flex;
+flex-direction: row;
+align-items: center;
+font-size: large;
+color: rgb(255, 255, 255);
+text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+}
+}
+@media only screen and (min-width: 375px) {
+.logo{
+height:55px;
+width: fit-content;
+display: flex;
+}
+.logo-container{
+width: 48%;
+display: flex;
+flex-direction: row;
+align-items: center;
+font-size: x-large;
+color: rgb(255, 255, 255);
+text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+}
+}
+@media only screen and (min-width: 425px) {
+.logo{
+height:60px;
+width: fit-content;
+display: flex;
+}
+.logo-container{
+width: 48%;
+display: flex;
+flex-direction: row;
+align-items: center;
+font-size: x-large;
+color: rgb(255, 255, 255);
+text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+}
+}
+@media only screen and (min-width: 576px) {
+.logo{
+height:70px;
+width: fit-content;
+display: flex;
+}
+.logo-container{
+width: 48%;
+display: flex;
+flex-direction: row;
+align-items: center;
+font-size: x-large;
+color: rgb(255, 255, 255);
+text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+}
+}
+@media only screen and (min-width: 768px) {
+.logo{
+height:80px;
+width: fit-content;
+display: flex;
+}
+.logo-container{
+width: 48%;
+display: flex;
+flex-direction: row;
+align-items: center;
+font-size: xx-large;
+color: rgb(255, 255, 255);
+text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+}
+}
+@media only screen and (min-width: 992px) {
+.logo{
+height:90px;
+width: fit-content;
+display: flex;
+}
+.logo-container{
+width: 48%;
+display: flex;
+flex-direction: row;
+align-items: center;
+font-size: xx-large;
+color: rgb(255, 255, 255);
+text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+}
+}
+@media only screen and (min-width: 1200px) {
+.logo{
+height:120px;
+width: fit-content;
+display: flex;
+}
+.logo-container{
+width: 48%;
+display: flex;
+flex-direction: row;
+align-items: center;
+font-size: xxx-large;
+color: rgb(255, 255, 255);
+text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+}
+}
