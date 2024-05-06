@@ -23,6 +23,17 @@ window.onload = async function () {
 
     let savedMode = localStorage.getItem('mode');
 
+    // Get the last visit timestamp and streak count from localStorage
+    let lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
+    let dailyWeaponStreakCount = parseInt(localStorage.getItem('dailyWeaponStreakCount')) || 0;
+    var dateNow = new Date().getTime();
+    // If the last visit was within the last 24 hours, increment the streak count
+    console.log(dateNow >= lastSolvedTimestamp + 24 * 60 * 60 * 1000)
+    if (dateNow <= lastSolvedTimestamp + 24 * 60 * 60 * 1000) {
+        console.log('Daily streak reset');
+        localStorage.setItem('dailyWeaponStreakCount', 0);
+    }
+
     // If a mode was saved, open that mode
     if (savedMode === 'daily') {
         dailyMode();
@@ -241,7 +252,7 @@ async function guessWeapon(weapon) {
     }
     if (weapon === selectedWeapon.name) {
         console.log('You won!')
-
+        problemSolved();
         let gWeapon = await weapons.find(w => w.name === weapon)
 
         setHintDmgBar(gWeapon)
@@ -810,6 +821,7 @@ function clear() {
     guessedWeaponsElement.style.display = 'contents'
 
 }
+
 document.addEventListener('DOMContentLoaded', function () {
     checkbox = document.querySelector('input[type="checkbox"]');
 
@@ -832,6 +844,38 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+// When a user solves a problem
+function problemSolved() {
+    if(localStorage.getItem('mode') === 'endless'){
+        // Get the current streak from local storage
+        let currentStreak = localStorage.getItem('weaponStreak');
+
+        // If there's no current streak, this is the first problem the user has solved
+        if (!currentStreak) {
+            currentStreak = 0;
+        }
+        console.log('before solved: ' + currentStreak)
+        // Increment the streak
+        currentStreak++;
+        console.log('after solved: ' + currentStreak)
+        // Save the new streak to local storage
+        localStorage.setItem('streak', currentStreak);
+
+        // Display the new streak
+        document.getElementById('streakDisplay').textContent = `You solved Weapon-R6dle already ${currentStreak} times`;
+    } else if (localStorage.getItem('mode') === 'daily'){
+
+        // Increment the daily streak
+        dailyStreakCount++;
+        // Save the new daily streak to local storage
+        localStorage.setItem('dailyWeaponStreakCount', dailyStreakCount.toString())
+        // Display the new streak
+        document.getElementById('dailyStreakDisplay').textContent = `Your daily streak increased and is now at ${dailyStreakCount}`;
+
+
+    }
+}
 
 export function getGuessedWeapons() {
     if (!guessedWeapons) {
