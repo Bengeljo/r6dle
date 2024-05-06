@@ -718,8 +718,6 @@ function displayWinningScreen() {
     img.src = `../images/weapons/${selectedWeapon.name.toLowerCase().replace('.', '_')}.avif`;
     firstInnerDiv.appendChild(img);
 
-
-
     // Create the second inner div
     let secondInnerDiv = document.createElement('div');
 
@@ -756,18 +754,23 @@ function displayWinningScreen() {
     button.innerHTML = 'Restart'
     button.id = 'restartButton'
 
+    if(mode == 'endless'){
+        restartButton();
+        backgroundEndDiv.appendChild(button)
+    }
+
     // Append the elements to their parents
     ggAnswerDiv.appendChild(firstInnerDiv);
     ggAnswerDiv.appendChild(secondInnerDiv);
     backgroundEndDiv.appendChild(ggDiv);
     backgroundEndDiv.appendChild(ggAnswerDiv);
     backgroundEndDiv.appendChild(nthTriesDiv);
-    backgroundEndDiv.appendChild(button)
     nthTriesDiv.appendChild(nthSpan);
     emptyDiv.appendChild(backgroundEndDiv);
     finishedDiv.appendChild(emptyDiv);
     endId.appendChild(finishedDiv);
-    restartButton();
+
+    
 }
 function restartButton() {
     // Get the button element
