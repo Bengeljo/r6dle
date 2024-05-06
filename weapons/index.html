@@ -18,6 +18,15 @@
         <div class= "main"> 
             <div class = "game">
                 <div class = "game-container">
+                    <div class="current-streak animate__animated animate__fadeIn streak-clickable has-tooltip">
+                        <div id="mode-indicator">
+                            <button id="dailyModeButton" class="de_button" onclick="dailyMode()">Daily Mode</button>
+                            <button id="endlessModeButton" class="de_button" onclick="endlessMode()">Endless Mode  </button>
+                        </div>
+                        <br>
+                        <div class="streak-value streak-value-1" id="streakDisplay"></div>
+                        <div class="streak-value streak-value-1" id="dailyStreakDisplay"></div>
+                    </div>
                     <div class = "gameSubContainer">
                         <div class="answers">
                             <div class="search-box">
