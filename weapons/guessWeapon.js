@@ -760,15 +760,15 @@ function displayWinningScreen() {
     nthSpan.className = 'nth';
     nthSpan.innerHTML = guesses
 
-
+    // Create restart button
     let button = document.createElement('button')
     button.className = 'de_button'
     button.innerHTML = 'Restart'
     button.id = 'restartButton'
 
-    if(mode == 'endless'){
-        restartButton();
+    if(localStorage.getItem('mode') == 'endless'){
         backgroundEndDiv.appendChild(button)
+        restartButton();
     }
 
     // Append the elements to their parents
@@ -781,9 +781,8 @@ function displayWinningScreen() {
     emptyDiv.appendChild(backgroundEndDiv);
     finishedDiv.appendChild(emptyDiv);
     endId.appendChild(finishedDiv);
-
-    
 }
+
 function restartButton() {
     // Get the button element
     var restartButton = document.getElementById('restartButton');
