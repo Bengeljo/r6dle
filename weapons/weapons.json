@@ -5,7 +5,10 @@
         "fireRate": 670,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Sledge", "Thatcher"],
+        "available_on": [
+            "Sledge",
+            "Thatcher"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -14,7 +17,10 @@
         "fireRate": 749,
         "mobility": 50,
         "magsize": 25,
-        "available_on": ["Thatcher", "Flores"],
+        "available_on": [
+            "Thatcher",
+            "Flores"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -23,7 +29,10 @@
         "fireRate": 780,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Ash", "Iana"],
+        "available_on": [
+            "Ash",
+            "Iana"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -32,7 +41,10 @@
         "fireRate": 860,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Ash", "Ram"],
+        "available_on": [
+            "Ash",
+            "Ram"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -41,7 +53,10 @@
         "fireRate": 690,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Thermite", "Osa"],
+        "available_on": [
+            "Thermite",
+            "Osa"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -50,7 +65,9 @@
         "fireRate": 980,
         "mobility": 50,
         "magsize": 25,
-        "available_on": ["Twitch"],
+        "available_on": [
+            "Twitch"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -59,7 +76,10 @@
         "fireRate": 850,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Fuze","Ace"],
+        "available_on": [
+            "Fuze",
+            "Ace"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -68,7 +88,10 @@
         "fireRate": 690,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["IQ", "Grim"],
+        "available_on": [
+            "IQ",
+            "Grim"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -77,7 +100,10 @@
         "fireRate": 720,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["IQ", "Wamai"],
+        "available_on": [
+            "IQ",
+            "Wamai"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -86,7 +112,9 @@
         "fireRate": 837,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Buck"],
+        "available_on": [
+            "Buck"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -95,7 +123,9 @@
         "fireRate": 585,
         "mobility": 50,
         "magsize": 20,
-        "available_on": ["Blackbeard"],
+        "available_on": [
+            "Blackbeard"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -104,7 +134,10 @@
         "fireRate": 650,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Capitão", "Brava"],
+        "available_on": [
+            "Capitão",
+            "Brava"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -113,7 +146,9 @@
         "fireRate": 850,
         "mobility": 50,
         "magsize": 20,
-        "available_on": ["Hibana"],
+        "available_on": [
+            "Hibana"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -122,7 +157,9 @@
         "fireRate": 800,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Jackal"],
+        "available_on": [
+            "Jackal"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -131,7 +168,9 @@
         "fireRate": 730,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Zofia"],
+        "available_on": [
+            "Zofia"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -140,7 +179,9 @@
         "fireRate": 700,
         "mobility": 50,
         "magsize": 50,
-        "available_on": ["Lion"],
+        "available_on": [
+            "Lion"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -149,7 +190,10 @@
         "fireRate": 700,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Finka", "Thunderbird"],
+        "available_on": [
+            "Finka",
+            "Thunderbird"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -158,7 +202,9 @@
         "fireRate": 750,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Maverick"],
+        "available_on": [
+            "Maverick"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -167,7 +213,10 @@
         "fireRate": 700,
         "mobility": 50,
         "magsize": 20,
-        "available_on": ["Nomad", "Iana"],
+        "available_on": [
+            "Nomad",
+            "Iana"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -176,7 +225,10 @@
         "fireRate": 650,
         "mobility": 50,
         "magsize": 40,
-        "available_on": ["Nomad", "Deimos"],
+        "available_on": [
+            "Nomad",
+            "Deimos"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -185,7 +237,9 @@
         "fireRate": 780,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Gridlock"],
+        "available_on": [
+            "Gridlock"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -194,7 +248,9 @@
         "fireRate": 800,
         "mobility": 50,
         "magsize": 25,
-        "available_on": ["Zero"],
+        "available_on": [
+            "Zero"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -203,7 +259,9 @@
         "fireRate": 740,
         "mobility": 50,
         "magsize": 50,
-        "available_on": ["Sens"],
+        "available_on": [
+            "Sens"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -212,7 +270,9 @@
         "fireRate": 740,
         "mobility": 50,
         "magsize": 25,
-        "available_on": ["Jäger"],
+        "available_on": [
+            "Jäger"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -221,7 +281,9 @@
         "fireRate": 700,
         "mobility": 50,
         "magsize": 31,
-        "available_on": ["Kaid"],
+        "available_on": [
+            "Kaid"
+        ],
         "type": "Assault Rifle"
     },
     {
@@ -230,7 +292,10 @@
         "fireRate": 680,
         "mobility": 35,
         "magsize": 100,
-        "available_on": ["Fuze", "Finka"],
+        "available_on": [
+            "Fuze",
+            "Finka"
+        ],
         "type": "LMG"
     },
     {
@@ -239,7 +304,10 @@
         "fireRate": 850,
         "mobility": 35,
         "magsize": 50,
-        "available_on": ["IQ", "Amaru"],
+        "available_on": [
+            "IQ",
+            "Amaru"
+        ],
         "type": "LMG"
     },
     {
@@ -248,7 +316,9 @@
         "fireRate": 650,
         "mobility": 35,
         "magsize": 100,
-        "available_on": ["Capitão"],
+        "available_on": [
+            "Capitão"
+        ],
         "type": "LMG"
     },
     {
@@ -256,8 +326,10 @@
         "damage": 48,
         "fireRate": 650,
         "mobility": 35,
-        "magsize": 100,
-        "available_on": ["Capitão"],
+        "magsize": 60,
+        "available_on": [
+            "Gridlock"
+        ],
         "type": "LMG"
     },
     {
@@ -266,7 +338,9 @@
         "fireRate": 650,
         "mobility": 35,
         "magsize": 80,
-        "available_on": ["Ying"],
+        "available_on": [
+            "Ying"
+        ],
         "type": "LMG"
     },
     {
@@ -274,8 +348,11 @@
         "damage": 41,
         "fireRate": 720,
         "mobility": 35,
-        "magsize": 150, 
-        "available_on": ["Zofia", "Ram"],
+        "magsize": 150,
+        "available_on": [
+            "Zofia",
+            "Ram"
+        ],
         "type": "LMG"
     },
     {
@@ -283,8 +360,21 @@
         "damage": 60,
         "fireRate": 550,
         "mobility": 35,
-        "magsize": 70, 
-        "available_on": ["Tachanka"],
+        "magsize": 70,
+        "available_on": [
+            "Tachanka"
+        ],
+        "type": "LMG"
+    },
+    {
+        "name": "ALDA 5.56",
+        "damage": 35,
+        "fireRate": 900,
+        "mobility": 35,
+        "magsize": 80,
+        "available_on": [
+            "Maestro"
+        ],
         "type": "LMG"
     },
     {
@@ -293,7 +383,11 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 20,
-        "available_on": ["Twitch", "Lion", "Sens"],
+        "available_on": [
+            "Twitch",
+            "Lion",
+            "Sens"
+        ],
         "type": "DMR"
     },
     {
@@ -302,7 +396,10 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 20,
-        "available_on": ["Buck","Brava"],
+        "available_on": [
+            "Buck",
+            "Brava"
+        ],
         "type": "DMR"
     },
     {
@@ -311,7 +408,10 @@
         "fireRate": 1,
         "mobility": 38,
         "magsize": 20,
-        "available_on": ["Blackbeard", "Flores"],
+        "available_on": [
+            "Blackbeard",
+            "Flores"
+        ],
         "type": "DMR"
     },
     {
@@ -320,7 +420,10 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 20,
-        "available_on": ["Dokkaebi", "Aruni"],
+        "available_on": [
+            "Dokkaebi",
+            "Aruni"
+        ],
         "type": "DMR"
     },
     {
@@ -329,7 +432,10 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 10,
-        "available_on": ["Maverick","Tubarão"],
+        "available_on": [
+            "Maverick",
+            "Tubarão"
+        ],
         "type": "DMR"
     },
     {
@@ -338,7 +444,9 @@
         "fireRate": 1,
         "mobility": 36,
         "magsize": 15,
-        "available_on": ["Glaz"],
+        "available_on": [
+            "Glaz"
+        ],
         "type": "Sniper Rifle"
     },
     {
@@ -347,7 +455,9 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 5,
-        "available_on": ["Kali"],
+        "available_on": [
+            "Kali"
+        ],
         "type": "Sniper Rifle"
     },
     {
@@ -356,7 +466,14 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 7,
-        "available_on": ["Sledge", "Thatcher", "Smoke", "Mute", "Deimos","Warden"],
+        "available_on": [
+            "Sledge",
+            "Thatcher",
+            "Smoke",
+            "Mute",
+            "Deimos",
+            "Warden"
+        ],
         "type": "Shotgun"
     },
     {
@@ -365,7 +482,12 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 8,
-        "available_on": ["Thermite", "Pulse", "Castle", "Ace"],
+        "available_on": [
+            "Thermite",
+            "Pulse",
+            "Castle",
+            "Ace"
+        ],
         "type": "Shotgun"
     },
     {
@@ -374,7 +496,13 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 7,
-        "available_on": ["Twitch", "Lion", "Doc", "Rook", "Grim"],
+        "available_on": [
+            "Twitch",
+            "Lion",
+            "Doc",
+            "Rook",
+            "Grim"
+        ],
         "type": "Shotgun"
     },
     {
@@ -383,7 +511,11 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 7,
-        "available_on": ["Hibana", "Echo", "Amaru"],
+        "available_on": [
+            "Hibana",
+            "Echo",
+            "Amaru"
+        ],
         "type": "Shotgun"
     },
     {
@@ -392,7 +524,10 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 8,
-        "available_on": ["Jackal", "Mira", "Azami"],
+        "available_on": [
+            "Jackal",
+            "Mira"
+        ],
         "type": "Shotgun"
     },
     {
@@ -401,7 +536,13 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 5,
-        "available_on": ["Jackal", "Mira", "Frost", "Ram", "Amaru"],
+        "available_on": [
+            "Jackal",
+            "Mira",
+            "Frost",
+            "Ram",
+            "Amaru"
+        ],
         "type": "Shotgun"
     },
     {
@@ -410,7 +551,11 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 6,
-        "available_on": ["Ying", "Lesion", "Nøkk"],
+        "available_on": [
+            "Ying",
+            "Lesion",
+            "Nøkk"
+        ],
         "type": "Shotgun"
     },
     {
@@ -419,7 +564,12 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 10,
-        "available_on": ["Finka", "Kapkan", "Tachanka","Fenrir"],
+        "available_on": [
+            "Finka",
+            "Kapkan",
+            "Tachanka",
+            "Fenrir"
+        ],
         "type": "Shotgun"
     },
     {
@@ -428,7 +578,12 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 3,
-        "available_on": ["Gridlock", "Castle", "Brava", "Clash"],
+        "available_on": [
+            "Gridlock",
+            "Castle",
+            "Brava",
+            "Clash"
+        ],
         "type": "Shotgun"
     },
     {
@@ -437,7 +592,11 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 7,
-        "available_on": ["Thorn", "Jäger", "Bandit"],
+        "available_on": [
+            "Thorn",
+            "Jäger",
+            "Bandit"
+        ],
         "type": "Shotgun"
     },
     {
@@ -446,7 +605,10 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 8,
-        "available_on": ["Frost", "Melusi"],
+        "available_on": [
+            "Frost",
+            "Melusi"
+        ],
         "type": "Shotgun"
     },
     {
@@ -455,7 +617,10 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 7,
-        "available_on": ["Frost", "Oryx"],
+        "available_on": [
+            "Valkyrie",
+            "Oryx"
+        ],
         "type": "Shotgun"
     },
     {
@@ -464,7 +629,10 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 6,
-        "available_on": ["Caveira", "Thunderbird"],
+        "available_on": [
+            "Caveira",
+            "Thunderbird"
+        ],
         "type": "Shotgun"
     },
     {
@@ -473,7 +641,9 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 10,
-        "available_on": ["Ela"],
+        "available_on": [
+            "Ela"
+        ],
         "type": "Shotgun"
     },
     {
@@ -482,7 +652,11 @@
         "fireRate": 300,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Azami", "Alibi", "Maestro"],
+        "available_on": [
+            "Azami",
+            "Alibi",
+            "Maestro"
+        ],
         "type": "Slug Shotgun"
     },
     {
@@ -491,7 +665,10 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 2,
-        "available_on": ["Dokkaebi", "Vigil"],
+        "available_on": [
+            "Dokkaebi",
+            "Vigil"
+        ],
         "type": "Slug Shotgun"
     },
     {
@@ -500,7 +677,10 @@
         "fireRate": 1,
         "mobility": 50,
         "magsize": 10,
-        "available_on": ["Kaid", "Goyo"],
+        "available_on": [
+            "Kaid",
+            "Goyo"
+        ],
         "type": "Slug Shotgun"
     },
     {
@@ -509,7 +689,10 @@
         "fireRate": 800,
         "mobility": 50,
         "magsize": 50,
-        "available_on": ["Jackal", "Osa"],
+        "available_on": [
+            "Jackal",
+            "Osa"
+        ],
         "type": "SMG"
     },
     {
@@ -518,7 +701,10 @@
         "fireRate": 800,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Smoke", "Nøkk"],
+        "available_on": [
+            "Smoke",
+            "Nøkk"
+        ],
         "type": "SMG"
     },
     {
@@ -527,7 +713,12 @@
         "fireRate": 1270,
         "mobility": 50,
         "magsize": 16,
-        "available_on": ["Smoke", "Mute", "Amaru", "Solis"],
+        "available_on": [
+            "Smoke",
+            "Mute",
+            "Amaru",
+            "Solis"
+        ],
         "type": "SMG"
     },
     {
@@ -536,7 +727,11 @@
         "fireRate": 900,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Bandit", "Zero", "Fenrir"],
+        "available_on": [
+            "Bandit",
+            "Zero",
+            "Fenrir"
+        ],
         "type": "SMG"
     },
     {
@@ -545,16 +740,22 @@
         "fireRate": 800,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Mute", "Wamai"],
+        "available_on": [
+            "Mute",
+            "Wamai"
+        ],
         "type": "SMG"
     },
     {
         "name": "UMP45",
-        "damage": 42,
+        "damage": 38,
         "fireRate": 600,
         "mobility": 50,
         "magsize": 20,
-        "available_on": ["Castle", "Pulse"],
+        "available_on": [
+            "Castle",
+            "Pulse"
+        ],
         "type": "SMG"
     },
     {
@@ -563,7 +764,11 @@
         "fireRate": 800,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Rook", "Doc", "Melusi"],
+        "available_on": [
+            "Rook",
+            "Doc",
+            "Melusi"
+        ],
         "type": "SMG"
     },
     {
@@ -572,16 +777,23 @@
         "fireRate": 970,
         "mobility": 50,
         "magsize": 50,
-        "available_on": ["Rook", "Doc", "Solis"],
+        "available_on": [
+            "Rook",
+            "Doc",
+            "Solis"
+        ],
         "type": "SMG"
     },
     {
         "name": "9x19VSN",
-        "damage": 38,
+        "damage": 34,
         "fireRate": 750,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Kapkan", "Azami"],
+        "available_on": [
+            "Kapkan",
+            "Azami"
+        ],
         "type": "SMG"
     },
     {
@@ -590,7 +802,9 @@
         "fireRate": 575,
         "mobility": 50,
         "magsize": 34,
-        "available_on": ["Frost"],
+        "available_on": [
+            "Frost"
+        ],
         "type": "SMG"
     },
     {
@@ -599,7 +813,11 @@
         "fireRate": 830,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Valkarie", "Warden", "Tubarão"],
+        "available_on": [
+            "Valkyrie",
+            "Warden",
+            "Tubarão"
+        ],
         "type": "SMG"
     },
     {
@@ -608,7 +826,9 @@
         "fireRate": 550,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Caveira"],
+        "available_on": [
+            "Caveira"
+        ],
         "type": "SMG"
     },
     {
@@ -617,7 +837,9 @@
         "fireRate": 800,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Echo"],
+        "available_on": [
+            "Echo"
+        ],
         "type": "SMG"
     },
     {
@@ -626,7 +848,10 @@
         "fireRate": 1200,
         "mobility": 50,
         "magsize": 25,
-        "available_on": ["Mira", "Goyo"],
+        "available_on": [
+            "Mira",
+            "Goyo"
+        ],
         "type": "SMG"
     },
     {
@@ -635,7 +860,10 @@
         "fireRate": 900,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Lesion", "Oryx"],
+        "available_on": [
+            "Lesion",
+            "Oryx"
+        ],
         "type": "SMG"
     },
     {
@@ -644,7 +872,9 @@
         "fireRate": 720,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Lesion"],
+        "available_on": [
+            "Vigil"
+        ],
         "type": "SMG"
     },
     {
@@ -653,7 +883,9 @@
         "fireRate": 1080,
         "mobility": 50,
         "magsize": 40,
-        "available_on": ["Ela"],
+        "available_on": [
+            "Ela"
+        ],
         "type": "SMG"
     },
     {
@@ -662,7 +894,9 @@
         "fireRate": 950,
         "mobility": 50,
         "magsize": 30,
-        "available_on": ["Alibi"],
+        "available_on": [
+            "Alibi"
+        ],
         "type": "SMG"
     },
     {
@@ -671,7 +905,9 @@
         "fireRate": 780,
         "mobility": 50,
         "magsize": 25,
-        "available_on": ["Mozzie"],
+        "available_on": [
+            "Mozzie"
+        ],
         "type": "SMG"
     },
     {
@@ -680,7 +916,10 @@
         "fireRate": 980,
         "mobility": 50,
         "magsize": 15,
-        "available_on": ["Mozzie", "Aruni"],
+        "available_on": [
+            "Mozzie",
+            "Aruni"
+        ],
         "type": "SMG"
     },
     {
@@ -689,7 +928,9 @@
         "fireRate": 700,
         "mobility": 50,
         "magsize": 22,
-        "available_on": ["Thorn"],
+        "available_on": [
+            "Thorn"
+        ],
         "type": "SMG"
     },
     {
@@ -698,7 +939,13 @@
         "fireRate": 1100,
         "mobility": 50,
         "magsize": 25,
-        "available_on": ["Glaz", "Hibana", "Echo", "Tachanka", "Thunderbird"],
+        "available_on": [
+            "Glaz",
+            "Hibana",
+            "Echo",
+            "Tachanka",
+            "Thunderbird"
+        ],
         "type": "Machine Pistol"
     },
     {
@@ -707,7 +954,11 @@
         "fireRate": 1270,
         "mobility": 50,
         "magsize": 32,
-        "available_on": ["Dokkaebi", "Vigil", "Warden"],
+        "available_on": [
+            "Dokkaebi",
+            "Vigil",
+            "Warden"
+        ],
         "type": "Machine Pistol"
     },
     {
@@ -716,7 +967,12 @@
         "fireRate": 1000,
         "mobility": 50,
         "magsize": 26,
-        "available_on": ["Thorn", "Vigil", "Kali", "Dokkaebi"],
+        "available_on": [
+            "Thorn",
+            "Vigil",
+            "Kali",
+            "Dokkaebi"
+        ],
         "type": "Machine Pistol"
     },
     {
@@ -725,7 +981,10 @@
         "fireRate": 980,
         "mobility": 50,
         "magsize": 20,
-        "available_on": ["Kali", "Clash"],
+        "available_on": [
+            "Kali",
+            "Clash"
+        ],
         "type": "Machine Pistol"
     },
     {
@@ -734,7 +993,14 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 15,
-        "available_on": ["Sledge", "Thatcher", "Smoke", "Mute", "Tubarão","Kali"],
+        "available_on": [
+            "Sledge",
+            "Thatcher",
+            "Smoke",
+            "Mute",
+            "Tubarão",
+            "Kali"
+        ],
         "type": "Handgun"
     },
     {
@@ -743,7 +1009,12 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 7,
-        "available_on": ["Ash", "Thermite", "Pulse", "Castle"],
+        "available_on": [
+            "Ash",
+            "Thermite",
+            "Pulse",
+            "Castle"
+        ],
         "type": "Handgun"
     },
     {
@@ -752,7 +1023,15 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 20,
-        "available_on": ["Ash", "Thermite", "Pulse", "Castle", "Zero", "Nøkk", "Fenrir"],
+        "available_on": [
+            "Ash",
+            "Thermite",
+            "Pulse",
+            "Castle",
+            "Zero",
+            "Nøkk",
+            "Fenrir"
+        ],
         "type": "Handgun"
     },
     {
@@ -761,7 +1040,14 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 16,
-        "available_on": ["Twitch", "Rook", "Doc", "Montagne", "Ace", "Lion"],
+        "available_on": [
+            "Twitch",
+            "Rook",
+            "Doc",
+            "Montagne",
+            "Ace",
+            "Lion"
+        ],
         "type": "Handgun"
     },
     {
@@ -770,7 +1056,14 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 8,
-        "available_on": ["Glaz", "Fuze", "Kapkan", "Tachanka", "Finka", "Osa"],
+        "available_on": [
+            "Glaz",
+            "Fuze",
+            "Kapkan",
+            "Tachanka",
+            "Finka",
+            "Osa"
+        ],
         "type": "Handgun"
     },
     {
@@ -779,7 +1072,13 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 18,
-        "available_on": ["Fuze", "Kapkan", "Tachanka", "Finka", "Flores"],
+        "available_on": [
+            "Fuze",
+            "Kapkan",
+            "Tachanka",
+            "Finka",
+            "Flores"
+        ],
         "type": "Handgun"
     },
     {
@@ -788,7 +1087,13 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 15,
-        "available_on": ["Blitz", "IQ", "Bandit", "Jäger", "Wamai"],
+        "available_on": [
+            "Blitz",
+            "IQ",
+            "Bandit",
+            "Jäger",
+            "Wamai"
+        ],
         "type": "Handgun"
     },
     {
@@ -797,7 +1102,12 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 13,
-        "available_on": ["Buck","Frost","Ram", "Iana"],
+        "available_on": [
+            "Buck",
+            "Frost",
+            "Ram",
+            "Iana"
+        ],
         "type": "Handgun"
     },
     {
@@ -806,7 +1116,12 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 7,
-        "available_on": ["Blackbeard","Valkarie","Nøkk", "Azami"],
+        "available_on": [
+            "Blackbeard",
+            "Valkyrie",
+            "Nøkk",
+            "Azami"
+        ],
         "type": "Handgun"
     },
     {
@@ -815,7 +1130,11 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 15,
-        "available_on": ["Capitão", "Aruni", "Nomad"],
+        "available_on": [
+            "Capitão",
+            "Aruni",
+            "Nomad"
+        ],
         "type": "Handgun"
     },
     {
@@ -824,7 +1143,12 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 12,
-        "available_on": ["Hibana", "Echo", "Grim", "Goyo"],
+        "available_on": [
+            "Hibana",
+            "Echo",
+            "Grim",
+            "Goyo"
+        ],
         "type": "Handgun"
     },
     {
@@ -833,7 +1157,12 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 12,
-        "available_on": ["Jackal", "Mira", "Brava", "Oryx"],
+        "available_on": [
+            "Jackal",
+            "Mira",
+            "Brava",
+            "Oryx"
+        ],
         "type": "Handgun"
     },
     {
@@ -842,7 +1171,11 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 10,
-        "available_on": ["Ying", "Lesion","Thunderbird"],
+        "available_on": [
+            "Ying",
+            "Lesion",
+            "Thunderbird"
+        ],
         "type": "Handgun"
     },
     {
@@ -851,7 +1184,11 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 15,
-        "available_on": ["Zofia", "Ela", "Melusi"],
+        "available_on": [
+            "Zofia",
+            "Ela",
+            "Melusi"
+        ],
         "type": "Handgun"
     },
     {
@@ -860,7 +1197,10 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 8,
-        "available_on": ["Maverick","Thorn"],
+        "available_on": [
+            "Maverick",
+            "Thorn"
+        ],
         "type": "Handgun"
     },
     {
@@ -869,7 +1209,10 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 7,
-        "available_on": ["Nomad", "Kaid"],
+        "available_on": [
+            "Nomad",
+            "Kaid"
+        ],
         "type": "Handgun"
     },
     {
@@ -878,7 +1221,11 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 16,
-        "available_on": ["Nomad", "Kaid", "Sens", "Mozzie"],
+        "available_on": [
+            "Sens",
+            "Mozzie",
+            "Gridlock"
+        ],
         "type": "Handgun"
     },
     {
@@ -887,7 +1234,9 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 12,
-        "available_on": ["Caveira"],
+        "available_on": [
+            "Caveira"
+        ],
         "type": "Handgun"
     },
     {
@@ -896,7 +1245,10 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 15,
-        "available_on": ["Clash", "Warden"],
+        "available_on": [
+            "Clash",
+            "Warden"
+        ],
         "type": "Handgun"
     },
     {
@@ -905,7 +1257,13 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 6,
-        "available_on": ["Twitch", "Rook", "Doc", "Montagne","Kaid"],
+        "available_on": [
+            "Twitch",
+            "Rook",
+            "Doc",
+            "Montagne",
+            "Kaid"
+        ],
         "type": "Revolver"
     },
     {
@@ -914,7 +1272,13 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 5,
-        "available_on": ["Oryx", "Alibi", "Grim","Fenrir"],
+        "available_on": [
+            "Oryx",
+            "Alibi",
+            "Grim",
+            "Fenrir",
+            "Maestro"
+        ],
         "type": "Revolver"
     },
     {
@@ -923,7 +1287,11 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 6,
-        "available_on": ["Maestro", "Alibi","Wamai"],
+        "available_on": [
+            "Maestro",
+            "Alibi",
+            "Wamai"
+        ],
         "type": "Revolver"
     },
     {
@@ -932,7 +1300,9 @@
         "fireRate": 1,
         "mobility": 45,
         "magsize": 6,
-        "available_on": ["Maestro", "Alibi","Wamai"],
+        "available_on": [
+            "Deimos"
+        ],
         "type": "Revolver"
     },
     {
@@ -941,7 +1311,9 @@
         "fireRate": null,
         "mobility": 28,
         "magsize": null,
-        "available_on": ["Montagne"],
+        "available_on": [
+            "Montagne"
+        ],
         "type": "Shield"
     },
     {
@@ -950,7 +1322,9 @@
         "fireRate": null,
         "mobility": 30,
         "magsize": null,
-        "available_on": ["Fuze"],
+        "available_on": [
+            "Fuze"
+        ],
         "type": "Shield"
     },
     {
@@ -959,7 +1333,9 @@
         "fireRate": null,
         "mobility": 30,
         "magsize": null,
-        "available_on": ["Blitz"],
+        "available_on": [
+            "Blitz"
+        ],
         "type": "Shield"
     },
     {
@@ -968,7 +1344,9 @@
         "fireRate": 20,
         "mobility": 28,
         "magsize": null,
-        "available_on": ["Clash"],
+        "available_on": [
+            "Clash"
+        ],
         "type": "Shield"
     },
     {
@@ -977,7 +1355,17 @@
         "fireRate": null,
         "mobility": 50,
         "magsize": 1,
-        "available_on": ["Glaz", "Buck", "Iana", "Zero", "Dokkaebi", "Amaru", "Sens", "Lion", "Capitão"],
+        "available_on": [
+            "Glaz",
+            "Buck",
+            "Iana",
+            "Zero",
+            "Dokkaebi",
+            "Amaru",
+            "Sens",
+            "Lion",
+            "Capitão"
+        ],
         "type": "Hand Cannon"
     }
 ]

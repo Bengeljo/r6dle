@@ -13,6 +13,7 @@ let dailyGuesses = 0;
 let weaponToGuess;
 let endlessGuesses = 0;
 let dailyWeaponToGuess = null;
+let dailyStreakCount = localStorage.getItem('dailyWeaponStreakCount') || 0;
 
 window.onload = async function () {
     const weaponsResponse = await fetch('./weapons.json')
