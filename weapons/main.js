@@ -255,6 +255,7 @@ async function guessWeapon(weapon) {
     } else if (guesses == 6) {
         showHint2();
     }
+    
     if (weapon === selectedWeapon.name) {
         console.log('You won!')
         problemSolved();
@@ -371,7 +372,6 @@ function showHint2() {
     hint2.appendChild(squareContainer);
     hints.appendChild(hint2);
 }
-
 
 function askForGuess() {
     // Get the button element
@@ -494,7 +494,6 @@ function displayWinningScreen() {
     ggNameDiv.innerHTML = selectedWeapon.name; // Replace with the actual operator name
     secondInnerDiv.appendChild(ggNameDiv); // Append the gg-name div to the second inner div
 
-
     // Create the nth-tries div
     let nthTriesDiv = document.createElement('div');
     nthTriesDiv.className = 'nthtries';
@@ -511,8 +510,6 @@ function displayWinningScreen() {
     button.innerHTML = 'Restart'
     button.id = 'restartButton'
 
-
-
     // Append the elements to their parents
     ggAnswerDiv.appendChild(firstInnerDiv);
     ggAnswerDiv.appendChild(secondInnerDiv);
@@ -520,10 +517,12 @@ function displayWinningScreen() {
     backgroundEndDiv.appendChild(ggAnswerDiv);
     backgroundEndDiv.appendChild(nthTriesDiv);
     nthTriesDiv.appendChild(nthSpan);
+
     if (localStorage.getItem('mode') == 'endless') {
         backgroundEndDiv.appendChild(button)
         restartButton();
     }
+
     emptyDiv.appendChild(backgroundEndDiv);
     finishedDiv.appendChild(emptyDiv);
     endId.appendChild(finishedDiv);
@@ -551,6 +550,7 @@ function restartButton() {
         });
     }
 }
+
 function clear() {
     let endId = document.getElementById('endId')
     let statsBar = document.getElementById('stats_bar')
@@ -619,8 +619,6 @@ function problemSolved() {
         localStorage.setItem('dailyWeaponStreakCount', dailyStreakCount.toString())
         // Display the new streak
         document.getElementById('dailyStreakDisplay').textContent = `Your daily streak increased and is now at ${dailyStreakCount}`;
-
-
     }
 }
 
