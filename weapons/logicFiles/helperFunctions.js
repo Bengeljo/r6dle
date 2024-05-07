@@ -1,5 +1,6 @@
-let dailyGuesses = 0;
-let endlessGuesses = 0;
+import { getDailyGuesses, getEndlessGuesses } from "../main";
+
+let guessedWeaponsHtml = []
 
 function showHint1() {
     let hints = document.getElementById('hints');
@@ -16,7 +17,6 @@ function showHint2() {
     hint2.className = 'hint2 hints-colors'
     let squareContainer = document.createElement('div');
     squareContainer.className = 'square-container'
-
 
     // Iterate over the operators and create a new element for each one
     selectedWeapon.available_on.forEach(operator => {
@@ -58,6 +58,7 @@ function randomWeapon() {
 
 // Set initial guess count for daily mode
 function setDailyGuesses() {
+    let dailyGuesses = getDailyGuesses()
     let storedDailyGuesses = localStorage.getItem('dailyWeaponGuesses');
     if (!storedDailyGuesses || isNaN(storedDailyGuesses)) {
         localStorage.setItem('dailyWeaponGuesses', dailyGuesses);
@@ -70,6 +71,7 @@ function setDailyGuesses() {
 
 // Set initial guess count for endless mode
 function setEndlessGuesses() {
+    let endlessGuesses = getEndlessGuesses()
     let storedEndlessGuesses = localStorage.getItem('endlessWeaponGuesses');
     if (!storedEndlessGuesses || isNaN(storedEndlessGuesses)) {
         localStorage.setItem('endlessWeaponGuesses', endlessGuesses);

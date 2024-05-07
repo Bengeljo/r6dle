@@ -4,8 +4,9 @@ import { clear, randomWeapon, setDailyGuesses, setEndlessGuesses, showHint1, sho
 
 export let weapons
 let guessedWeapons = []
-let guessedWeaponsHtml = []
 let guesses = 0;
+let dailyGuesses = 0;
+let endlessGuesses = 0;
 let selectedWeapon
 let hint = 1;
 let checkbox
@@ -550,4 +551,12 @@ export function getGuessedWeapons() {
 
 export function getSelectedWeapon() {
     return selectedWeapon;
-}   
+}
+
+export function getDailyGuesses() {
+    return dailyGuesses;
+}
+
+export function getEndlessGuesses() {
+    return endlessGuesses;
+}
