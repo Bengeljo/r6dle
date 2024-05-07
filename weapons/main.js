@@ -3,7 +3,7 @@ import { fetchDailyData, fetchEndlessSolved, incrementGlobalSolved, incrementSol
 
 export let weapons
 let guessedWeapons = []
-let guessedWeaponsHmtl = []
+let guessedWeaponsHtml = []
 let guesses = 0;
 let selectedWeapon
 let hint = 1;
@@ -266,12 +266,12 @@ async function guessWeapon(weapon) {
         setHintMagSize(gWeapon)
         displayWinningScreen();
         guessedWeapons = []
-        guessedWeaponsHmtl = []
+        guessedWeaponsHtml = []
         guesses = 0
         return true
     } else {
         // Add the guessed weapon to the array
-        guessedWeaponsHmtl.push(weapon);
+        guessedWeaponsHtml.push(weapon);
 
         let gWeapon = await weapons.find(w => w.name === weapon)
 
@@ -301,17 +301,17 @@ async function guessWeapon(weapon) {
         weaponBoxes.style.gap = '30px';
         weaponBoxes.style.justifyItems = 'center';
         // Iterate over each guessed weapon
-        for (let i = 0; i < guessedWeaponsHmtl.length; i++) {
+        for (let i = 0; i < guessedWeaponsHtml.length; i++) {
             let weaponDiv = document.createElement('div');
             let weaponName = document.createElement('div');
             let weaponImage = document.createElement('img');
 
             // Set the innerHTML of the weaponName to the guessed weapon's name
-            weaponName.innerHTML = guessedWeaponsHmtl[i].replace('.', '_');
+            weaponName.innerHTML = guessedWeaponsHtml[i].replace('.', '_');
 
             // Set the src of the weaponImage to the guessed weapon's image
             // Replace 'path_to_images' with the actual path to your images
-            weaponImage.src = `../images/weapons/${guessedWeaponsHmtl[i].toLowerCase().replace('.', '_')}.avif`;
+            weaponImage.src = `../images/weapons/${guessedWeaponsHtml[i].toLowerCase().replace('.', '_')}.avif`;
 
             // Add CSS styles to weaponDiv, weaponName, and weaponImage
             weaponDiv.style.display = 'flex';
@@ -351,8 +351,8 @@ function showHint2() {
     let hint2 = document.createElement('div');
     hint2.innerHTML = 'Hint 2: This weapon is used by ';
     hint2.className = 'hint2 hints-colors'
-    let squarecontainer = document.createElement('div');
-    squarecontainer.className = 'square-container'
+    let squareContainer = document.createElement('div');
+    squareContainer.className = 'square-container'
 
 
     // Iterate over the operators and create a new element for each one
@@ -365,10 +365,10 @@ function showHint2() {
         img.style.height = '100%';
         img.style.objectFit = 'cover';
         operatorElement.appendChild(img);
-        squarecontainer.appendChild(operatorElement);
+        squareContainer.appendChild(operatorElement);
     });
 
-    hint2.appendChild(squarecontainer);
+    hint2.appendChild(squareContainer);
     hints.appendChild(hint2);
 }
 
@@ -562,7 +562,7 @@ function clear() {
     hints.innerHTML = ''
     guessedWeapons.innerHTML = ''
     guessedWeapons = []
-    guessedWeaponsHmtl = []
+    guessedWeaponsHtml = []
     guessedWeaponsElement.innerHTML = ''
     guessedWeaponsElement.style.display = 'contents'
 
