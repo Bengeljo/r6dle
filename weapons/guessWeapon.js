@@ -47,6 +47,11 @@ window.onload = async function () {
             input.disabled = true;
         }
     }
+    // Call fetchDailyData once immediately, then every 5 seconds
+    fetchDailyData();
+    setInterval(fetchDailyData, 5000);
+    fetchEndlessSolved()
+    setInterval(fetchEndlessSolved, 5000);
 }
 
 window.dailyMode = function () {
@@ -261,6 +266,9 @@ async function guessWeapon(weapon) {
         setHintFireRateBar(gWeapon);
         setHintMagSize(gWeapon)
         displayWinningScreen();
+        guessedWeapons = []
+        guessedWeaponsHmtl = []
+        guesses = 0
         return true
     } else {
         // Add the guessed weapon to the array
@@ -446,9 +454,9 @@ function setDmgBar(selectedWeapon) {
     divBar.className = 'stats_row';
     divName.className = 'stats_name';
     divName.innerHTML = 'Damage: ';
-    progress.className = 'progress';
+    progress.className = 'myProgress';
     progress.id = 'dmgProgress';
-    progressValue.className = 'progress-value';
+    progressValue.className = 'myProgress-value';
     let weaponValue = selectedWeapon.damage / maxDamage * 100;
     progressValue.innerHTML = selectedWeapon.damage
     progressStyle.innerHTML = '@keyframes dmgLoad {0% {width: 0;} 100% {width: ' + weaponValue + '%;}}';
@@ -474,15 +482,15 @@ function setHintDmgBar(guessedWeapon) {
 
     // Create style for the damage bar
     if (guessedWeapon.damage > selectedWeapon.damage + 5) {
-        progressValue.className = 'progress-layer-bottom background-red';
+        progressValue.className = 'myProgress-layer-bottom background-red';
     } else if (guessedWeapon.damage < selectedWeapon.damage - 5) {
-        progressValue.className = 'progress-layer-top background-red';
+        progressValue.className = 'myProgress-layer-top background-red';
     } else if (guessedWeapon.damage > selectedWeapon.damage) {
-        progressValue.className = 'progress-layer-bottom background-yellow';
+        progressValue.className = 'myProgress-layer-bottom background-yellow';
     } else if (guessedWeapon.damage < selectedWeapon.damage) {
-        progressValue.className = 'progress-layer-top background-yellow';
+        progressValue.className = 'myProgress-layer-top background-yellow';
     } else {
-        progressValue.className = 'progress-layer-top background-green';
+        progressValue.className = 'myProgress-layer-top background-green';
     }
 
     let weaponValue = (guessedWeapon.damage / maxDamage * 100);
@@ -512,8 +520,8 @@ function setMobBar(selectedWeapon) {
     divBar.className = 'stats_row';
     divName.className = 'stats_name';
     divName.innerHTML = 'Mobility: ';
-    progress.className = 'progress';
-    progressValue.className = 'progress-value';
+    progress.className = 'myProgress';
+    progressValue.className = 'myProgress-value';
     let mobilityValue = selectedWeapon.mobility / maxMobility * 100;
     progressValue.innerHTML = selectedWeapon.mobility
     progressStyle.innerHTML = '@keyframes mobLoad {0% {width: 0;} 100% {width: ' + mobilityValue + '%;}}';
@@ -539,15 +547,15 @@ function setHintMobBar(guessedWeapon) {
 
     // Create style for the mobility bar
     if (guessedWeapon.mobility > selectedWeapon.mobility + 5) {
-        progressValue.className = 'progress-layer-bottom background-red';
+        progressValue.className = 'myProgress-layer-bottom background-red';
     } else if (guessedWeapon.mobility < selectedWeapon.mobility - 5) {
-        progressValue.className = 'progress-layer-top background-red';
+        progressValue.className = 'myProgress-layer-top background-red';
     } else if (guessedWeapon.mobility > selectedWeapon.mobility) {
-        progressValue.className = 'progress-layer-bottom background-yellow';
+        progressValue.className = 'myProgress-layer-bottom background-yellow';
     } else if (guessedWeapon.mobility < selectedWeapon.mobility) {
-        progressValue.className = 'progress-layer-top background-yellow';
+        progressValue.className = 'myProgress-layer-top background-yellow';
     } else {
-        progressValue.className = 'progress-layer-top background-green';
+        progressValue.className = 'myProgress-layer-top background-green';
     }
 
     // Create the mobility bar
@@ -577,8 +585,8 @@ function setFireRateBar(selectedWeapon) {
     divBar.className = 'stats_row';
     divName.className = 'stats_name';
     divName.innerHTML = 'Fire Rate: ';
-    progress.className = 'progress';
-    progressValue.className = 'progress-value';
+    progress.className = 'myProgress';
+    progressValue.className = 'myProgress-value';
     let fireRateValue = selectedWeapon.fireRate / maxFireRate * 100;
     progressValue.innerHTML = selectedWeapon.fireRate
     progressStyle.innerHTML = '@keyframes fireRateLoad {0% {width: 0;} 100% {width: ' + fireRateValue + '%;}}';
@@ -604,15 +612,15 @@ function setHintFireRateBar(guessedWeapon) {
 
     // Create style for the fire rate bar
     if (guessedWeapon.fireRate > selectedWeapon.fireRate + 50) {
-        progressValue.className = 'progress-layer-bottom background-red';
+        progressValue.className = 'myProgress-layer-bottom background-red';
     } else if (guessedWeapon.fireRate < selectedWeapon.fireRate - 50) {
-        progressValue.className = 'progress-layer-top background-red';
+        progressValue.className = 'myProgress-layer-top background-red';
     } else if (guessedWeapon.fireRate > selectedWeapon.fireRate) {
-        progressValue.className = 'progress-layer-bottom background-yellow';
+        progressValue.className = 'myProgress-layer-bottom background-yellow';
     } else if (guessedWeapon.fireRate < selectedWeapon.fireRate) {
-        progressValue.className = 'progress-layer-top background-yellow';
+        progressValue.className = 'myProgress-layer-top background-yellow';
     } else {
-        progressValue.className = 'progress-layer-top background-green';
+        progressValue.className = 'myProgress-layer-top background-green';
     }
 
 
@@ -644,8 +652,8 @@ function setMagSize(selectedWeapon) {
     divBar.className = 'stats_row';
     divName.className = 'stats_name';
     divName.innerHTML = 'Mag Size: ';
-    progress.className = 'progress';
-    progressValue.className = 'progress-value';
+    progress.className = 'myProgress';
+    progressValue.className = 'myProgress-value';
     let magSizeValue = selectedWeapon.magsize / maxMagSize * 100;
     progressValue.innerHTML = selectedWeapon.magsize
     progressStyle.innerHTML = '@keyframes magSizeLoad {0% {width: 0;} 100% {width: ' + magSizeValue + '%;}}';
@@ -671,15 +679,15 @@ function setHintMagSize(guessedWeapon) {
 
     // Create style for the fire rate bar
     if (guessedWeapon.magsize > selectedWeapon.magsize + 5) {
-        progressValue.className = 'progress-layer-bottom background-red';
+        progressValue.className = 'myProgress-layer-bottom background-red';
     } else if (guessedWeapon.magsize < selectedWeapon.magsize - 5) {
-        progressValue.className = 'progress-layer-top background-red';
+        progressValue.className = 'myProgress-layer-top background-red';
     } else if (guessedWeapon.magsize > selectedWeapon.magsize) {
-        progressValue.className = 'progress-layer-bottom background-yellow';
+        progressValue.className = 'myProgress-layer-bottom background-yellow';
     } else if (guessedWeapon.magsize < selectedWeapon.magsize) {
-        progressValue.className = 'progress-layer-top background-yellow';
+        progressValue.className = 'myProgress-layer-top background-yellow';
     } else {
-        progressValue.className = 'progress-layer-top background-green';
+        progressValue.className = 'myProgress-layer-top background-green';
     }
 
     // Create the fire rate bar
@@ -766,10 +774,7 @@ function displayWinningScreen() {
     button.innerHTML = 'Restart'
     button.id = 'restartButton'
 
-    if(localStorage.getItem('mode') == 'endless'){
-        backgroundEndDiv.appendChild(button)
-        restartButton();
-    }
+    
 
     // Append the elements to their parents
     ggAnswerDiv.appendChild(firstInnerDiv);
@@ -778,6 +783,10 @@ function displayWinningScreen() {
     backgroundEndDiv.appendChild(ggAnswerDiv);
     backgroundEndDiv.appendChild(nthTriesDiv);
     nthTriesDiv.appendChild(nthSpan);
+    if(localStorage.getItem('mode') == 'endless'){
+        backgroundEndDiv.appendChild(button)
+        restartButton();
+    }
     emptyDiv.appendChild(backgroundEndDiv);
     finishedDiv.appendChild(emptyDiv);
     endId.appendChild(finishedDiv);
@@ -850,6 +859,7 @@ function problemSolved() {
     if(localStorage.getItem('mode') === 'endless'){
         // Get the current streak from local storage
         let currentStreak = localStorage.getItem('weaponStreak');
+        incrementGlobalSolved();
 
         // If there's no current streak, this is the first problem the user has solved
         if (!currentStreak) {
@@ -865,7 +875,7 @@ function problemSolved() {
         // Display the new streak
         document.getElementById('streakDisplay').textContent = `You solved Weapon-R6dle already ${currentStreak} times`;
     } else if (localStorage.getItem('mode') === 'daily'){
-
+        incrementSolvedCount();
         // Increment the daily streak
         dailyStreakCount++;
         // Save the new daily streak to local storage
@@ -875,6 +885,43 @@ function problemSolved() {
 
 
     }
+}
+
+
+// Call this function whenever a quiz is solved
+function incrementSolvedCount() {
+    fetch('../../server/datWeaponUp.php')
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+}
+
+function fetchDailyData() {
+    fetch('../../server/dailyWeaponSolved.php')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('alreadyDailySolved').innerHTML = data + ' people already found the operator';
+        })
+        .catch(error => console.error('Error:', error));
+}
+function incrementGlobalSolved() {
+    fetch('../../server/endlessWeaponUp.php')
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+}
+
+function fetchEndlessSolved() {
+    fetch('../../server/endlessWeaponSolved.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error('Error:', data.error);
+            } else {
+                document.getElementById('globalSolvedEndless').innerHTML =  data.globalSolvedEndless + ' times was the Endless mode solved already';
+            }
+        })
+        .catch(error => console.error('Error:', error));
 }
 
 export function getGuessedWeapons() {

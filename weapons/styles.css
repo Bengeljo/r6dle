@@ -71,7 +71,7 @@ body{
     margin: 20px auto 0;
     border-radius: 5px;
 }
-.row{
+.myRow{
     display: flex;
     align-items: center;
     padding: 10px 20px;
@@ -90,7 +90,8 @@ input{
     margin-bottom: 20px;
     width: 100%;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    flex-direction: column;
 }
 button {
     background: transparent;
@@ -115,7 +116,7 @@ button .fa-solid{
     font-size: 20px;
 }
 
-.progress {
+.myProgress {
     background: rgba(255,255,255,0.1);
     justify-content: flex-start;
     border-radius: 100px;
@@ -127,7 +128,7 @@ button .fa-solid{
     width: 500px;
     padding-right: 5px
   }
-  .progress-value {
+  .myProgress-value {
     animation: load 3s normal forwards;
     text-align: right;
     color:black;
@@ -188,6 +189,7 @@ button .fa-solid{
 }
 .bottom-text {
   margin-top: auto;
+  font-size: 0.9rem;
 }
 .finished {
   margin-top: 3rem;
@@ -374,7 +376,7 @@ width: 100%;
 height: 100%;
 }
 
-.progress-layer-bottom {
+.myProgress-layer-bottom {
   box-shadow: 0 10px 40px -10px #fff;
   border-radius: 100px;
   position: absolute;
@@ -386,7 +388,7 @@ height: 100%;
   z-index: -1;
 }
 
-.progress-layer-top {
+.myProgress-layer-top {
   box-shadow: 0 10px 40px -10px #fff;
   border-radius: 100px;
   position: absolute;
@@ -415,6 +417,12 @@ height: 100%;
   display: inline-block;
   width: 36px;
   height: 15px;
+  margin-left: 5px;
+}
+.switchText{
+  margin-top: 5px;
+  display:flex;
+  align-items: center;
 }
 
 /* Hide default HTML checkbox */
@@ -477,4 +485,144 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+.background-start {
+  border-radius: 8px;
+  box-shadow: 4px 11px 8px rgba(0, 0, 0, .24);
+  padding: 1rem 1rem;
+  display: flex;
+  vertical-align: center;
+  justify-self: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(#313131, #2a2a2a);
+  border: 2px solid #edfaff;
+  row-gap: .5rem;
+  flex-direction: column;
+  width: 300px;
+}
+.alreadySolved{
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #ffffff;
+  margin-left: 0px;
+  text-shadow: 0 0 3px #000000;
+  box-shadow: inset 0 0 50px #000;
+  width: 80%;
+  font-size: 0.8rem;
+  justify-content: center;
+
+}
+@media only screen and (min-width: 320px) {
+  .logo{
+  height:50px;
+  width: fit-content;
+  display: flex;
+  }
+  .logo-container{
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: large;
+  color: rgb(255, 255, 255);
+  text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+  }
+}
+@media only screen and (min-width: 375px) {
+  .logo{
+  height:55px;
+  width: fit-content;
+  display: flex;
+  }
+  .logo-container{
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: x-large;
+  color: rgb(255, 255, 255);
+  text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+  }
+}
+@media only screen and (min-width: 425px) {
+  .logo{
+  height:60px;
+  width: fit-content;
+  display: flex;
+  }
+  .logo-container{
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: x-large;
+  color: rgb(255, 255, 255);
+  text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+  }
+}
+@media only screen and (min-width: 576px) {
+  .logo{
+  height:70px;
+  width: fit-content;
+  display: flex;
+  }
+  .logo-container{
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: x-large;
+  color: rgb(255, 255, 255);
+  text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .logo{
+  height:80px;
+  width: fit-content;
+  display: flex;
+  }
+  .logo-container{
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: xx-large;
+  color: rgb(255, 255, 255);
+  text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .logo{
+  height:90px;
+  width: fit-content;
+  display: flex;
+  }
+  .logo-container{
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: xx-large;
+  color: rgb(255, 255, 255);
+  text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .logo{
+  height:120px;
+  width: fit-content;
+  display: flex;
+  }
+  .logo-container{
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: xxx-large;
+  color: rgb(255, 255, 255);
+  text-shadow: .8px 0.8px 0 #000000, -.5px .5px 0 #000000, -.5px -.5px 0 #000000, .5px -.5px 0 #000000;
+  }
 }

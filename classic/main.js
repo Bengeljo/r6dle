@@ -66,7 +66,11 @@ window.onload = async function() {
         }
     }
     //console.log(localStorage.getItem('dailyWon'))
-    
+    // Call fetchDailyData once immediately, then every 5 seconds
+    fetchDailyData();
+    setInterval(fetchDailyData, 5000);
+    fetchEndlessSolved()
+    setInterval(fetchEndlessSolved, 5000);
     // Start the game
     askForGuess();
   }
@@ -851,9 +855,49 @@ function clear() {
     endId.innerHTML = ''
 }
 
+   
+
+
+
+// Call this function whenever a quiz is solved
+function incrementSolvedCount() {
+    fetch('../../server/datup.php')
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+}
+
+function fetchDailyData() {
+    fetch('../../server/dailysolved.php')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('alreadyDailySolved').innerHTML = data + ' people already found the operator';
+        })
+        .catch(error => console.error('Error:', error));
+}
+function incrementGlobalSolved() {
+    fetch('../../server/endlessup.php')
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+}
+
+function fetchEndlessSolved() {
+    fetch('../../server/endlesssolved.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error('Error:', data.error);
+            } else {
+                document.getElementById('globalSolvedEndless').innerHTML =  data.globalSolvedEndless + ' times was the Endless mode solved already';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
 export function getGuessedOperators() {
     if (guessedOperators === null) {
         guessedOperators = [];
     }
     return guessedOperators;
-}    
+} 

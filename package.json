@@ -1,7 +1,7 @@
 {
   "name": "r6dle",
-  "version": "1.5.0",
-  "description": "An attemt to create a loldle like Rainbow SIx Siege Variant ",
+  "version": "2.0",
+  "description": "A little game to check you Rainbow Six: Siege knowledge ",
   "main": "index.html",
   "scripts": {
     "start": "npm run lite",
