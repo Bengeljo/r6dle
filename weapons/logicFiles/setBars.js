@@ -1,4 +1,4 @@
-import { maxDamage, maxFireRate, maxMagSize, maxMobility } from "./logicFiles/maxStats.js"
+import { maxDamage, maxFireRate, maxMagSize, maxMobility } from "./maxStats.js"
 
 function setDmgBar(selectedWeapon) {
     // Create div elements for the stats bar
