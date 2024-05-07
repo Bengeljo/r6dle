@@ -1,6 +1,6 @@
 
 //import operators from './operators.json' with {type:'json'}
-import { weapons } from './main.js';
+import { weapons } from './logicFiles/helperFunctions.js';
 import { getGuessedWeapons } from './main.js';
 let lowerCaseGuessedWeapons
 let matchingWeapons

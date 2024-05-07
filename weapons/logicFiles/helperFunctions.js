@@ -1,6 +1,7 @@
-import { getDailyGuesses, getEndlessGuesses } from "../main";
-
+let weapons
 let guessedWeaponsHtml = []
+let dailyGuesses = 0;
+let endlessGuesses = 0;
 
 function showHint1() {
     let hints = document.getElementById('hints');
@@ -58,7 +59,6 @@ function randomWeapon() {
 
 // Set initial guess count for daily mode
 function setDailyGuesses() {
-    let dailyGuesses = getDailyGuesses()
     let storedDailyGuesses = localStorage.getItem('dailyWeaponGuesses');
     if (!storedDailyGuesses || isNaN(storedDailyGuesses)) {
         localStorage.setItem('dailyWeaponGuesses', dailyGuesses);
@@ -71,7 +71,6 @@ function setDailyGuesses() {
 
 // Set initial guess count for endless mode
 function setEndlessGuesses() {
-    let endlessGuesses = getEndlessGuesses()
     let storedEndlessGuesses = localStorage.getItem('endlessWeaponGuesses');
     if (!storedEndlessGuesses || isNaN(storedEndlessGuesses)) {
         localStorage.setItem('endlessWeaponGuesses', endlessGuesses);
@@ -82,4 +81,16 @@ function setEndlessGuesses() {
     return endlessGuesses
 }
 
-export { clear, randomWeapon, setDailyGuesses, setEndlessGuesses, showHint1, showHint2 }
+function getDailyGuesses() {
+    return dailyGuesses;
+}
+
+function getEndlessGuesses() {
+    return endlessGuesses;
+}
+
+function setWeapons(newWeapons) {
+    weapons = newWeapons;
+}
+
+export { clear, randomWeapon, setDailyGuesses, setEndlessGuesses, showHint1, showHint2, getDailyGuesses, getEndlessGuesses, setWeapons, weapons, guessedWeaponsHtml }

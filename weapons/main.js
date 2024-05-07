@@ -1,12 +1,9 @@
 import { setDmgBar, setFireRateBar, setHintDmgBar, setHintFireRateBar, setHintMobBar, setMagSize, setMobBar, setHintMagSize } from "./logicFiles/setBars.js"
 import { fetchDailyData, fetchEndlessSolved, incrementGlobalSolved, incrementSolvedCount } from "./logicFiles/serverFunctions.js"
-import { clear, randomWeapon, setDailyGuesses, setEndlessGuesses, showHint1, showHint2 } from "./logicFiles/helperFunctions.js"
+import { clear, randomWeapon, setDailyGuesses, setEndlessGuesses, showHint1, showHint2, getDailyGuesses, getEndlessGuesses, setWeapons, weapons, guessedWeaponsHtml } from "./logicFiles/helperFunctions.js"
 
-export let weapons
 let guessedWeapons = []
 let guesses = 0;
-let dailyGuesses = 0;
-let endlessGuesses = 0;
 let selectedWeapon
 let hint = 1;
 let checkbox
@@ -17,7 +14,7 @@ let dailyStreakCount = localStorage.getItem('dailyWeaponStreakCount') || 0;
 window.onload = async function () {
     const weaponsResponse = await fetch('./weapons.json')
     const weaponsData = await weaponsResponse.json()
-    weapons = weaponsData
+    setWeapons(weaponsData)
     askForGuess();
     window.dispatchEvent(new Event('guessedWeaponsLoaded'));
 
@@ -54,6 +51,8 @@ window.onload = async function () {
 }
 
 window.dailyMode = function () {
+    let dailyGuesses = getDailyGuesses()
+
     // Enable the input
     let input = document.getElementById('inputField');
     if (input) {
@@ -89,6 +88,8 @@ window.dailyMode = function () {
 }
 
 window.endlessMode = function () {
+    let endlessGuesses = getEndlessGuesses()
+
     // Logic for endless mode
     updateModeIndicator('Endless');
     localStorage.setItem('mode', 'endless');
@@ -230,7 +231,8 @@ async function guessWeapon(weapon) {
     if (weapon === selectedWeapon.name) {
         console.log('You won!')
         problemSolved();
-        let gWeapon = await weapons.find(w => w.name === weapon)
+        const weaponsArr = weapons
+        let gWeapon = await weaponsArr.find(w => w.name === weapon)
 
         setHintDmgBar(gWeapon)
         setHintMobBar(gWeapon);
@@ -245,7 +247,8 @@ async function guessWeapon(weapon) {
         // Add the guessed weapon to the array
         guessedWeaponsHtml.push(weapon);
 
-        let gWeapon = await weapons.find(w => w.name === weapon)
+        const weaponsArr = weapons
+        let gWeapon = await weaponsArr.find(w => w.name === weapon)
 
         //show hint bars
         setHintDmgBar(gWeapon)
@@ -314,7 +317,8 @@ function askForGuess() {
     // Get the button element
     var submitButton = document.getElementById('submitButton');
     // Create an array of operator names
-    var weaponNames = weapons.map(function (weapons) {
+    const weaponsArr = weapons
+    var weaponNames = weaponsArr.map(function (weapons) {
         return weapons.name;
     });
     // Get the input field element
@@ -542,21 +546,15 @@ function problemSolved() {
     }
 }
 
-export function getGuessedWeapons() {
+function getGuessedWeapons() {
     if (!guessedWeapons) {
         guessedWeapons = [];
     }
     return guessedWeapons;
 }
 
-export function getSelectedWeapon() {
+function getSelectedWeapon() {
     return selectedWeapon;
 }
 
-export function getDailyGuesses() {
-    return dailyGuesses;
-}
-
-export function getEndlessGuesses() {
-    return endlessGuesses;
-}
+export { getGuessedWeapons, getSelectedWeapon }
