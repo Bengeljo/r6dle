@@ -1,3 +1,4 @@
+import { getSelectedWeapon } from "../main.js";
 import { maxDamage, maxFireRate, maxMagSize, maxMobility } from "./maxStats.js"
 
 function setDmgBar(selectedWeapon) {
@@ -29,6 +30,8 @@ function setDmgBar(selectedWeapon) {
 }
 
 function setHintDmgBar(guessedWeapon) {
+    const selectedWeapon = getSelectedWeapon()
+
     //check if there is an hint bar
     let exist = document.getElementById('dmgHint')
     if (exist) {
@@ -94,6 +97,8 @@ function setMobBar(selectedWeapon) {
 }
 
 function setHintMobBar(guessedWeapon) {
+    const selectedWeapon = getSelectedWeapon()
+
     //check if there is an hint bar
     let exist = document.getElementById('mobHint')
     if (exist) {
@@ -159,6 +164,8 @@ function setFireRateBar(selectedWeapon) {
 }
 
 function setHintFireRateBar(guessedWeapon) {
+    const selectedWeapon = getSelectedWeapon()
+
     //check if there is an hint bar
     let exist = document.getElementById('fireRateHint')
     if (exist) {
@@ -226,6 +233,8 @@ function setMagSize(selectedWeapon) {
 }
 
 function setHintMagSize(guessedWeapon) {
+    const selectedWeapon = getSelectedWeapon()
+
     //check if there is an hint bar
     let exist = document.getElementById('magSizeHint')
     if (exist) {

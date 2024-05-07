@@ -255,7 +255,7 @@ async function guessWeapon(weapon) {
     } else if (guesses == 6) {
         showHint2();
     }
-    
+
     if (weapon === selectedWeapon.name) {
         console.log('You won!')
         problemSolved();
@@ -627,4 +627,8 @@ export function getGuessedWeapons() {
         guessedWeapons = [];
     }
     return guessedWeapons;
+}   
+
+export function getSelectedWeapon() {
+    return selectedWeapon;
 }   
