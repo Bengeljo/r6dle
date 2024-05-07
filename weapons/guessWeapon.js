@@ -1,10 +1,8 @@
+import { maxDamage, maxFireRate, maxMagSize, maxMobility } from "./maxStats.json"
+
 export let weapons
 let guessedWeapons = []
 let guessedWeaponsHmtl = []
-let maxDamage = 135;
-let maxMobility = 50;
-let maxMagSize = 150;
-let maxFireRate = 1270;
 let guesses = 0;
 let selectedWeapon
 let hint = 1;
@@ -83,7 +81,7 @@ window.dailyMode = function () {
 
     var event = new CustomEvent('clearUsedNames');
     window.dispatchEvent(event);
-    
+
     if (localStorage.getItem('dailyWeaponWon') === 'true') {
         displayWinningScreen()
     }
@@ -107,7 +105,7 @@ window.endlessMode = function () {
     loadTriedWeapons()
     var event = new CustomEvent('clearUsedNames');
     window.dispatchEvent(event);
-    
+
     // Enable the input
     let input = document.getElementById('inputField');
     if (input) {
@@ -774,7 +772,7 @@ function displayWinningScreen() {
     button.innerHTML = 'Restart'
     button.id = 'restartButton'
 
-    
+
 
     // Append the elements to their parents
     ggAnswerDiv.appendChild(firstInnerDiv);
@@ -783,7 +781,7 @@ function displayWinningScreen() {
     backgroundEndDiv.appendChild(ggAnswerDiv);
     backgroundEndDiv.appendChild(nthTriesDiv);
     nthTriesDiv.appendChild(nthSpan);
-    if(localStorage.getItem('mode') == 'endless'){
+    if (localStorage.getItem('mode') == 'endless') {
         backgroundEndDiv.appendChild(button)
         restartButton();
     }
@@ -856,7 +854,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // When a user solves a problem
 function problemSolved() {
-    if(localStorage.getItem('mode') === 'endless'){
+    if (localStorage.getItem('mode') === 'endless') {
         // Get the current streak from local storage
         let currentStreak = localStorage.getItem('weaponStreak');
         incrementGlobalSolved();
@@ -874,7 +872,7 @@ function problemSolved() {
 
         // Display the new streak
         document.getElementById('streakDisplay').textContent = `You solved Weapon-R6dle already ${currentStreak} times`;
-    } else if (localStorage.getItem('mode') === 'daily'){
+    } else if (localStorage.getItem('mode') === 'daily') {
         incrementSolvedCount();
         // Increment the daily streak
         dailyStreakCount++;
@@ -918,7 +916,7 @@ function fetchEndlessSolved() {
             if (data.error) {
                 console.error('Error:', data.error);
             } else {
-                document.getElementById('globalSolvedEndless').innerHTML =  data.globalSolvedEndless + ' times was the Endless mode solved already';
+                document.getElementById('globalSolvedEndless').innerHTML = data.globalSolvedEndless + ' times was the Endless mode solved already';
             }
         })
         .catch(error => console.error('Error:', error));
