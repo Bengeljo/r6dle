@@ -1,4 +1,4 @@
-import { maxDamage, maxFireRate, maxMagSize, maxMobility } from "./maxStats.json"
+import { maxDamage, maxFireRate, maxMagSize, maxMobility } from "./maxStats.js"
 
 export let weapons
 let guessedWeapons = []
