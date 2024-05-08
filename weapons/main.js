@@ -20,7 +20,7 @@ window.onload = async function () {
 
     let savedMode = localStorage.getItem('mode');
 
-    // Get the last visit timestamp and streak count from localStorage
+    /* // Get the last visit timestamp and streak count from localStorage
     let lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
     let dailyWeaponStreakCount = parseInt(localStorage.getItem('dailyWeaponStreakCount')) || 0;
     var dateNow = new Date().getTime();
@@ -29,7 +29,7 @@ window.onload = async function () {
     if (dateNow <= lastSolvedTimestamp + 24 * 60 * 60 * 1000) {
         console.log('Daily streak reset');
         localStorage.setItem('dailyWeaponStreakCount', 0);
-    }
+    } */
 
     // If a mode was saved, open that mode
     if (savedMode === 'daily') {
@@ -461,12 +461,15 @@ function displayWinningScreen() {
 
     if (localStorage.getItem('mode') == 'endless') {
         backgroundEndDiv.appendChild(button)
-        restartButton();
     }
 
     emptyDiv.appendChild(backgroundEndDiv);
     finishedDiv.appendChild(emptyDiv);
     endId.appendChild(finishedDiv);
+
+    if (localStorage.getItem('mode') == 'endless') {
+        restartButton();
+    }
 }
 
 function restartButton() {
@@ -475,6 +478,7 @@ function restartButton() {
 
     // Check if the button exists
     if (restartButton) {
+        console.log("restart btn found");
         // Add a click event listener to the button
         restartButton.addEventListener('click', function () {
             guessedWeapons = []
