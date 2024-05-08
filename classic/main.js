@@ -6,6 +6,7 @@ let countryToContinent = {};
 //changes for a test
 let guessedOperators = []
 let lastSolvedTimestamp
+
 window.onload = async function () {
     const operatorResponse = await fetch('./operator.json');
     const operatorData = await operatorResponse.json();
@@ -31,17 +32,7 @@ window.onload = async function () {
     let savedMode = localStorage.getItem('mode');
     let lastGuessedOp = localStorage.getItem('lastGuessedOp')
 
-
-    // Get the last visit timestamp and streak count from localStorage
-    let lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
-    let dailyStreakCount = parseInt(localStorage.getItem('dailyStreakCount')) || 0;
-    var dateNow = new Date().getTime();
-    // If the last visit was within the last 24 hours, increment the streak count
-    console.log(dateNow >= lastSolvedTimestamp + 24 * 60 * 60 * 1000)
-    if (dateNow <= lastSolvedTimestamp + 24 * 60 * 60 * 1000) {
-        console.log('Daily streak reset');
-        localStorage.setItem('dailyStreakCount', 0);
-    }
+    checkDailyStreak();
 
     // Check if the last guessed Operator is equal to the current operator and if that is not true set dailyWon to false
     if (lastGuessedOp != operator[0].name || lastGuessedOp === null) {
@@ -73,6 +64,16 @@ window.onload = async function () {
     setInterval(fetchEndlessSolved, 5000);
     // Start the game
     askForGuess();
+}
+
+function checkDailyStreak() {
+    // If the last visit was more than 24 hours, set the streak count to 0
+    let dateNow = new Date().getTime();
+    
+    if ((dateNow >= (lastSolvedTimestamp + 24 * 60 * 60 * 1000)) && new Date().getUTCHours() > 18) {
+        console.log('Daily streak reset');
+        localStorage.setItem('dailyStreakCount', 0);
+    }
 }
 
 // Create a container for the keys
