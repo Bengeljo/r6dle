@@ -478,7 +478,6 @@ function restartButton() {
 
     // Check if the button exists
     if (restartButton) {
-        console.log("restart btn found");
         // Add a click event listener to the button
         restartButton.addEventListener('click', function () {
             guessedWeapons = []
