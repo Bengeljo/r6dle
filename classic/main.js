@@ -5,9 +5,9 @@ export let operators
 let countryToContinent = {};
 //changes for a test
 let guessedOperators = []
-let lastSolvedTimestamp
+let lastSolvedTimestamp 
 
-window.onload = async function () {
+window.onload = async function() {
     const operatorResponse = await fetch('./operator.json');
     const operatorData = await operatorResponse.json();
     operator = operatorData;
@@ -24,31 +24,31 @@ window.onload = async function () {
             countryToContinent[country] = continent;
         });
     }
-    console.log(operator)
-    console.log(operators)
+    //console.log(operator)
+    //console.log(operators)
     loadTriedOperators()
 
     // Get the saved mode from localStorage
     let savedMode = localStorage.getItem('mode');
     let lastGuessedOp = localStorage.getItem('lastGuessedOp')
-
+    
     checkDailyStreak();
-
+    
     // Check if the last guessed Operator is equal to the current operator and if that is not true set dailyWon to false
     if (lastGuessedOp != operator[0].name || lastGuessedOp === null) {
         localStorage.setItem('dailyWon', 'false')
-
+        
         if (guessedOperators.length > 0) {
             localStorage.setItem('guessedOperators', [])
             guessedOperators = localStorage.getItem('guessedOperators')
         }
     }
-
+    
     // If a mode was saved, open that mode
     if (savedMode === 'daily') {
-        dailyMode();
+        dailyMode();      
     } else if (savedMode === 'endless') {
-        endlessMode();
+      endlessMode();
     } else {
         // Disable the input
         let input = document.getElementById('inputField');
@@ -69,13 +69,15 @@ window.onload = async function () {
 function checkDailyStreak() {
     // If the last visit was more than 24 hours, set the streak count to 0
     let dateNow = new Date().getTime();
-    
+
     if ((dateNow >= (lastSolvedTimestamp + 24 * 60 * 60 * 1000)) && new Date().getUTCHours() > 18) {
         console.log('Daily streak reset');
         localStorage.setItem('dailyStreakCount', 0);
     }
 }
 
+
+    
 // Create a container for the keys
 let keysContainer = document.createElement('div');
 keysContainer.className = 'classic-answers-container';
@@ -105,33 +107,31 @@ keysContainer.appendChild(keysRow);
 function updateModeIndicator(mode) {
     const modeIndicator = document.getElementById('mode-indicator');
     modeIndicator.textContent = `Current mode: ${mode}`;
-    if (mode == 'Daily') {
+    if (mode == 'Daily'){
         let button = document.createElement('button')
         button.className = 'de_button'
         button.innerHTML = 'Endless Mode'
-        button.onclick = function () {
+        button.onclick = function() {
             endlessMode()
         }
         modeIndicator.appendChild(button)
-
-    } else if (mode == 'Endless') {
+        
+    }else if( mode == 'Endless'){
         let button = document.createElement('button')
         button.className = 'de_button'
         button.innerHTML = 'Daily Mode'
-        button.onclick = function () {
+        button.onclick = function() {
             dailyMode()
         }
         modeIndicator.appendChild(button)
     }
-}
-
-let dailyGuesses = 0;
-let endlessGuesses = 0;
-let operatorToGuess
-let dailyResult = 0;
-let endlessResult = 0;
-
-window.endlessMode = function () {
+  }
+    let dailyGuesses = 0;
+    let endlessGuesses = 0;
+    let operatorToGuess
+    let dailyResult = 0;
+    let endlessResult = 0;
+    window.endlessMode = function() {
     // Logic for endless mode
     updateModeIndicator('Endless');
     //console.log("Now endless mode")
@@ -141,8 +141,8 @@ window.endlessMode = function () {
     operatorToGuess = setOperatorToGuess();
     loadTriedOperators()
     var event = new CustomEvent('clearUsedNames');
-    window.dispatchEvent(event);
-    // Find the winning screen and remove it if it exists
+            window.dispatchEvent(event);
+     // Find the winning screen and remove it if it exists
     clear();
     // Enable the input
     let input = document.getElementById('inputField');
@@ -150,7 +150,6 @@ window.endlessMode = function () {
         input.disabled = false;
     }
 }
-
 window.dailyMode = function () {
     // Enable the input
     let input = document.getElementById('inputField');
@@ -168,237 +167,240 @@ window.dailyMode = function () {
     dailyGuesses = setDailyGuesses();
     operatorToGuess = setOperatorToGuess();
     var event = new CustomEvent('clearUsedNames');
-    window.dispatchEvent(event);
+            window.dispatchEvent(event);
     clear();
-    if (localStorage.getItem('dailyWon') === 'true') {
+    if(localStorage.getItem('dailyWon') === 'true'){
         displayWinningScreen()
-
+        
     }
-
+   
     //Use guess and askForGuess as needed
 }
-// numbers
-let dailyStreakCount = localStorage.getItem('dailyStreakCount') || 0;
+    // numbers
+    let dailyStreakCount = localStorage.getItem('dailyStreakCount') || 0;
 
-// Function to handle a new guess
-function guess(operatorName) {
+    // Function to handle a new guess
+    function guess(operatorName) {
 
-    if (localStorage.getItem('mode') === 'daily') {
-        if (dailyGuesses == 0) {
-            tutoButton()
-        }
-        dailyGuesses++
-        localStorage.setItem('dailyGuesses', dailyGuesses)
-    } else if (localStorage.getItem('mode') === 'endless') {
-        if (endlessGuesses == 0) {
-            tutoButton()
-        }
-        endlessGuesses++
-        localStorage.setItem('endlessGuesses', endlessGuesses)
-    }
-    console.log('daily: ' + dailyGuesses + '  endless: ' + endlessGuesses)
-    // Find the operator in the list
-    const operator = operators.find(op => typeof op.name === 'string' && op.name.toLowerCase() === operatorName.toLowerCase());
-    compareOperators(operator, operatorToGuess)
-    // Debugging output
-    console.log("Found operator:", operator);
-    // If the operator is not found, it's a wrong guess
-    if (!operator) {
-        console.log("🔴 Operator not found");
-        return askForGuess();
-    }
-
-    // Compare the operator data with the selected operator
-    const keys = ["name", "gender", "role", "side", "country", "Org", "Squad", "release_year"];
-    let sharedCriteria = false;
-
-    const normalizeRoles = roles => roles.split(',').map(role => role.trim()).sort().join(', ');
-
-    keys.forEach(key => {
-        if (key === 'release_year') {
-            if (operator[key] < operatorToGuess[key]) {
-                console.log(`⬆️ ${key}: ${operator[key]}`);
-            } else if (operator[key] > operatorToGuess[key]) {
-                console.log(`⬇️ ${key}: ${operator[key]}`);
-            } else {
-                console.log(`✅ ${key}: ${operator[key]}`);
-            }
-        } else if (Array.isArray(operator[key]) && Array.isArray(operatorToGuess[key])) {
-            const normalizedOperatorRole = normalizeRoles(operator[key].join(','));
-            const normalizedOperatorToGuessRole = normalizeRoles(operatorToGuess[key].join(','));
-
-            if (normalizedOperatorRole === normalizedOperatorToGuessRole) {
-                console.log(`✅ ${key}: ${operator[key].join(", ")}`);
-                sharedCriteria = true;
-            } else {
-                const matchingRoles = operator[key].filter(role => normalizedOperatorToGuessRole.includes(role));
-
-                if (matchingRoles.length > 0) {
-                    console.log(`🟠 ${key}: ${operator[key].join(", ")}`);
-                    sharedCriteria = true;
-                } else {
-                    console.log(`🔴 ${key}: ${operator[key].join(", ")}`);
-                }
-            }
-        } else if (key === 'country' && operator[key] !== operatorToGuess[key] && countryToContinent[operator[key]] === countryToContinent[operatorToGuess[key]]) {
-            console.log(`🟠 ${key}: ${operator[key]}`);
-            sharedCriteria = true;
-        } else if (typeof operator[key] === 'string' && operator[key] === operatorToGuess[key]) {
-            console.log(`✅ ${key}: ${operator[key]}`);
-            sharedCriteria = true;
-        } else {
-            console.log(`🔴 ${key}: ${operator[key]}`);
-        }
-    });
-
-    // Check if the operator name is fully guessed
-    if (operatorName.toLowerCase() === operatorToGuess.name.toLowerCase()) {
-        console.log("You won! The operator was " + operatorToGuess.name);
         if (localStorage.getItem('mode') === 'daily') {
-            localStorage.setItem('dailyWon', 'true')
-            localStorage.setItem('lastGuessedOp', operatorName)
+            if (dailyGuesses == 0){
+                tutoButton()
+            }
+            dailyGuesses++
+            localStorage.setItem('dailyGuesses', dailyGuesses)
+        } else if (localStorage.getItem('mode') === 'endless') {
+            if(endlessGuesses == 0){
+                tutoButton()
+            }
+            endlessGuesses++
+            localStorage.setItem('endlessGuesses', endlessGuesses)
+        }    
+        console.log('daily: ' + dailyGuesses + '  endless: ' + endlessGuesses)
+        // Find the operator in the list
+        const operator = operators.find(op => typeof op.name === 'string' && op.name.toLowerCase() === operatorName.toLowerCase());
+        compareOperators(operator,operatorToGuess)
+        // Debugging output
+        console.log("Found operator:", operator);
+        // If the operator is not found, it's a wrong guess
+        if (!operator) {
+            console.log("🔴 Operator not found");
+            return askForGuess();
         }
-        problemSolved();
 
-    } else {
-        if (sharedCriteria) {
-            console.log("🟠 The guessed operator shares some criteria with the operator to find.");
-        } else {
-            console.log("🔴 The guessed operator does not share any criteria with the operator to find.");
-        }
-        saveTriedOperators();
-        askForGuess();
-    }
-
-function compareOperators(operator, operatorToGuess) {
         // Compare the operator data with the selected operator
-        const keys = ["name", "gender", "role", "side", "country", "Org", "Squad", "release_year"];
+        const keys = ["name","gender", "role", "side", "country", "Org", "Squad", "release_year"];
         let sharedCriteria = false;
-        let answerclassic = document.createElement('div');
-        answerclassic.className = 'classic-answer'
-        const container = document.getElementById('answercon')
-        let squarecontainer = document.createElement('div');
-        squarecontainer.className = 'square-container'
 
-        // Create the image square first
-        let imgSquare = document.createElement('div');
-        imgSquare.className = 'square animate__animated animate__flipInY';
-
-        let img = document.createElement('img');
-        img.src = `../images/r6s-operators-badge-${operatorName.toLowerCase()}.png`;
-        img.style.width = '100%';
-        img.style.height = '100%';
-        img.style.objectFit = 'cover';
-
-        imgSquare.appendChild(img);
-        imgSquare.classList.add('square-title')
-        squarecontainer.appendChild(imgSquare);
+        const normalizeRoles = roles => roles.split(',').map(role => role.trim()).sort().join(', ');
 
         keys.forEach(key => {
-            let square = document.createElement('div');
-            square.className = 'square animate__animated animate__flipInY';
-
-            let content = document.createElement('div');
-            content.className = 'square-content';
-
-
             if (key === 'release_year') {
                 if (operator[key] < operatorToGuess[key]) {
-                    square.classList.add('square-bad');
-                    content.textContent = `⬆️ ${operator[key]}`;
+                    console.log(`⬆️ ${key}: ${operator[key]}`);
                 } else if (operator[key] > operatorToGuess[key]) {
-                    square.classList.add('square-bad');
-                    content.textContent = `⬇️ ${operator[key]}`;
+                    console.log(`⬇️ ${key}: ${operator[key]}`);
                 } else {
-                    square.classList.add('square-good');
-                    content.textContent = `✅ ${operator[key]}`;
-                    sharedCriteria = true;
+                    console.log(`✅ ${key}: ${operator[key]}`);
                 }
-            } else if (key === 'name') {
-                square.classList.add('square-title');
-                content.textContent = `${operator[key]}`;
             } else if (Array.isArray(operator[key]) && Array.isArray(operatorToGuess[key])) {
-                const normalizedOperatorRole = operator[key].join(',').split(',').map(role => role.trim()).sort().join(', ');
-                const normalizedOperatorToGuessRole = operatorToGuess[key].join(',').split(',').map(role => role.trim()).sort().join(', ');
+                const normalizedOperatorRole = normalizeRoles(operator[key].join(','));
+                const normalizedOperatorToGuessRole = normalizeRoles(operatorToGuess[key].join(','));
 
-                const normalizedOperatorRoleArray = normalizedOperatorRole.split(', ');
-                const normalizedOperatorToGuessRoleArray = normalizedOperatorToGuessRole.split(', ');
-
-                if (normalizedOperatorRoleArray.every(role => normalizedOperatorToGuessRoleArray.includes(role)) &&
-                    normalizedOperatorToGuessRoleArray.every(role => normalizedOperatorRoleArray.includes(role))) {
-                    square.classList.add('square-good');
-                    content.textContent = `${operator[key].join(", ")}`;
+                if (normalizedOperatorRole === normalizedOperatorToGuessRole) {
+                    console.log(`✅ ${key}: ${operator[key].join(", ")}`);
                     sharedCriteria = true;
                 } else {
                     const matchingRoles = operator[key].filter(role => normalizedOperatorToGuessRole.includes(role));
 
                     if (matchingRoles.length > 0) {
-                        square.classList.add('square-partial');
+                        console.log(`🟠 ${key}: ${operator[key].join(", ")}`);
+                        sharedCriteria = true;
+                    } else {
+                        console.log(`🔴 ${key}: ${operator[key].join(", ")}`);
+                    }
+                }
+            } else if (key === 'country' && operator[key] !== operatorToGuess[key] && countryToContinent[operator[key]] === countryToContinent[operatorToGuess[key]]) {
+                console.log(`🟠 ${key}: ${operator[key]}`);
+                sharedCriteria = true;
+            } else if (typeof operator[key] === 'string' && operator[key] === operatorToGuess[key]) {
+                console.log(`✅ ${key}: ${operator[key]}`);
+                sharedCriteria = true;
+            } else {
+                console.log(`🔴 ${key}: ${operator[key]}`);
+            }
+        });
+
+        // Check if the operator name is fully guessed
+        if (operatorName.toLowerCase() === operatorToGuess.name.toLowerCase()) {
+            console.log("You won! The operator was " + operatorToGuess.name );
+            if(localStorage.getItem('mode') === 'daily'){
+                localStorage.setItem('dailyWon', 'true')
+                localStorage.setItem('lastGuessedOp', operatorName)
+            }
+            problemSolved();
+
+        } else {
+            if (sharedCriteria) {
+                console.log("🟠 The guessed operator shares some criteria with the operator to find."); 
+            } else {
+                console.log("🔴 The guessed operator does not share any criteria with the operator to find.");
+            }
+            saveTriedOperators();
+            askForGuess();
+        }
+
+        function compareOperators(operator, operatorToGuess) {
+            // Compare the operator data with the selected operator
+            const keys = ["name","gender", "role", "side", "country", "Org", "Squad", "release_year"];
+            let sharedCriteria = false;
+            let answerclassic = document.createElement('div');
+            answerclassic.className = 'classic-answer'
+            const container = document.getElementById('answercon')
+            let squarecontainer = document.createElement('div');
+            squarecontainer.className = 'square-container'
+        
+            // Create the image square first
+            let imgSquare = document.createElement('div');
+            imgSquare.className = 'square animate__animated animate__flipInY';
+        
+            let img = document.createElement('img');
+            img.src = `../images/r6s-operators-badge-${operatorName.toLowerCase()}.png`;
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover';
+        
+            imgSquare.appendChild(img);
+            imgSquare.classList.add('square-title')
+            squarecontainer.appendChild(imgSquare);
+        
+            keys.forEach(key => {
+                let square = document.createElement('div');
+                square.className = 'square animate__animated animate__flipInY';
+        
+                let content = document.createElement('div');
+                content.className = 'square-content';
+
+        
+                if (key === 'release_year') {
+                    if (operator[key] < operatorToGuess[key]) {
+                        square.classList.add('square-bad');
+                        content.textContent = `⬆️ ${operator[key]}`;
+                    } else if (operator[key] > operatorToGuess[key]) {
+                        square.classList.add('square-bad');
+                        content.textContent = `⬇️ ${operator[key]}`;
+                    } else {
+                        square.classList.add('square-good');
+                        content.textContent = `✅ ${operator[key]}`;
+                        sharedCriteria = true;
+                    }
+                } else if (key === 'name') {
+                    square.classList.add('square-title');
+                    content.textContent = `${operator[key]}`;
+                } else if (Array.isArray(operator[key]) && Array.isArray(operatorToGuess[key])) {
+                    const normalizedOperatorRole = operator[key].join(',').split(',').map(role => role.trim()).sort().join(', ');
+                    const normalizedOperatorToGuessRole = operatorToGuess[key].join(',').split(',').map(role => role.trim()).sort().join(', ');
+                
+                    const normalizedOperatorRoleArray = normalizedOperatorRole.split(', ');
+                    const normalizedOperatorToGuessRoleArray = normalizedOperatorToGuessRole.split(', ');
+                
+                    if (normalizedOperatorRoleArray.every(role => normalizedOperatorToGuessRoleArray.includes(role)) &&
+                        normalizedOperatorToGuessRoleArray.every(role => normalizedOperatorRoleArray.includes(role))) {
+                        square.classList.add('square-good');
                         content.textContent = `${operator[key].join(", ")}`;
                         sharedCriteria = true;
                     } else {
-                        square.classList.add('square-bad');
-                        content.textContent = `${operator[key].join(", ")}`;
+                        const matchingRoles = operator[key].filter(role => normalizedOperatorToGuessRole.includes(role));
+                
+                        if (matchingRoles.length > 0) {
+                            square.classList.add('square-partial');
+                            content.textContent = `${operator[key].join(", ")}`;
+                            sharedCriteria = true;
+                        } else {
+                            square.classList.add('square-bad');
+                            content.textContent = `${operator[key].join(", ")}`;
+                        }
                     }
-                }
-            } else if (key === 'country') {
-                if (operator[key] === operatorToGuess[key]) {
+                } else if (key === 'country') {
+                    if (operator[key] === operatorToGuess[key]) {
+                        square.classList.add('square-good');
+                        content.textContent = `${operator[key]}`;
+                        sharedCriteria = true;
+                    } else if (operator[key] !== operatorToGuess[key] && countryToContinent[operator[key]] === countryToContinent[operatorToGuess[key]]) {
+                        square.classList.add('square-partial');
+                        content.textContent = `${operator[key]}`;
+                        sharedCriteria = true;
+                    } else {
+                        square.classList.add('square-bad');
+                        content.textContent = `${operator[key]}`;
+                    }
+                } else if (typeof operator[key] === 'string' && operator[key].includes(operatorToGuess[key])) {
                     square.classList.add('square-good');
                     content.textContent = `${operator[key]}`;
-                    sharedCriteria = true;
-                } else if (operator[key] !== operatorToGuess[key] && countryToContinent[operator[key]] === countryToContinent[operatorToGuess[key]]) {
-                    square.classList.add('square-partial');
-                    content.textContent = `${operator[key]}`;
-                    sharedCriteria = true;
-                } else {
-                    square.classList.add('square-bad');
-                    content.textContent = `${operator[key]}`;
-                }
-            } else if (typeof operator[key] === 'string' && operator[key].includes(operatorToGuess[key])) {
-                square.classList.add('square-good');
-                content.textContent = `${operator[key]}`;
-
+                    
                 sharedCriteria = true;
             } else {
                 square.classList.add('square-bad');
                 content.textContent = `${operator[key]}`;
             }
-
+            
             square.appendChild(content);
             squarecontainer.appendChild(square);
+            
+            });
 
-        });
+            
+            answerclassic.appendChild(squarecontainer)
 
-        answerclassic.appendChild(squarecontainer)
-
-        // Insert the new result before the first child
-        let firstChild = container.firstChild;
-        container.insertBefore(answerclassic, firstChild);
-        if (operatorName.toLowerCase() === operatorToGuess.name.toLowerCase()) {
-            // If the guessed operator is the right one, display the winning screen
-            if (localStorage.getItem('mode') === 'daily') {
-                dailyResult = dailyGuesses
-                var date = new Date().getTime();
-                localStorage.setItem('lastSolvedTimestamp', date);
-                localStorage.setItem('dailyResult', dailyResult)
-                localStorage.setItem('dailyGuesses', 0)
-            } else if (localStorage.getItem('mode') === 'endless') {
-                endlessResult = endlessGuesses
-                localStorage.setItem('endlessGuesses', 0)
-                let input = document.getElementById('inputField')
-                input.disabled = true
+            // Insert the new result before the first child
+            let firstChild = container.firstChild;
+            container.insertBefore(answerclassic, firstChild);
+            if (operatorName.toLowerCase() === operatorToGuess.name.toLowerCase()) {
+                // If the guessed operator is the right one, display the winning screen
+                if (localStorage.getItem('mode') === 'daily'){
+                    dailyResult = dailyGuesses
+                    var date = new Date().getTime();
+                    localStorage.setItem('lastSolvedTimestamp', date);
+                    localStorage.setItem('dailyResult', dailyResult)
+                    localStorage.setItem('dailyGuesses', 0)
+                    incrementSolvedCount();
+                } else if(localStorage.getItem('mode') === 'endless'){
+                    endlessResult = endlessGuesses
+                    localStorage.setItem('endlessGuesses', 0)
+                    incrementGlobalSolved()
+                    let input  = document.getElementById('inputField')
+                    input.disabled = true   
+                }
+                displayWinningScreen();
+                
             }
-            displayWinningScreen();
-
+            return sharedCriteria;
         }
-        return sharedCriteria;
-    }
+    
 
+        // Get the first object from the output
+        let result = operator;
 
-    // Get the first object from the output
-    let result = operator;
-
-    // Create a new row
+       // Create a new row
     let row = document.createElement('div');
     row.className = 'resultRow';
 
@@ -418,12 +420,11 @@ function compareOperators(operator, operatorToGuess) {
 };
 
 function displayWinningScreen() {
-    if (localStorage.getItem('mode') === 'daily') {
-        if (localStorage.getItem('dailyWon') === 'true') {
+    if(localStorage.getItem('mode') === 'daily'){
+        if(localStorage.getItem('dailyWon') === 'true'){
             dailyResult = localStorage.getItem('dailyResult')
         }
     }
-
     // Get the endId element
     let endId = document.getElementById('endId');
 
@@ -459,6 +460,8 @@ function displayWinningScreen() {
     img.src = `../images/r6s-operators-badge-${operatorName.toLowerCase()}.png`;
     firstInnerDiv.appendChild(img);
 
+    
+
     // Create the second inner div
     let secondInnerDiv = document.createElement('div');
 
@@ -478,6 +481,7 @@ function displayWinningScreen() {
     ggNameDiv.innerHTML = operatorToGuess.name; // Replace with the actual operator name
     secondInnerDiv.appendChild(ggNameDiv); // Append the gg-name div to the second inner div
 
+    
     // Create the nthtries div
     let nthTriesDiv = document.createElement('div');
     nthTriesDiv.className = 'nthtries';
@@ -486,9 +490,9 @@ function displayWinningScreen() {
     // Create the nth span
     let nthSpan = document.createElement('span');
     nthSpan.className = 'nth';
-    if (localStorage.getItem('mode') === 'daily') {
+    if(localStorage.getItem('mode') === 'daily'){
         nthSpan.innerHTML = dailyResult
-    } else if (localStorage.getItem('mode') === 'endless') {
+    } else if(localStorage.getItem('mode') === 'endless'){
         nthSpan.innerHTML = endlessResult
     }
 
@@ -511,8 +515,10 @@ function displayWinningScreen() {
     countdownTime.id = 'countdown';
     countdown.appendChild(countdownTime);
 
+    
+
     // Update the countdown every 1 second
-    let countdownInterval = setInterval(function () {
+    let countdownInterval = setInterval(function() {
         // Get today's date and time
         var now = new Date().getTime();
 
@@ -536,14 +542,14 @@ function displayWinningScreen() {
 
     // Append the elements to their parents
     ggAnswerDiv.appendChild(firstInnerDiv);
-    ggAnswerDiv.appendChild(secondInnerDiv);
+    ggAnswerDiv.appendChild(secondInnerDiv); 
     backgroundEndDiv.appendChild(ggDiv);
     backgroundEndDiv.appendChild(ggAnswerDiv);
     backgroundEndDiv.appendChild(nthTriesDiv);
-    if (localStorage.getItem('mode') === 'endless') {
+    if (localStorage.getItem('mode') === 'endless'){
         backgroundEndDiv.appendChild(button)
     }
-    if (localStorage.getItem('mode') === 'daily') {
+    if(localStorage.getItem('mode') === 'daily'){
         backgroundEndDiv.appendChild(countdown)
     }
     nthTriesDiv.appendChild(nthSpan);
@@ -552,48 +558,52 @@ function displayWinningScreen() {
     endId.appendChild(finishedDiv);
     restartButton();
 }
+     
+    
+
+    
 
 function askForGuess() {
     // Get the button element
     var submitButton = document.getElementById('submitButton');
     // Create an array of operator names
-    var operatorNames = operators.map(function (operator) {
+    var operatorNames = operators.map(function(operator) {
         return operator.name;
     });
     // Get the input field element
     var autobox = document.querySelector(".auto-box");
 
     // Add a click event listener to the input field
-    autobox.addEventListener('click', function () {
-        // Get the input field element
-        var inputField = document.getElementById('inputField');
-        // Select the input field content
-        inputField.select();
-
-        // Get the input field value
-        var userInput = inputField.value;
-
-        // Check if the operator has already been guessed or empty or does not exist
-        if (guessedOperators.includes(userInput) || userInput === "") {
-            console.log('This operator has already been guessed.');
-            return; // Exit the function early
-        } else if (userInput === "") {
+    autobox.addEventListener('click', function() {
+            // Get the input field element
+            var inputField = document.getElementById('inputField');
+             // Select the input field content
+             inputField.select();
+ 
+             // Get the input field value
+             var userInput = inputField.value;
+ 
+             // Check if the operator has already been guessed or empty or does not exist
+            if (guessedOperators.includes(userInput) || userInput === "") {
+                console.log('This operator has already been guessed.');
+                return; // Exit the function early
+            } else if (userInput === "") {
             console.log('InputField was empty.');
-            return;
-        } else if (!operatorNames.includes(userInput)) {
+            return; 
+            } else if (!operatorNames.includes(userInput)) {
             console.log('This operator does not exist.');
-            return;
-        }
-
-        // Add the operator to the array of guessed operators
-        guessedOperators.push(userInput);
-
-        // Now you can use the userInput value in your code
-        guess(userInput);
+            return; 
+            }
+ 
+             // Add the operator to the array of guessed operators
+             guessedOperators.push(userInput);
+ 
+             // Now you can use the userInput value in your code
+             guess(userInput);
     });
 
     // Add a click event listener to the button
-    submitButton.addEventListener('click', function () {
+    submitButton.addEventListener('click', function() {
         // Get the input field value
         var userInput = inputField.value;
 
@@ -602,11 +612,11 @@ function askForGuess() {
             console.log('This operator has already been guessed.');
             return; // Exit the function early
         } else if (userInput === "") {
-            console.log('InputField was empty.');
-            return;
+           console.log('InputField was empty.');
+           return; 
         } else if (!operatorNames.includes(userInput)) {
-            console.log('This operator does not exist.');
-            return;
+           console.log('This operator does not exist.');
+           return; 
         }
 
         // Add the operator to the array of guessed operators
@@ -619,7 +629,7 @@ function askForGuess() {
 
 // When a user solves a problem
 function problemSolved() {
-    if (localStorage.getItem('mode') === 'endless') {
+    if(localStorage.getItem('mode') === 'endless'){
         // Get the current streak from local storage
         let currentStreak = localStorage.getItem('streak');
 
@@ -636,7 +646,7 @@ function problemSolved() {
 
         // Display the new streak
         document.getElementById('streakDisplay').textContent = `You solved R6dle already ${currentStreak} times`;
-    } else if (localStorage.getItem('mode') === 'daily') {
+    } else if (localStorage.getItem('mode') === 'daily'){
 
         // Increment the daily streak
         dailyStreakCount++;
@@ -644,6 +654,8 @@ function problemSolved() {
         localStorage.setItem('dailyStreakCount', dailyStreakCount.toString())
         // Display the new streak
         document.getElementById('dailyStreakDisplay').textContent = `Your daily streak increased and is now at ${dailyStreakCount}`;
+
+
     }
 }
 
@@ -654,7 +666,7 @@ function displayStreak() {
     var streakDisplay = document.getElementById('streakDisplay');
     var dataDailyStreak = document.getElementById('alreadyDailySolved');
     var dataGlobalSolvedEndless = document.getElementById('globalSolvedEndless');
-
+    
     // Show the 'streakDisplay' element
     streakDisplay.style.display = '';
     // If there's no current streak, this is the user's first visit
@@ -662,11 +674,11 @@ function displayStreak() {
         currentStreak = 0;
     }
     // Display the current streak
-    if (currentStreak == 0) {
+    if (currentStreak == 0){
         document.getElementById('streakDisplay').textContent = 'You have never solved R6dle';
-    } else if (currentStreak == 1) {
+    } else if (currentStreak == 1){
         document.getElementById('streakDisplay').textContent = 'You have solved this r6dle 1 time already';
-    } else if (currentStreak > 1) {
+    } else if (currentStreak > 1){
         document.getElementById('streakDisplay').textContent = `You have solved it ${currentStreak} times already`;
     }
     var dailyStreakDisplay = document.getElementById('dailyStreakDisplay');
@@ -675,8 +687,8 @@ function displayStreak() {
 
     dataGlobalSolvedEndless.style.display = ''
     dataGlobalSolvedEndless.innerHTML = 'The endless mode was already solved times'
-
-
+    
+    
 }
 
 function displayDailyStreak() {
@@ -691,11 +703,11 @@ function displayDailyStreak() {
         dailyStreak = 0;
     }
     // Display the daily streak
-    if (dailyStreak == 0) {
+    if (dailyStreak == 0){
         document.getElementById('dailyStreakDisplay').textContent = 'You have no daily streak';
-    } else if (dailyStreak == 1) {
+    } else if (dailyStreak == 1){
         document.getElementById('dailyStreakDisplay').textContent = 'Your daily streak is: 1';
-    } else if (dailyStreak > 1) {
+    } else if (dailyStreak > 1){
         document.getElementById('dailyStreakDisplay').textContent = `Your daily streak is: ${dailyStreak}`;
     }
     // Get the 'streakDisplay' element
@@ -704,46 +716,48 @@ function displayDailyStreak() {
     // Hide the 'streakDisplay' element
     streakDisplay.style.display = 'none';
     dataGlobalSolvedEndless.style.display = 'none'
+    dataDailyStreak.style.display = ''
 }
+
+
+
 
 // Save the tried operators
 function saveTriedOperators() {
-    if (localStorage.getItem('mode') === 'daily') {
-        localStorage.setItem('guessedOperators', JSON.stringify(guessedOperators));
-    }
+  if (localStorage.getItem('mode') === 'daily') {
+    localStorage.setItem('guessedOperators', JSON.stringify(guessedOperators));
+  }
 }
 
 // Load the tried operators
 function loadTriedOperators() {
-    if (localStorage.getItem('mode') === 'daily') {
-        const savedTriedOperators = localStorage.getItem('guessedOperators');
+  if (localStorage.getItem('mode') === 'daily') {
+    const savedTriedOperators = localStorage.getItem('guessedOperators');
 
-        if (savedTriedOperators) {
-            guessedOperators = JSON.parse(savedTriedOperators);
-        } else {
-            guessedOperators = [];
-        }
-        // Dispatch a custom event when guessedOperators is loaded
-        window.dispatchEvent(new Event('guessedOperatorsLoaded'));
+    if (savedTriedOperators) {
+      guessedOperators = JSON.parse(savedTriedOperators);
     } else {
-        guessedOperators = [];
-        window.dispatchEvent(new Event('guessedOperatorsLoaded'));
+      guessedOperators = [];
     }
+    // Dispatch a custom event when guessedOperators is loaded
+    window.dispatchEvent(new Event('guessedOperatorsLoaded'));
+  }else{
+    guessedOperators = [];
+    window.dispatchEvent(new Event('guessedOperatorsLoaded'));
+  }
 }
-
 function clearGuessedOperators() {
     if (localStorage.getItem('mode') === 'daily') {
-        localStorage.removeItem('guessedOperators');
+      localStorage.removeItem('guessedOperators');
     }
-}
-
+  }
 function checkWin() {
     var userHasWon = localStorage.getItem('dailyWon') === 'true'
     var dailyStreakCount = localStorage.getItem('dailyStreakCount')
     if (userHasWon) {
-        clearGuessedOperators();
-        localStorage.setItem('dailyWon', 'false')
-        localStorage.setItem('dailyStreakCount', dailyStreakCount + 1)
+     clearGuessedOperators();
+     localStorage.setItem('dailyWon', 'false')
+     localStorage.setItem('dailyStreakCount', dailyStreakCount + 1)
     }
 }
 
@@ -754,29 +768,28 @@ function setGuesses() {
         endless: 0
     };
 
-    if (localStorage.getItem('mode') === 'endless') {
+    if (localStorage.getItem('mode') === 'endless'){
         let endlessGuesses = localStorage.getItem('guesses.endless');
-        if (!endlessGuesses) {
+        if(!endlessGuesses){
             localStorage.setItem('guesses.endless', guesses.endless);
         }
-    } else if (localStorage.getItem('mode') === 'daily') {
+    } else if (localStorage.getItem('mode') === 'daily'){
         let dailyGuesses = localStorage.getItem('guesses.daily');
-        if (!dailyGuesses) {
+        if(!dailyGuesses){
             localStorage.setItem('guesses.daily', guesses.daily);
         }
     }
 }
-
 // Select a random operator or take the daily
 function setOperatorToGuess() {
     let operatorToGuess;
 
-    if (localStorage.getItem('mode') === 'endless') {
+    if (localStorage.getItem('mode') === 'endless'){
         operatorToGuess = localStorage.getItem('operatorToGuess');
-        if (!operatorToGuess || !operatorToGuess.length) {
+        if(!operatorToGuess || !operatorToGuess.length){
             operatorToGuess = operators[Math.floor(Math.random() * operators.length)];
         }
-    } else if (localStorage.getItem('mode') === 'daily') {
+    } else if (localStorage.getItem('mode') === 'daily'){
         operatorToGuess = operator[0];
     }
 
@@ -786,7 +799,7 @@ function setOperatorToGuess() {
 // Set initial guess count for daily mode
 function setDailyGuesses() {
     let storedDailyGuesses = localStorage.getItem('dailyGuesses');
-    if (!storedDailyGuesses || isNaN(storedDailyGuesses)) {
+    if(!storedDailyGuesses || isNaN(storedDailyGuesses)){
         localStorage.setItem('dailyGuesses', dailyGuesses);
         dailyGuesses = localStorage.getItem('dailyGuesses')
     } else {
@@ -798,7 +811,7 @@ function setDailyGuesses() {
 // Set initial guess count for endless mode
 function setEndlessGuesses() {
     let storedEndlessGuesses = localStorage.getItem('endlessGuesses');
-    if (!storedEndlessGuesses || isNaN(storedEndlessGuesses)) {
+    if(!storedEndlessGuesses || isNaN(storedEndlessGuesses)){
         localStorage.setItem('endlessGuesses', endlessGuesses);
         endlessGuesses = localStorage.getItem('endlessGuesses')
     } else {
@@ -814,12 +827,12 @@ function restartButton() {
     // Check if the button exists
     if (restartButton) {
         // Add a click event listener to the button
-        restartButton.addEventListener('click', function () {
+        restartButton.addEventListener('click', function() {
             guessedOperators = []
             operatorToGuess = setOperatorToGuess()
             endlessGuesses = 0
-            let input = document.getElementById('inputField')
-            input.disabled = false
+            let input  = document.getElementById('inputField')
+                    input.disabled = false 
             clear()
             var event = new CustomEvent('clearUsedNames');
             window.dispatchEvent(event);
@@ -827,14 +840,14 @@ function restartButton() {
     }
 }
 
-function tutoButton() {
+function tutoButton(){
     //Get the tuto element
     var tutoElement = document.getElementById('tuto')
     tutoElement.style.display = 'contents'
 
     var tutoButton = document.getElementById('close')
-    if (tutoButton) {
-        tutoButton.addEventListener('click', function () {
+    if (tutoButton){
+        tutoButton.addEventListener('click', function(){
             tutoElement.style.display = 'none'
         })
     }
@@ -846,6 +859,10 @@ function clear() {
     let endId = document.getElementById('endId')
     endId.innerHTML = ''
 }
+
+   
+
+
 
 // Call this function whenever a quiz is solved
 function incrementSolvedCount() {
@@ -863,7 +880,6 @@ function fetchDailyData() {
         })
         .catch(error => console.error('Error:', error));
 }
-
 function incrementGlobalSolved() {
     fetch('../../server/endlessup.php')
         .then(response => response.text())
@@ -878,7 +894,7 @@ function fetchEndlessSolved() {
             if (data.error) {
                 console.error('Error:', data.error);
             } else {
-                document.getElementById('globalSolvedEndless').innerHTML = data.globalSolvedEndless + ' times was the Endless mode solved already';
+                document.getElementById('globalSolvedEndless').innerHTML =  data.globalSolvedEndless + ' times was the Endless mode solved already';
             }
         })
         .catch(error => console.error('Error:', error));
