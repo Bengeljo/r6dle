@@ -230,7 +230,7 @@
     "Saint Vincent and the Grenadines",
     "Trinidad and Tobago",
     "Turks and Caicos Islands",
-    "United States",
+    "USA",
     "Virgin Islands, British",
     "Virgin Islands, U.S."
   ],
@@ -256,5 +256,8 @@
     "Suriname",
     "Uruguay",
     "Venezuela"
+  ],
+  "Unknown": [
+    "Redacted"
   ]
 }
