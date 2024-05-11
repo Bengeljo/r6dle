@@ -58,7 +58,7 @@ function setHintDmgBar(guessedWeapon) {
 
     let weaponValue = (guessedWeapon.damage / maxDamage * 100);
     if (weaponValue > 95) {
-        weaponValue *= .962
+        weaponValue *= .982
     }
 
     progressValue.innerHTML = guessedWeapon.damage
@@ -127,7 +127,7 @@ function setHintMobBar(guessedWeapon) {
     progressValue.id = 'mobHint';
     let mobilityValue = (guessedWeapon.mobility / maxMobility * 100);
     if (mobilityValue > 95) {
-        mobilityValue *= .962
+        mobilityValue *= .982
     }
     progressValue.innerHTML = guessedWeapon.mobility
     progressStyle.innerHTML = '@keyframes mobLoadHint {0% {width: 0;} 100% {width: ' + mobilityValue + '%;}}';
@@ -195,7 +195,7 @@ function setHintFireRateBar(guessedWeapon) {
     progressValue.id = "fireRateHint";
     let fireRateValue = (guessedWeapon.fireRate / maxFireRate * 100);
     if (fireRateValue > 95) {
-        fireRateValue *= .962;
+        fireRateValue *= .982;
     }
     progressValue.innerHTML = guessedWeapon.fireRate
     progressStyle.innerHTML = '@keyframes fireRateLoadHint {0% {width: 0;} 100% {width: ' + fireRateValue + '%;}}';
@@ -263,7 +263,7 @@ function setHintMagSize(guessedWeapon) {
     progressValue.id = "magSizeHint";
     let magSizeValue = (guessedWeapon.magsize / maxMagSize * 100);
     if (magSizeValue > 95) {
-        magSizeValue *= .962
+        magSizeValue *= .982
     }
     progressValue.innerHTML = guessedWeapon.magsize
     progressStyle.innerHTML = '@keyframes magSizeLoadHint {0% {width: 0;} 100% {width: ' + magSizeValue + '%;}}';
