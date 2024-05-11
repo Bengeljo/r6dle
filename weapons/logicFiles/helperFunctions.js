@@ -1,3 +1,4 @@
+import { selectedWeapon, dailyWeaponToGuess, mode } from '../main.js'
 let weapons
 let guessedWeaponsHtml = []
 let dailyGuesses = 0;
@@ -7,7 +8,11 @@ function showHint1() {
     let hints = document.getElementById('hints');
     let hint1 = document.createElement('div');
     hint1.className = 'hints-colors hint1'
-    hint1.innerHTML = 'Hint 1: This weapon is a ' + selectedWeapon.type;
+    if (mode == 'endless'){
+        hint1.innerHTML = 'Hint 1: This weapon is a ' + selectedWeapon.type;
+    } else {
+        hint1.innerHTML = 'Hint 1: This weapon is a ' + dailyWeaponToGuess.type;
+    }
     hints.appendChild(hint1);
 }
 
@@ -20,17 +25,31 @@ function showHint2() {
     squareContainer.className = 'square-container'
 
     // Iterate over the operators and create a new element for each one
-    selectedWeapon.available_on.forEach(operator => {
-        let operatorElement = document.createElement('div');
-        operatorElement.className = 'square animate__animated animate__flipInY';
-        let img = document.createElement('img');
-        img.src = `../images/r6s-operators-badge-${operator.toLowerCase()}.png`;
-        img.style.width = '100%';
-        img.style.height = '100%';
-        img.style.objectFit = 'cover';
-        operatorElement.appendChild(img);
-        squareContainer.appendChild(operatorElement);
-    });
+    if (mode == 'endless') {
+        selectedWeapon.available_on.forEach(operator => {
+            let operatorElement = document.createElement('div');
+            operatorElement.className = 'square animate__animated animate__flipInY';
+            let img = document.createElement('img');
+            img.src = `../images/r6s-operators-badge-${operator.toLowerCase()}.png`;
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover';
+            operatorElement.appendChild(img);
+            squareContainer.appendChild(operatorElement);
+        });
+    } else {
+        dailyWeaponToGuess.available_on.forEach(operator => {
+            let operatorElement = document.createElement('div');
+            operatorElement.className = 'square animate__animated animate__flipInY';
+            let img = document.createElement('img');
+            img.src = `../images/r6s-operators-badge-${operator.toLowerCase()}.png`;
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover';
+            operatorElement.appendChild(img);
+            squareContainer.appendChild(operatorElement);
+        });
+    }
 
     hint2.appendChild(squareContainer);
     hints.appendChild(hint2);
