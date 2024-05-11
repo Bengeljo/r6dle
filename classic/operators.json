@@ -278,7 +278,7 @@
       "Map Control"
     ],
     "side": "Attack",
-    "country": "Morocoo",
+    "country": "Morocco",
     "Org": "GIGR",
     "Squad": "Wolfguard",
     "release_year": "2018"
@@ -558,7 +558,7 @@
     "name": "Jäger",
     "gender": "Male",
     "role": [
-      "Anti-Entry",
+      "Anti-Gadget",
       "Support"
     ],
     "side": "Defence",
@@ -731,13 +731,13 @@
       "Anti-Gadget"
     ],
     "side": "Defence",
-    "country": "Morocoo",
+    "country": "Morocco",
     "Org": "GIGR",
     "Squad": "Redhammer",
     "release_year": "2018"
   },
   {
-    "name": "Mozzi",
+    "name": "Mozzie",
     "gender": "Male",
     "role": [
       "Intel",
@@ -779,7 +779,7 @@
     "name": "Wamai",
     "gender": "Male",
     "role": [
-      "Anti-Entry",
+      "Anti-Gadget",
       "Trapper"
     ],
     "side": "Defence",
@@ -833,7 +833,7 @@
       "Support"
     ],
     "side": "Defence",
-    "country": "USA",
+    "country": "Canada",
     "Org": "Star-Net Aviation",
     "Squad": "Wolfguard",
     "release_year": "2021"
