@@ -2,9 +2,10 @@ let randomMap
 let randomFloor
 let randomRoom
 let zIndex = 1;
+let image;
 async function selectRandomImage() {
     // Get the list of maps
-    const mapsResponse = await fetch('https://organic-dollop-pq76pjpvg99f4p5-3000.app.github.dev/mapMode/maps.json');
+    const mapsResponse = await fetch('https://r6dle.net/map/maps.json');
     const maps = await mapsResponse.json();
 
     // Select a random map
@@ -20,7 +21,11 @@ async function selectRandomImage() {
     const rooms = randomMap[randomFloor.toLowerCase().replace(' ','')].filter(room => room !== 'Background');
     const randomRoomIndex = Math.floor(Math.random() * rooms.length);
     randomRoom = rooms[randomRoomIndex];
-    const image = `${randomFloor.toLowerCase().replace(' ','')}.${randomRoom.toLowerCase().replace(' ','_').replace(' ','_').replace(' ','_')}.png`;
+    if (randomMap.name == 'House') {
+        image = `${randomFloor.toLowerCase().replace(' ', '')}.${randomRoom.toLowerCase().replace(' ', '_').replace(' ', '_').replace(' ', '_')}.png`;
+    } else {
+        image = `${randomFloor.toLowerCase().replace(' ', '')}.${randomRoom.toLowerCase().replace(' ', '_').replace(' ', '_').replace(' ', '_')}.avif`;
+    }
 
     console.log(`Selected map: ${randomMap.name}`);
     console.log(`Selected floor: ${randomFloor}`);
@@ -29,7 +34,7 @@ async function selectRandomImage() {
     // In Ihrem JavaScript:
     let box = document.getElementById('mapImageBox');
     let img = document.createElement('img');
-    img.src = `https://organic-dollop-pq76pjpvg99f4p5-3000.app.github.dev/images/maps/${randomMap.name.toLowerCase()}/${image}`;
+    img.src = `https://r6dle.net/images/maps/${randomMap.name.toLowerCase()}/${image}`;
     img.style.filter = 'sepia(100%) saturate(600%) hue-rotate(107deg)';
     img.style.position = 'relative';
     img.style.zIndex = 100;
@@ -38,7 +43,7 @@ async function selectRandomImage() {
 }   
 async function fillDropdowns() {
     // Get the list of maps
-    const mapsResponse = await fetch('https://organic-dollop-pq76pjpvg99f4p5-3000.app.github.dev/mapMode/maps.json');
+    const mapsResponse = await fetch('https://r6dle.net/map/maps.json');
     const maps = await mapsResponse.json();
 
     const mapSelect = document.getElementById('mapSelect');
@@ -100,11 +105,18 @@ function checkSelections() {
     const roomSelect = document.getElementById('roomSelect');
     let box = document.getElementById('mapImageBox');
     let img = document.createElement('img');
-    img.src = `https://organic-dollop-pq76pjpvg99f4p5-3000.app.github.dev/images/maps/${randomMap.name.toLowerCase()}/${randomFloor.toLowerCase().replace(' ','')}.background.png`;
+    let button = document.getElementById('checkButton');
+    let background = document.getElementById('backgroundImg')
+    let restart = document.getElementById('restart')
+    if (randomMap.name == 'House') {
+        img.src = `https://r6dle.net/images/maps/${randomMap.name.toLowerCase()}/${randomFloor.toLowerCase().replace(' ', '')}.background.png`;
+    } else {
+        img.src = `https://r6dle.net/images/maps/${randomMap.name.toLowerCase()}/${randomFloor.toLowerCase().replace(' ', '')}.background.avif`;
+    }
     img.className = 'mapImages'
     img.style.zIndex = zIndex;
     img.style.position = 'absolute';
-    let button = document.getElementById('checkButton');
+    
 
     // Check if the selected map matches the random map
     if (mapSelect.value === randomMap.name) {
@@ -121,8 +133,8 @@ function checkSelections() {
                 button.className = "btn btn-success"
                 button.innerHTML = "You won!"
                 box.appendChild(img);
-                let background = document.getElementById('backgroundImg')
                 background.style.backgroundColor = 'rgb(0 152 0 / 70%)'
+                restart.style.display = ''
             } else {
                 console.log("The selected room does not match the room we are looking for!");
                 selectRandomHint().catch(console.error);
@@ -157,9 +169,17 @@ async function selectRandomHint(){
             hintRandomRoom = rooms[hintRandomRoomIndex];
         }
         selectedRooms.add(hintRandomRoom);
-        image = `${randomFloor.toLowerCase().replace(' ','')}.${hintRandomRoom.toLowerCase().replace(' ','_').replace(' ','_').replace(' ','_')}.png`;
+        if (randomMap.name == 'House') {
+            image = `${randomFloor.toLowerCase().replace(' ', '')}.${hintRandomRoom.toLowerCase().replace(' ', '_').replace(' ', '_').replace(' ', '_')}.png`;
+        } else {
+            image = `${randomFloor.toLowerCase().replace(' ', '')}.${hintRandomRoom.toLowerCase().replace(' ', '_').replace(' ', '_').replace(' ', '_')}.avif`;
+        }
     } else {
-        image = `${randomFloor.toLowerCase().replace(' ','')}.background.png`;
+        if (randomMap.name == 'House') {
+            image = `${randomFloor.toLowerCase().replace(' ', '')}.background.png`;
+        } else {
+            image = `${randomFloor.toLowerCase().replace(' ', '')}.background.avif`;
+        }
     }
     
     
@@ -168,10 +188,10 @@ async function selectRandomHint(){
     console.log(`Selected floor: ${randomFloor}`);
     console.log(`Selected room: ${randomRoom}`);
     
-    // In Ihrem JavaScript:
+    
     let box = document.getElementById('mapImageBox');
     let img = document.createElement('img');
-    img.src = `https://organic-dollop-pq76pjpvg99f4p5-3000.app.github.dev/images/maps/${randomMap.name.toLowerCase()}/${image}`;
+    img.src = `https://r6dle.net/images/maps/${randomMap.name.toLowerCase()}/${image}`;
     img.className = 'mapImages'
     img.style.zIndex = zIndex;
     img.style.position = 'absolute';
@@ -179,9 +199,32 @@ async function selectRandomHint(){
     box.appendChild(img);
 }
 
+function restartMode() {
+    const mapSelect = document.getElementById('mapSelect');
+    const floorSelect = document.getElementById('floorSelect');
+    const roomSelect = document.getElementById('roomSelect');
+    let box = document.getElementById('mapImageBox');
+    let button = document.getElementById('checkButton');
+    let background = document.getElementById('backgroundImg')
+    let restart = document.getElementById('restart')
+
+    box.innerHTML = ''
+    mapSelect.disabled = false;
+    floorSelect.disabled = false;
+    roomSelect.disabled = false;
+    button.disabled = false;
+    button.className = "btn btn-primary"
+    button.innerHTML = "Check"
+    restart.style.display = 'none'
+    selectRandomImage()
+    background.style.backgroundColor = 'rgba(0, 0, 0, 0.7)'
+
+}
+
 // Attach the function to the button click event
 window.onload = async function () {
     selectRandomImage().catch(console.error);
     fillDropdowns().catch(console.error);
     await document.getElementById('checkButton').addEventListener('click', checkSelections);
+    await document.getElementById('restart').addEventListener('click', restartMode);
 }
