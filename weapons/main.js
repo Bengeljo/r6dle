@@ -1,5 +1,5 @@
 import { setDmgBar, setFireRateBar, setHintDmgBar, setHintFireRateBar, setHintMobBar, setMagSize, setMobBar, setHintMagSize } from "./logicFiles/setBars.js"
-import { fetchDailyData, fetchEndlessSolved, incrementGlobalSolved, incrementSolvedCount } from "./logicFiles/serverFunctions.js"
+//import { fetchDailyData, fetchEndlessSolved, incrementGlobalSolved, incrementSolvedCount } from "./logicFiles/serverFunctions.js"
 import { clear, randomWeapon, setDailyGuesses, setEndlessGuesses, showHint1, showHint2, getDailyGuesses, getEndlessGuesses, setWeapons, weapons, guessedWeaponsHtml } from "./logicFiles/helperFunctions.js"
 
 let guessedWeapons = []
@@ -10,32 +10,38 @@ let checkbox
 let weaponToGuess;
 let dailyWeaponToGuess = null;
 let dailyStreakCount = localStorage.getItem('dailyWeaponStreakCount') || 0;
+let mode 
+let lastSolvedTimestamp
+
 
 window.onload = async function () {
     const weaponsResponse = await fetch('./weapons.json')
+    const dailyWeaponResponse = await fetch('./dweapon.json')
     const weaponsData = await weaponsResponse.json()
+    const dailyWeapon = await dailyWeaponResponse.json();
+    dailyWeaponToGuess = dailyWeapon[0]
     setWeapons(weaponsData)
     askForGuess();
     window.dispatchEvent(new Event('guessedWeaponsLoaded'));
+    let input = document.getElementById('inputField')
+    input.disabled = true
 
     let savedMode = localStorage.getItem('mode');
+    lastSolvedTimestamp = localStorage.getItem('lastSolvedWeaponTimeStamp')
+    checkDailyStreak()
 
-    /* // Get the last visit timestamp and streak count from localStorage
-    let lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
-    let dailyWeaponStreakCount = parseInt(localStorage.getItem('dailyWeaponStreakCount')) || 0;
-    var dateNow = new Date().getTime();
-    // If the last visit was within the last 24 hours, increment the streak count
-    console.log(dateNow >= lastSolvedTimestamp + 24 * 60 * 60 * 1000)
-    if (dateNow <= lastSolvedTimestamp + 24 * 60 * 60 * 1000) {
-        console.log('Daily streak reset');
-        localStorage.setItem('dailyWeaponStreakCount', 0);
-    } */
+    let lastDailyWeapon = localStorage.getItem('lastDailyWeapon')
+    if (!lastDailyWeapon != dailyWeaponToGuess.name) {
+        localStorage.setItem('dailyWeaponWon', false)
+    }
 
     // If a mode was saved, open that mode
     if (savedMode === 'daily') {
         dailyMode();
+        mode = 'daily'
     } else if (savedMode === 'endless') {
         endlessMode();
+        mode = 'endless'
     } else {
         // Disable the input
         let input = document.getElementById('inputField');
@@ -49,10 +55,19 @@ window.onload = async function () {
     fetchEndlessSolved()
     setInterval(fetchEndlessSolved, 5000);
 }
+function checkDailyStreak() {
+    // If the last visit was more than 24 hours, set the streak count to 0
+    let dateNow = new Date().getTime();
+
+    if ((dateNow >= (lastSolvedTimestamp + 24 * 60 * 60 * 1000)) && new Date().getUTCHours() > 18) {
+        console.log('Daily weapon streak reset');
+        localStorage.setItem('dailyWeaponStreakCount', 0);
+    }
+}
 
 window.dailyMode = function () {
     let dailyGuesses = getDailyGuesses()
-
+    resetValues()
     // Enable the input
     let input = document.getElementById('inputField');
     if (input) {
@@ -61,7 +76,7 @@ window.dailyMode = function () {
             input.disabled = true
         }
     }
-
+    mode = 'daily'
     // Logic for daily mode
     updateModeIndicator('Daily');
     localStorage.setItem('mode', 'daily');
@@ -89,7 +104,7 @@ window.dailyMode = function () {
 
 window.endlessMode = function () {
     let endlessGuesses = getEndlessGuesses()
-
+    resetValues()
     // Logic for endless mode
     updateModeIndicator('Endless');
     localStorage.setItem('mode', 'endless');
@@ -98,7 +113,7 @@ window.endlessMode = function () {
     weaponToGuess = randomWeapon();
 
     selectedWeapon = weaponToGuess;
-
+    mode = 'endless'
     setDmgBar(weaponToGuess);
     setMobBar(weaponToGuess);
     setFireRateBar(weaponToGuess);
@@ -160,7 +175,7 @@ function updateModeIndicator(mode) {
 
 function displayDailyStreak() {
     // Get the daily streak from local storage
-    let dailyStreak = localStorage.getItem('dailyStreakCount');
+    let dailyStreak = localStorage.getItem('dailyWeaponStreakCount');
     var dailyStreakDisplay = document.getElementById('dailyStreakDisplay');
     var dataGlobalSolvedEndless = document.getElementById('globalSolvedEndless');
     var dataDailyStreak = document.getElementById('alreadyDailySolved');
@@ -184,6 +199,7 @@ function displayDailyStreak() {
     // Hide the 'streakDisplay' element
     streakDisplay.style.display = 'none';
     dataGlobalSolvedEndless.style.display = 'none'
+    dataDailyStreak.style.display = ''
 }
 
 function displayStreak() {
@@ -229,19 +245,25 @@ async function guessWeapon(weapon) {
     }
 
     if (weapon === selectedWeapon.name) {
+        let input = document.getElementById('inputField')
+        input.disabled = true
         console.log('You won!')
         problemSolved();
         const weaponsArr = weapons
         let gWeapon = await weaponsArr.find(w => w.name === weapon)
-
+        if (mode = 'daily') {
+            let lastSolvedTimestamp = new Date()
+            localStorage.setItem('lastSolvedWeaponTimeStamp', lastSolvedTimestamp)
+            localStorage.setItem('dailyWeaponWon', true)
+            localStorage.setItem('dailyWeaponGuessed', guesses)
+            localStorage.setItem('lastDailyWeapon', selectedWeapon.name)
+        }
         setHintDmgBar(gWeapon)
         setHintMobBar(gWeapon);
         setHintFireRateBar(gWeapon);
         setHintMagSize(gWeapon)
         displayWinningScreen();
-        guessedWeapons = []
-        guessedWeaponsHtml = []
-        guesses = 0
+        resetValues()
         return true
     } else {
         // Add the guessed weapon to the array
@@ -266,7 +288,10 @@ async function guessWeapon(weapon) {
 
         nextHintElement.className = 'hints-colors';
         nextHintElement.innerHTML = `${3 * hint - guesses} more guesses until next hint`
-
+        if (3 * hint - guesses > 0) {
+            nextHintElement.style.display = ''
+        }
+        else { nextHintElement.style.display = 'none' }
         // Create a new div for the weapon boxes
         let weaponBoxes = document.createElement('div');
 
@@ -443,7 +468,12 @@ function displayWinningScreen() {
     // Create the nth span
     let nthSpan = document.createElement('span');
     nthSpan.className = 'nth';
-    nthSpan.innerHTML = guesses
+    if (mode == 'daily') {
+        let dailyGuessed = localStorage.getItem('dailyWeaponGuessed')
+        nthSpan.innerHTML = dailyGuessed
+    } else {
+        nthSpan.innerHTML = guesses
+    }
 
     // Create restart button
     let button = document.createElement('button')
@@ -466,7 +496,6 @@ function displayWinningScreen() {
     emptyDiv.appendChild(backgroundEndDiv);
     finishedDiv.appendChild(emptyDiv);
     endId.appendChild(finishedDiv);
-
     if (localStorage.getItem('mode') == 'endless') {
         restartButton();
     }
@@ -480,9 +509,8 @@ function restartButton() {
     if (restartButton) {
         // Add a click event listener to the button
         restartButton.addEventListener('click', function () {
-            guessedWeapons = []
             selectedWeapon = randomWeapon()
-            guesses = 0
+            resetValues()
             clear()
             setDmgBar(selectedWeapon);
             setMobBar(selectedWeapon);
@@ -549,6 +577,12 @@ function problemSolved() {
     }
 }
 
+function resetValues() {
+    guesses = 0
+    guessedWeapons = []
+    hint = 1
+}
+
 function getGuessedWeapons() {
     if (!guessedWeapons) {
         guessedWeapons = [];
@@ -560,4 +594,40 @@ function getSelectedWeapon() {
     return selectedWeapon;
 }
 
-export { getGuessedWeapons, getSelectedWeapon }
+// Call this function whenever a quiz is solved
+function incrementSolvedCount() {
+    fetch('../../server/datWeaponUp.php')
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+}
+
+function fetchDailyData() {
+    fetch('../../server/dailyWeaponSolved.php')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('alreadyDailySolved').innerHTML = data + ' people already found the weapon';
+        })
+        .catch(error => console.error('Error:', error));
+}
+function incrementGlobalSolved() {
+    fetch('../../server/endlessWeaponUp.php')
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+}
+
+function fetchEndlessSolved() {
+    fetch('../../server/endlessWeaponSolved.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error('Error:', data.error);
+            } else {
+                document.getElementById('globalSolvedEndless').innerHTML = data.globalSolvedEndless + ' times was the Endless mode already solved';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+export { getGuessedWeapons, getSelectedWeapon, selectedWeapon, dailyWeaponToGuess, mode }
