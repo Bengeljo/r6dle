@@ -7,7 +7,7 @@
   
   @media only screen {
     body {
-    background-image: url('../images/weapons/background/redhammer.png');
+    background-image: url('../images/weapons/backgrounds/redhammer.webp');
     color: #ffffff;
     background-attachment: fixed;
     background-size: cover;
@@ -19,7 +19,7 @@
   }
   @media only screen and (min-width: 320px) {
     body {
-      background-image: url('../images/weapons/background/redhammer.png');
+      background-image: url('../images/weapons/backgrounds/redhammer.webp');
       color: #ffffff;
       background-attachment: fixed;
       background-size: cover;
@@ -57,6 +57,11 @@
   width: fit-content;
   display: flex;
 }
+.textLogo{
+    height:25px;
+    width: fit-content;
+    display: flex;
+  }
 .logo-container{
   width: 48%;
   display: flex;
@@ -69,7 +74,7 @@
   }
   @media only screen and (min-width: 375px) {
     body {
-      background-image: url('../images/weapons/background/redhammer.png');
+      background-image: url('../images/weapons/backgrounds/redhammer.webp');
       color: #ffffff;
       background-attachment: fixed;
       background-size: cover;
@@ -107,6 +112,11 @@
   width: fit-content;
   display: flex;
 }
+.textLogo{
+    height: 26px;
+    width: fit-content;
+    display: flex;
+  }
 .logo-container{
   width: 48%;
   display: flex;
@@ -119,7 +129,7 @@
   }
   @media only screen and (min-width: 425px) {
     body {
-      background-image: url('../images/weapons/background/redhammer.png');
+      background-image: url('../images/weapons/backgrounds/redhammer.webp');
       color: #ffffff;
       background-attachment: fixed;
       background-size: cover;
@@ -157,6 +167,11 @@
   width: fit-content;
   display: flex;
 }
+.textLogo{
+    height: 29px;
+    width: fit-content;
+    display: flex;
+  }
 .logo-container{
   width: 48%;
   display: flex;
@@ -169,7 +184,7 @@
   }
   @media only screen and (min-width: 576px) {
     body {
-      background-image: url('../images/weapons/background/redhammer.png');
+      background-image: url('../images/weapons/backgrounds/redhammer.webp');
       color: #ffffff;
       background-attachment: fixed;
       background-size: cover;
@@ -207,6 +222,11 @@
   width: fit-content;
   display: flex;
 }
+.textLogo{
+    height: 36px;
+    width: fit-content;
+    display: flex;
+  }
 .logo-container{
   width: 48%;
   display: flex;
@@ -219,7 +239,7 @@
 }
 @media only screen and (min-width: 768px) {
   body {
-    background-image: url('../images/weapons/background/redhammer.png');
+    background-image: url('../images/weapons/backgrounds/redhammer.webp');
     color: #ffffff;
     background-attachment: fixed;
     background-size: cover;
@@ -257,6 +277,11 @@
   width: fit-content;
   display: flex;
 }
+.textLogo{
+    height: 38px;
+    width: fit-content;
+    display: flex;
+  }
 .logo-container{
   width: 48%;
   display: flex;
@@ -269,7 +294,7 @@
 }
 @media only screen and (min-width: 992px) {
   body {
-    background-image: url('../images/weapons/background/redhammer.png');
+    background-image: url('../images/weapons/backgrounds/redhammer.webp');
     color: #ffffff;
     background-attachment: fixed;
     background-size: cover;
@@ -307,6 +332,11 @@
   width: fit-content;
   display: flex;
 }
+.textLogo{
+    height: 44px;
+    width: fit-content;
+    display: flex;
+  }
 .logo-container{
   width: 48%;
   display: flex;
@@ -319,7 +349,7 @@
 }
 @media only screen and (min-width: 1200px) {
   body {
-    background-image: url('../images/weapons/background/redhammer.png');
+    background-image: url('../images/weapons/backgrounds/redhammer.webp');
     color: #ffffff;
     background-attachment: fixed;
     background-size: cover;
@@ -357,6 +387,11 @@
   width: fit-content;
   display: flex;
 }
+.textLogo{
+    height: 60px;
+    width: fit-content;
+    display: flex;
+  }
 .logo-container{
   width: 48%;
   display: flex;
